@@ -75,7 +75,7 @@ export const ContactBigSize = () => {
                                         placeholder='ປ້ອນເບີໂທ'
                                     />
                                 </div>
-                                {/*  */}
+
                                 <div className=' mt-7 w-full'>
                                     <h4 className=' font-medium text-[#01A7B1] mb-2'>
                                         Message
