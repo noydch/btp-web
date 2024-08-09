@@ -1,0 +1,8 @@
+.hoverNews:hover {
+    color: white !important;
+    background-color: #01A7B1;
+}
+
+.hoverNews:hover span {
+    color: white !important;
+}
