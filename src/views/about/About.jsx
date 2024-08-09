@@ -133,12 +133,24 @@ export const About = () => {
                 <animated.div style={modalAnimation} className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
                     <div className="relative">
                         <img src={previewImage} alt="" className="max-h-[80vh] max-w-[80vw]" />
-                        <button onClick={handleClose} className="absolute bottom-[-40px] left-[50%] -translate-x-1/2 text-white bg-black/60 px-2 rounded-full text-2xl">&times;</button>
-                        <button onClick={handlePrev} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white bg-black/60 px-2 rounded-full text-2xl">&lt;</button>
-                        <button onClick={handleNext} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white bg-black/60 px-2 rounded-full text-2xl">&gt;</button>
+                        <div onClick={handleClose} className="absolute bottom-[-40px] left-[50%] -translate-x-1/2 text-white bg-black/60 w-[30px] h-[30px] rounded-full text-2xl flex items-center justify-center">
+                            <button>
+                                &times;
+                            </button>
+                        </div>
+                        <div onClick={handlePrev} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white bg-black/60 w-[30px] h-[30px] rounded-full text-2xl flex items-center justify-center">
+                            <button>
+                                &lt;
+                            </button>
+                        </div>
+                        <div onClick={handleNext} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white bg-black/60 w-[30px] h-[30px] rounded-full text-2xl flex items-center justify-center">
+                            <button>
+                                &gt;
+                            </button>
+                        </div>
                     </div>
-                </animated.div>
+                </animated.div >
             )}
-        </AboutNavbar>
+        </AboutNavbar >
     );
 };

@@ -106,18 +106,7 @@ export const AboutNavbar = ({ children }) => {
                                         </NavLink>
                                     ))
                                 }
-                                <NavLink to={'/login'}
-                                    className={
-                                        isActivePath('/login') ?
-                                            navActive :
-                                            `xl:py-2 xl:px-5 font-semibold  sm:hidden flex items-center gap-x-3 hover:text-[#00B8D1] text-[14px] xl:text-[16px] p-3 w-full xl:w-[120px] border-b-[3px] border-transparent text-[#6B7280]`
-                                    }
-                                >
-                                    <MdLogin className='text-[14px] sm:text-[16px] lg:text-[18px]' />
-                                    <p>
-                                        ເຂົ້າສູ່ລະບົບ
-                                    </p>
-                                </NavLink>
+                                <></>
                             </animated.ul>
                         ) : (
                             <ul className='flex items-center gap-x-0 xl:gap-x-0'>
