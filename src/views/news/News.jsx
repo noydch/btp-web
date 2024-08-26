@@ -1,10 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { NewsNavbar } from './components/NewsNavbar'
 import { newsData } from './newsData'
 import './style/Style.css'
 import { Link } from 'react-router-dom'
+import { getNewsApi } from '../../api/news'
+import { formatDate } from '../../utils'
 
 export const News = () => {
+    const [loading, setLoading] = useState(false)
+    const [newsData, setNewsData] = useState([])
+
+    const fetchData = async () => {
+        setLoading(true)
+        try {
+            const response = await getNewsApi()
+            setNewsData(response)
+            setLoading(false)
+        } catch (error) {
+            console.error("Error can not response News data from Api", error);
+            // setLoading(false)
+        }
+    }
+
+    useEffect(() => {
+        fetchData()
+        console.log(newsData);
+    }, [])
     return (
         <NewsNavbar>
             <div className=' w-full mx-auto px-4 sm:px-0 pt-[80px] pb-10 sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px]'>
@@ -13,10 +34,10 @@ export const News = () => {
                         newsData.map((item, index) => (
                             <Link to={`/news/${item.id}`} key={index}
                                 className='hoverNews border border-[#E1E1E1] bg-white duration-300
-                            shadow-[0px_2px_3px_0px_#00000024] md:w-[230px] xl:w-[280px] xl:h-[330px]
+                            shadow-[0px_2px_3px_0px_#00000024] md:w-[230px] xl:w-[280px] xl:h-[350px]
                             '
                             >
-                                <img src={item.picture} alt=""
+                                <img src={item.image} alt=""
                                     className=' w-full h-[240px] object-cover'
                                 />
                                 <div className=' p-3 flex flex-col xl:gap-y-1'>
@@ -24,10 +45,10 @@ export const News = () => {
                                         {item.title}
                                     </h2>
                                     <span className=' text-[#8E8C8C] text-[12px] '>
-                                        {item.policy}
+                                        {item.detail}
                                     </span>
                                     <p className=' font-semibold text-[12px] sm:text-center xl:text-[14px]'>
-                                        {item.date}
+                                        {formatDate(item.createdAt)}
                                     </p>
                                 </div>
                             </Link>

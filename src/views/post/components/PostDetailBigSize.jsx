@@ -16,23 +16,23 @@ import { IoMdCheckmarkCircle } from "react-icons/io";
 import bgPostOverlay from '../../../assets/images/webp/postOverlay.webp'
 import { FaFacebook, FaFacebookF } from 'react-icons/fa';
 
-export const PostDetailBigSize = () => {
+export const PostDetailBigSize = ({ postData }) => {
     const id = useParams()
     const postID = id.pID;
 
 
     return (
         <Navbar>
-            <div className=' pt-[70px] w-full h-full '>
-                <div className='container h-full max-w-[340px] mx-auto sm:max-w-[600px] md:max-w-[720px] xl:max-w-[1200px] pb-10'>
+            <div className=' pt-[80px] w-full h-full '>
+                <div className='container h-full max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] xl:max-w-[1200px] pb-10'>
                     {
-                        cardPostData.map((item, index) => (
+                        postData.map((item, index) => (
                             item.id == postID && (
                                 <div key={index}
-                                    className=' w-full h-[550px]'
+                                    className=' w-full h-[550px] rounded-lg'
                                 >
-                                    <img src={item.picture} alt=""
-                                        className=' w-full h-full object-cover'
+                                    <img src={item.image} alt=""
+                                        className=' w-full h-full rounded-lg object-cover'
                                     />
                                 </div>
                             )

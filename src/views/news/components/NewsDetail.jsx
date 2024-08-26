@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { PostNavbar } from '../../post/components/PostNavbar.jsx.jsx'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { LuDot } from "react-icons/lu";
 import { GoDotFill } from "react-icons/go";
@@ -10,12 +10,34 @@ import { FiDownload } from "react-icons/fi";
 import { newsData } from '../newsData.jsx';
 import { NewsNavbar } from './NewsNavbar.jsx';
 import { NewsDetailBigSize } from './NewsDetailBigSize.jsx';
+import { getNewsApi } from '../../../api/news.js';
 
 export const NewsDetail = () => {
+    const navigate = useNavigate()
+    const [loading, setLoading] = useState(false)
+    const [newsData, setNewsData] = useState([])
     const id = useParams()
     // console.log(id.pID);
     const postID = id.nID;
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+
+
+    const fetchData = async () => {
+        setLoading(true)
+        try {
+            const response = await getNewsApi()
+            setNewsData(response)
+            setLoading(false)
+        } catch (error) {
+            console.error("Error can not response News data from Api", error);
+            // setLoading(false)
+        }
+    }
+
+    useEffect(() => {
+        fetchData()
+        console.log(newsData);
+    }, [])
 
     useEffect(() => {
         const handleResize = () => setWindowWidth(window.innerWidth)
@@ -34,7 +56,7 @@ export const NewsDetail = () => {
                                     newsData.map((item, index) => (
                                         item.id == postID && (
                                             <div key={index}>
-                                                <img src={item.picture} alt="" />
+                                                <img src={item.image} alt="" />
                                                 <div></div>
                                             </div>
                                         )
@@ -42,7 +64,7 @@ export const NewsDetail = () => {
                                 }
                             </div>
                         </div>
-                        <div className='container max-w-[340px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px] pb-10'>
+                        <div className='container max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px] pb-10'>
                             <div className='mt-3 flex items-center text-[#DEAD00]'>
                                 <GoDotFill className=' text-[12px]' />
                                 <h1 className=' text-[20px] sm:text-[22px] font-medium pl-2 py-2.5 border-b border-[#DEAD00]'>
@@ -127,7 +149,7 @@ export const NewsDetail = () => {
                         </div>
                     </>
                 ) : (
-                    <NewsDetailBigSize />
+                    <NewsDetailBigSize newsData={newsData} />
                 )
             }
         </NewsNavbar>

@@ -73,7 +73,7 @@ export const NewsNavbar = ({ children }) => {
             <div className='bg-[#01A7B1] fixed z-[50] w-full
                 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]
             '>
-                <div className='container h-[70px] mx-auto max-w-[340px] sm:max-w-[620px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px]'>
+                <div className='container h-[70px] mx-auto max-w-[350px] sm:max-w-[620px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px]'>
                     <nav className='relative z-[1000] flex items-center h-[70px] justify-between'>
                         <div className=' flex items-center gap-x-2 lg:gap-x-4'>
                             <div onClick={() => navigate(-1)}

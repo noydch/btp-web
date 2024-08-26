@@ -17,17 +17,17 @@ import { FaFacebook, FaFacebookF } from 'react-icons/fa';
 import { newsData } from '../newsData.jsx';
 import { NewsNavbar } from './NewsNavbar.jsx';
 
-export const NewsDetailBigSize = () => {
+export const NewsDetailBigSize = ({ newsData }) => {
     const id = useParams()
     // console.log(id.pID);
     const postID = id.nID;
     return (
-        <div className='pt-[80px] container max-w-[340px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px] pb-10'>
+        <div className='pt-[80px] container max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px] pb-10'>
             {
                 newsData.map((item, index) => (
                     item.id == postID && (
                         <div key={index}>
-                            <img src={item.picture} alt=""
+                            <img src={item.image} alt=""
                                 className=' h-[500px] w-full object-cover'
                             />
                             <div></div>

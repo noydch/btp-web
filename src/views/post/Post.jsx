@@ -2,15 +2,67 @@ import React, { useEffect, useState } from 'react';
 import { Select } from 'antd';
 import { Navbar } from '../../components/Navbar';
 import { IoSearch } from 'react-icons/io5';
-import { cardPostData } from './cardPostData';
 import { Link } from 'react-router-dom';
 import ModalAds from '../../components/ModalAds';
+import Swal from 'sweetalert2';
+import { getService } from '../../api/serivce';
+import starIcon from '../../assets/icons/starPlus.png';
+import { getCategoryApi } from '../../api/category';
 
 export const Post = () => {
     const [selectedFilter, setSelectedFilter] = useState(0);
     const [showModal, setShowModal] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
-    const [filteredCards, setFilteredCards] = useState(cardPostData);
+    const [filteredPosts, setFilteredPosts] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [postData, setPostData] = useState([]);
+    const [categoryData, setCategoryData] = useState([]);
+
+    const fetchData = async () => {
+        setLoading(true);
+        try {
+            const response = await getService();
+            if (!response) {
+                throw new Error('No response from API');
+            }
+            setPostData(response);
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: "ເກີດຂໍ້ຜິດພາດ",
+                text: "ບໍ່ສາມາດດຶງຂໍ້ມູນໄດ້",
+            });
+            console.error('Error fetching data:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const fetchDataCategory = async () => {
+        setLoading(true);
+        try {
+            const response = await getCategoryApi();
+            if (!response) {
+                throw new Error('No response from API');
+            }
+            setCategoryData(response);
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: "ເກີດຂໍ້ຜິດພາດ",
+                text: "ບໍ່ສາມາດດຶງຂໍ້ມູນໄດ້",
+            });
+            console.error('Error fetching data:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+        fetchDataCategory();
+        console.log("category", categoryData);
+    }, []);
 
     useEffect(() => {
         const hasModalBeenShown = sessionStorage.getItem('modalShown');
@@ -21,27 +73,27 @@ export const Post = () => {
     }, []);
 
     useEffect(() => {
-        const filtered = cardPostData.filter(item => {
-            const matchesFilter =
-                selectedFilter === 0 ||
-                (selectedFilter === 1 && item.typeCapitail === 'ທຶນປະລິນຍາຕີ') ||
-                (selectedFilter === 2 && item.typeCapitail === 'ທຶນກຽມພາສາ') ||
-                (selectedFilter === 3 && item.typeCapitail === 'ທຶນຊັ້ນສູງ');
+        const filterPosts = () => {
+            let updatedPosts = [...postData];
 
-            const matchesSearch =
-                item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                item.typeCapitail.toLowerCase().includes(searchTerm.toLowerCase());
+            // Filter by selected category
+            if (selectedFilter !== 0) {
+                updatedPosts = updatedPosts.filter(post => post.category_id === selectedFilter);
+            }
 
-            return matchesFilter && matchesSearch;
-        });
+            // Filter by search term
+            if (searchTerm) {
+                updatedPosts = updatedPosts.filter(post => post.title.toLowerCase().includes(searchTerm.toLowerCase()));
+            }
 
-        setFilteredCards(filtered);
-    }, [selectedFilter, searchTerm]);
+            setFilteredPosts(updatedPosts);
+        };
 
-    const handleSearch = () => {
-        // The search is already handled in the useEffect above
-        // This function is called when the search button is clicked
-        // You can add additional functionality here if needed
+        filterPosts();
+    }, [postData, selectedFilter, searchTerm]);
+
+    const handleCategoryChange = (value) => {
+        setSelectedFilter(value);
     };
 
     const handleCloseModal = () => {
@@ -51,20 +103,18 @@ export const Post = () => {
     return (
         <Navbar>
             <ModalAds show={showModal} onClose={handleCloseModal} />
-            <div className='pt-[70px] w-full h-full container max-w-[340px] mx-auto sm:max-w-[620px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px]'>
+            <div className='pt-[70px] w-full h-full container max-w-[350px] mx-auto sm:max-w-[620px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px]'>
                 <div className='pt-5 pb-10'>
                     <div className='md:flex md:flex-row-reverse md:items-center md:gap-x-4 xl:px-20 xl:pb-5 xl:border-b'>
                         <Select
                             labelInValue
                             defaultValue={{ value: 0, label: 'ເລືອກທຶນການສຶກສາ' }}
                             className='w-full lg:h-[40px] h-[45px] md:h-[35px]'
-                            onChange={(selected) => setSelectedFilter(selected.value)}
-                            options={[
-                                { value: 0, label: 'ທັງໝົດ' },
-                                { value: 1, label: 'ທຶນປະລິນຍາຕີ' },
-                                { value: 2, label: 'ທຶນກຽມພາສາ' },
-                                { value: 3, label: 'ທຶນຊັ້ນສູງ' },
-                            ]}
+                            onChange={(value) => handleCategoryChange(value.value)}
+                            options={categoryData.map((item) => ({
+                                value: item.id,
+                                label: item.name,
+                            }))}
                         />
                         <div className='flex gap-x-2 my-3 items-center md:w-full'>
                             <div className='flex items-center relative w-[240px] sm:w-full lg:h-[40px] h-[45px] md:h-[35px]'>
@@ -77,16 +127,10 @@ export const Post = () => {
                                 />
                                 <IoSearch className='left-3 absolute text-[22px] md:text-[20px] text-[#01B0B0]' />
                             </div>
-                            <button
-                                className='w-[100px] lg:h-[40px] h-[45px] md:h-[35px] text-[16px] text-white rounded-md bg-[#01ADB0]'
-                                onClick={handleSearch}
-                            >
-                                ຄົ້ນຫາ
-                            </button>
                         </div>
                     </div>
                     <div className='grid grid-cols-3 sm:grid-cols-4 xl:grid-cols-12 xl:gap-7 gap-3 sm:gap-5 lg:mt-7'>
-                        {filteredCards.map((item, index) => (
+                        {filteredPosts.map((item, index) => (
                             <Link
                                 to={`/post/postDetail/${item.id}`}
                                 key={index}
@@ -94,18 +138,18 @@ export const Post = () => {
                             >
                                 <div className='w-full h-[100px] xl:h-[200px]'>
                                     <img
-                                        src={item.picture}
+                                        src={item.image || 'defaultImage.png'} // Add a fallback image
                                         alt={item.title}
                                         className='w-full h-full object-cover rounded-t-md'
                                     />
                                 </div>
-                                <div className='mt-1.5 px-1.5 sm:px-3 flex flex-col '>
+                                <div className='mt-1.5 px-1.5 sm:px-3 flex flex-col'>
                                     <h2 className='text-[11px] sm:text-[16px] lg:text-[18px] sm:font-medium font-semibold'>{item.title}</h2>
                                     <p className='sm:leading-4 text-[12px] text-gray-500 hidden sm:block'>
                                         Lorem ipsum dolor sit amet consectetur
                                     </p>
                                     <div className='sm:absolute sm:bottom-1 xl:bottom-2 md:left-3 flex items-center text-[#13BBB6] gap-x-1'>
-                                        <img src={item.icon} alt='' className='w-[12px] ,d:w-[15px]' />
+                                        <img src={starIcon} alt='' className='w-[12px] md:w-[15px]' />
                                         <span className='text-[10px] md:text-[12px] xl:text-[12px] font-medium'>ສົນໃຈ</span>
                                     </div>
                                 </div>

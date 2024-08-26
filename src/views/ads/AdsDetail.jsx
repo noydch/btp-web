@@ -28,7 +28,7 @@ export const AdsDetail = () => {
                         <div className=' w-full '>
                             <img src={adsImg} alt="" />
                         </div>
-                        <div className='w-full container max-w-[340px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px]'>
+                        <div className='w-full container max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px]'>
                             <div className='mt-3 flex items-center text-[#DEAD00]'>
                                 <GoDotFill className=' text-[12px]' />
                                 <h1 className=' text-[20px] font-medium pl-2 py-2.5 border-b border-[#DEAD00]'>
@@ -114,7 +114,7 @@ export const AdsDetail = () => {
                     </div>
                 ) :
                     (
-                        <div className='pt-[80px] container max-w-[340px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px] pb-10'>
+                        <div className='pt-[80px] container max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px] pb-10'>
                             <div className=' w-full '>
                                 <img src={adsImg} alt=""
                                     className=' w-full h-[550px] object-cover'
