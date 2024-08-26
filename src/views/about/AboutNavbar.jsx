@@ -23,8 +23,7 @@ export const AboutNavbar = ({ children }) => {
     }, []);
 
     const navigate = useNavigate();
-    const navActive = ' px-3 text-[#01A7B1] sm:text-white p-2 font-semibold sm:font-medium shadow-[0px_2px_2.3px_0px_#00000024] flex items-center gap-x-3 xl:gap-x-5 sm:border-b-[3px] sm:border-white sm:py-[22px] sm:flex sm:item-center sm:justify-center sm:px-0 w-full sm:w-[100px] lg:w-[120px] text-[14px] lg:w-[120px] md:text-[16px] sm:shadow-none';
-
+    const navActive = ' px-3 text-[#01A7B1] sm:text-white p-2 font-semibold sm:font-medium shadow-[0px_2px_2.3px_0px_#00000024] flex items-center gap-x-3 xl:gap-x-5 sm:border-b-[3px] sm:border-white sm:py-[22px] sm:flex sm:item-center sm:justify-center sm:px-0 w-full sm:w-[100px] text-[14px] lg:w-[120px] md:text-[16px] sm:shadow-none';
     const navList = [
         {
             id: 1,
@@ -55,8 +54,14 @@ export const AboutNavbar = ({ children }) => {
     const location = useLocation();
     const pathname = location.pathname;
 
-    const isActivePath = (path) => pathname === path || pathname.startsWith(path + '/');
+    const isActivePath = (path) => {
+        if (path === '/') {
+            return pathname === '/' || pathname.startsWith('/post');
+        }
+        return pathname.startsWith(path);
+    };
 
+    // Animation for the dropdown
     const dropdownAnimation = useSpring({
         opacity: isOpenMenu ? 1 : 0,
         transform: isOpenMenu ? 'translateX(0%)' : 'translateX(20%)',
@@ -67,13 +72,17 @@ export const AboutNavbar = ({ children }) => {
             <div className='bg-[#01A7B1] fixed z-[50] w-full
                 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]
             '>
-                <div className='container h-[70px] mx-auto max-w-[350px] sm:max-w-[620px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px]'>
+                <div className='container h-[70px] w-full mx-auto max-w-[350px] sm:max-w-[620px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-6xl 2xl:max-w-xl'>
                     <nav className='relative z-[1000] flex items-center h-[70px] justify-between'>
                         <div className=' flex items-center gap-x-2 lg:gap-x-4'>
                             <div className='w-[44px] h-[44px] rounded-full border-white border-2 flex justify-center items-center'>
                                 <img src={logo} alt=""
                                     className='w-[40px] h-[40px] object-cover'
                                 />
+                            </div>
+                            <div onClick={() => navigate(-1)}
+                                className='sm:hidden text-[20px] text-white flex justify-center items-center'>
+                                <IoIosArrowBack className=' text-[22px]' />
                             </div>
                             <h1 className='hidden sm:inline-block lg:text-[20px] lg:font-normal text-[14px] font-medium text-white'>
                                 ບີທີພີ ທຶນຮຽນຕໍ່ຕ່າງປະເທດ
@@ -92,7 +101,7 @@ export const AboutNavbar = ({ children }) => {
                                             className={
                                                 isActivePath(item.path) ?
                                                     navActive :
-                                                    `sm:py-2 font-semibold  flex items-center gap-x-3 xl:px-1 text-[14px] sm:text-[12px] lg:text-[16px] px-3 py-3 w-full sm:w-[100px] border-b-[3px] border-transparent text-[#6B7280]
+                                                    `font-semibold flex items-center gap-x-3 xl:px-7 text-[14px] sm:text-[12px] lg:text-[16px] xl:text-[18px] px-3 py-3 w-full sm:w-[100px] border-b-[3px] border-transparent text-[#6B7280]
                                                     shadow-[0px_2px_2.3px_0px_#00000024] sm:shadow-none
                                                     `
                                             }
@@ -106,7 +115,18 @@ export const AboutNavbar = ({ children }) => {
                                         </NavLink>
                                     ))
                                 }
-                                <></>
+                                <NavLink to={'/login'}
+                                    className={
+                                        isActivePath('/login') ?
+                                            navActive :
+                                            `xl:py-2 xl:px-7 font-semibold  sm:hidden flex items-center gap-x-3 hover:text-[#00B8D1] text-[14px] xl:text-[16px] px-3 py-3 w-full xl:w-[120px] border-b-[3px] border-transparent text-[#6B7280]`
+                                    }
+                                >
+                                    <MdLogin className='text-[14px] sm:text-[16px] lg:text-[18px]' />
+                                    <p>
+                                        ເຂົ້າສູ່ລະບົບ
+                                    </p>
+                                </NavLink>
                             </animated.ul>
                         ) : (
                             <ul className='flex items-center gap-x-0 xl:gap-x-0'>
@@ -116,8 +136,7 @@ export const AboutNavbar = ({ children }) => {
                                             className={
                                                 isActivePath(item.path) ?
                                                     navActive :
-                                                    `sm:py-[22px] hover:text-[#01A7B1] hover:bg-white duration-300 font-medium flex items-center gap-x-3 xl:gap-x-5 xl:px-0 text-[14px] sm:text-[12px] lg:text-[16px] px-3  
-sm:flex sm:item-center sm:justify-center sm:px-0 py-[22px] w-full sm:w-[100px] lg:w-[120px] border-b-[3px] border-transparent sm:text-white text-[#6B7280]
+                                                    `sm:py-2 font-medium flex items-center gap-x-3 xl:px-7 text-[14px] sm:text-[12px] lg:text-[16px] xl:text-[18px] sm:px-2 md:px-5 lg:px-7 py-[22px] w-full sm:w-[100px] border-b-[3px] border-transparent sm:text-white text-[#6B7280]
                                                     `
                                             }
                                         >
@@ -134,7 +153,7 @@ sm:flex sm:item-center sm:justify-center sm:px-0 py-[22px] w-full sm:w-[100px] l
                                     className={
                                         isActivePath('/login') ?
                                             navActive :
-                                            `xl:py-[22px] xl:px-5 font-semibold sm:hidden flex items-center gap-x-3 hover:text-[#00B8D1] text-[14px] xl:text-[16px] px-3 py-[22px] w-full xl:w-[120px] border-b-[3px] border-transparent text-[#6B7280]`
+                                            `xl:py-2 xl:px-7 font-semibold sm:hidden flex items-center gap-x-3 hover:text-[#00B8D1] text-[14px] xl:text-[16px] px-3 py-[22px] w-full xl:w-[120px] border-b-[3px] border-transparent text-[#6B7280]`
                                     }
                                 >
                                     <MdLogin className='text-[14px] sm:text-[16px] lg:text-[18px]' />

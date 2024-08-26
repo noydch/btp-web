@@ -23,6 +23,8 @@ export const About = () => {
         try {
             const response = await getCoverImageApi();
             setCoverImgData(response);
+            console.log("this data in cover image", coverImgData);
+
         } catch (error) {
             console.error("Failed to fetch cover image data", error);
         } finally {
@@ -48,6 +50,7 @@ export const About = () => {
         try {
             const response = await getCompanyDataApi();
             setCompanyData(response);
+            // console.log(companyData);
         } catch (error) {
             console.error("Failed to fetch about data", error);
         } finally {
@@ -59,7 +62,6 @@ export const About = () => {
         fetchDataCoverImg();
         fetchData();
         fetchDataCompany();
-        // console.log(companyData);
     }, []);
 
     useEffect(() => {
@@ -113,29 +115,30 @@ export const About = () => {
 
     // Assume coverImgData contains a single image URL
     const coverImg = coverImgData.length > 0 ? coverImgData[0].image : aboutImg;
+    // console.log("this is data in cover image", coverImgData[0].image);
     return (
         <AboutNavbar>
-            <div className='w-full h-[670px] pt-[70px]'>
-                <div className='h-[600px]'>
+            <div className='h-[460px] w-full md:h-[560px] lg:h-[670px] pt-[70px]'>
+                <div className='h-[400px] md:h-[500px] lg:h-[600px]'>
                     <img src={coverImg} alt="Cover" className='h-full w-full object-cover' />
                 </div>
             </div>
-            <div className='w-full container max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px] mt-7 pb-20'>
+            <div className='w-full container max-w-[350px] mx-auto  sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px] mt-7 pb-20'>
                 {
                     companyData.map((item, index) => (
                         <div key={index}
                             className='flex justify-between items-center gap-y-5 gap-x-10'>
-                            <div className='w-full flex items-center justify-end gap-x-3'>
-                                <img src={item.icon} alt="Logo" className='w-[200px]' />
+                            <div className='w-full lg:flex-[2]flex items-center justify-center sm:justify-end gap-x-3'>
+                                <img src={item[0].icon} alt="Logo" className=' w-[100px]  sm:w-[200px] ' />
                             </div>
-                            <div className='w-full'>
+                            <div className='w-full lg:flex-[2]'>
                                 <div className='flex flex-col mb-3'>
-                                    <h2 className='text-[24px] font-medium'>
-                                        {item.title}
+                                    <h2 className='text-[18px] sm:text-[24px] font-medium'>
+                                        {item[0].title}
                                     </h2>
                                 </div>
-                                <p className='text-start w-[450px]'>
-                                    {item.description}
+                                <p className='text-start text-[10px] sm:text-[14px] sm:w-[450px]'>
+                                    {item[0].description}
                                 </p>
                             </div>
                         </div>
@@ -147,9 +150,9 @@ export const About = () => {
                             ຮູບພາບ
                         </h4>
                     </div>
-                    <div className='grid grid-cols-3 sm:grid-cols-12 xl:grid-cols-5 gap-x-4 gap-y-5 md:gap-y-4 xl:gap-y-6 mt-5 place-items-center'>
+                    <div className='grid grid-cols-12 sm:grid-cols-12 xl:grid-cols-5 gap-x-4 gap-y-5 md:gap-y-4 xl:gap-y-6 mt-5 place-items-center'>
                         {aboutData.map((item, index) => (
-                            <div key={index} className='sm:col-span-3 xl:col-span-1 w-[100px] h-[100px] sm:w-[140px] sm:h-[140px] md:h-[150px] md:w-[170px] lg:h-[190px] lg:w-[210px] xl:w-[220px] cursor-pointer' onClick={() => handlePreview(index)}>
+                            <div key={index} className='sm:col-span-3 xl:col-span-1 col-span-4 w-[100px] h-[100px] sm:w-[140px] sm:h-[140px] md:h-[150px] md:w-[170px] lg:h-[190px] lg:w-[210px] xl:w-[220px] cursor-pointer' onClick={() => handlePreview(index)}>
                                 <img src={item.images} alt="" className='h-full w-full object-cover rounded-lg' />
                             </div>
                         ))}

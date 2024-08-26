@@ -1,5 +1,5 @@
-// const baseUrl = "https://scholarship-api-0oe7.onrender.com/api/v1"
-const baseUrl = "http://localhost:8000/api/v1"
+const baseUrl = "https://scholarship-api-0oe7.onrender.com/api/v1"
+// const baseUrl = "http://localhost:8000/api/v1"
 
 export default class ApiPath {
     // about
