@@ -61,7 +61,7 @@ export const Post = () => {
     useEffect(() => {
         fetchData();
         fetchDataCategory();
-        console.log("category", categoryData);
+        // console.log("category", categoryData);
     }, []);
 
     useEffect(() => {
@@ -134,7 +134,7 @@ export const Post = () => {
                             <Link
                                 to={`/post/postDetail/${item.id}`}
                                 key={index}
-                                className='rounded-md h-[150px] sm:h-[180px] md:h-[180px] lg:h-[190px] xl:col-span-3 relative xl:h-[300px] shadow-[0px_2px_3px_0px_#00000024]'
+                                className='rounded-md h-[150px] sm:h-[210px] md:h-[180px] lg:h-[190px] xl:col-span-3 relative xl:h-[300px] shadow-[0px_2px_3px_0px_#00000024]'
                             >
                                 <div className='w-full h-[100px] xl:h-[200px]'>
                                     <img
@@ -143,7 +143,7 @@ export const Post = () => {
                                         className='w-full h-full object-cover rounded-t-md'
                                     />
                                 </div>
-                                <div className='mt-1.5 px-1.5 sm:px-3 flex flex-col'>
+                                <div className='mt-2 px-1.5 sm:px-3 flex flex-col'>
                                     <h2 className='text-[11px] sm:text-[16px] lg:text-[18px] sm:font-medium font-semibold'>{item.title}</h2>
                                     <p className='sm:leading-4 text-[12px] text-gray-500 hidden sm:block'>
                                         Lorem ipsum dolor sit amet consectetur

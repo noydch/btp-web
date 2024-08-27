@@ -46,7 +46,7 @@ export const ContactBigSize = () => {
                                 </div>
                             </div>
                             <div className=' flex-[3]'>
-                                <div className=' flex gap-x-5'>
+                                <div className=' flex gap-x-5  mt-0'>
                                     <div className=' flex flex-col w-full gap-y-2'>
                                         <label htmlFor="fullname">
                                             ຊື່ ແລະ ນາມສະກຸນ
@@ -66,7 +66,7 @@ export const ContactBigSize = () => {
                                         />
                                     </div>
                                 </div>
-                                <div className=' mt-7 w-full'>
+                                <div className=' mt-5 w-full'>
                                     <label htmlFor="email">
                                         ເບີໂທ
                                     </label>
@@ -76,13 +76,13 @@ export const ContactBigSize = () => {
                                     />
                                 </div>
 
-                                <div className=' mt-7 w-full'>
+                                <div className=' mt-4 w-full'>
                                     <h4 className=' font-medium text-[#01A7B1] mb-2'>
                                         Message
                                     </h4>
-                                    <textarea rows="5"
+                                    <textarea rows="3"
                                         placeholder='Write here the Message'
-                                        className=' border-b-2 w-full resize-none'
+                                        className=' border-b-2 p-4 w-full resize-none focus:outline-teal-500'
                                     ></textarea>
                                 </div>
                                 <div className=' mt-10'>

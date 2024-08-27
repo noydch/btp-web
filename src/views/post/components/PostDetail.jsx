@@ -50,26 +50,12 @@ export const PostDetail = () => {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+    const viewPdf = postData
+        .filter((item) => item.id === pID)
+        .map((item) => item.file_url);
 
-    const downloadPDF = (pdfUrl) => {
-        const link = document.createElement('a');
-        link.href = pdfUrl;
-        link.setAttribute('download', 'document.pdf'); // You can set the name of the downloaded file here
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
+    // console.log(viewPdf);
 
-
-
-    const handleDownload = () => {
-        const link = document.createElement('a');
-        link.href = 'https://res.cloudinary.com/dq3d5qshp/raw/upload/v1724406425/FILE_1724406415783.pdf'; // Replace with your file URL
-        link.download = 'filename.pdf'; // Replace with the desired file name
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
 
     return (
         <PostNavbar>
@@ -155,14 +141,15 @@ export const PostDetail = () => {
                                 </div>
                             </div>
                             <div className='flex flex-row-reverse mt-5 gap-x-14 items-center'>
-                                <button
-                                    onClick={handleDownload}
+                                <a
+                                    target='_blank'
+                                    href={`https://docs.google.com/gview?embedded=true&url=${viewPdf}`}
                                     className='flex items-center gap-x-2 px-2 py-2 text-[#13BBB6] font-medium rounded-md border-2 border-[#13BBB6]'
 
                                 >
                                     <FiDownload />
                                     ດາວໂຫຼດຟອມ
-                                </button>
+                                </a>
                                 <a href='https://wa.me/message/VKTNJ4453J46P1'
                                     className='flex flex-col items-center'>
                                     <IoLogoWhatsapp className='text-[#0FC146] text-[28px]' />

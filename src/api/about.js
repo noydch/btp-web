@@ -32,7 +32,7 @@ export const delAboutApi = async (id) => {
 export const getCoverImageApi = async () => {
     try {
         const response = await axios.get(ApiPath.getCoverImage, getHeaderConfig())
-        return response?.data?.data
+        return response?.data?.data[0]
     } catch (error) {
         console.error("Error cover image API", error);
         return false
@@ -87,7 +87,7 @@ export const getCompanyDataApi = async () => {
         }
         const response = await axios.get(ApiPath.getCompanyData, config)
         // console.log(response?.data?.data);
-        return response?.data?.data
+        return response?.data?.data[0]
     } catch (error) {
         console.error("Error cover image API", error);
         return false

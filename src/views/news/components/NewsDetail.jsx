@@ -45,6 +45,10 @@ export const NewsDetail = () => {
         return () => window.removeEventListener('resize', handleResize)
     }, [])
 
+    const viewPdf = newsData
+        .filter((item) => item?.id === postID)
+        .map((item) => item?.file_url);
+    console.log("view=", viewPdf[0]);
     return (
         <NewsNavbar>
             {
@@ -134,10 +138,15 @@ export const NewsDetail = () => {
                                     </div>
                                 </div>
                                 <div className=' flex flex-row-reverse  mt-5 gap-x-14 items-center'>
-                                    <button className=' flex items-center gap-x-2 px-2 py-2 text-[#13BBB6] font-medium rounded-md border-2 border-[#13BBB6]'>
+                                    <a
+                                        target='_blank'
+                                        href={`https://docs.google.com/gview?embedded=true&url=${viewPdf}`}
+                                        className='flex items-center gap-x-2 px-2 py-2 text-[#13BBB6] font-medium rounded-md border-2 border-[#13BBB6]'
+
+                                    >
                                         <FiDownload />
                                         ດາວໂຫຼດຟອມ
-                                    </button>
+                                    </a>
                                     <div className=' flex flex-col items-center'>
                                         <IoLogoWhatsapp className=' text-[#0FC146] text-[28px]' />
                                         <span className='text-[#13BBB6] text-[14px] font-semibold'>

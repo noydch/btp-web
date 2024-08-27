@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react';
+import { Footer } from '../../../components/Footer';
 import { useSpring, animated } from 'react-spring';
-import { Link, NavLink, useLocation, useNavigate, useParams } from 'react-router-dom';
 
+// images
 import logo from '../../../assets/logo.png';
+
 // icons
 import { AiOutlineHome } from "react-icons/ai";
 import { FaRegNewspaper } from "react-icons/fa6";
-import { IoIosArrowBack } from "react-icons/io";
 import { MdLogin, MdPeopleOutline } from "react-icons/md";
 import { RiContactsBook3Line } from "react-icons/ri";
 import { IoMenu } from "react-icons/io5";
-import { Footer } from '../../../components/Footer';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { IoIosArrowBack } from 'react-icons/io';
 
 export const PostNavbar = ({ children }) => {
     const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -67,19 +69,30 @@ export const PostNavbar = ({ children }) => {
         transform: isOpenMenu ? 'translateX(0%)' : 'translateX(20%)',
         config: { tension: 300, friction: 20 },
     });
+
     return (
         <div>
             <div className='bg-[#01A7B1] fixed z-[50] w-full
                 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]
             '>
-                <div className='container h-[70px] mx-auto max-w-[350px] sm:max-w-[620px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-6xl 2xl:max-w-xl'>
+                <div className='container h-[70px] mx-auto max-w-[350px] sm:max-w-[620px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px]'>
                     <nav className='relative z-[1000] flex items-center h-[70px] justify-between'>
                         <div className=' flex items-center gap-x-2 lg:gap-x-4'>
-                            <div onClick={() => navigate(-1)}
-                                className=' text-[20px] text-white flex justify-center items-center'>
-                                <IoIosArrowBack className=' text-[22px]' />
+                            <div className=' flex items-center gap-x-2 lg:gap-x-4'>
+                                <div onClick={() => navigate(-1)}
+                                    className=' text-[20px] text-white flex justify-center items-center'>
+                                    <IoIosArrowBack className=' text-[22px]' />
+                                </div>
+                                <h1 className='hidden sm:inline-block lg:text-[20px] lg:font-normal text-[14px] font-medium text-white'>
+                                    ບີທີພີ ທຶນຮຽນຕໍ່ຕ່າງປະເທດ
+                                </h1>
                             </div>
-                            <h1 className='hidden lg:text-[20px] lg:font-normal text-[14px] font-medium text-white'>
+                            <div className='w-[44px] h-[44px] hidden rounded-full border-white border-2 sm:flex justify-center items-center'>
+                                <img src={logo} alt=""
+                                    className='w-[40px] h-[40px] object-cover'
+                                />
+                            </div>
+                            <h1 className='hidden sm:inline-block lg:text-[20px] lg:font-normal text-[14px] font-medium text-white'>
                                 ບີທີພີ ທຶນຮຽນຕໍ່ຕ່າງປະເທດ
                             </h1>
                         </div>
@@ -96,7 +109,7 @@ export const PostNavbar = ({ children }) => {
                                             className={
                                                 isActivePath(item.path) ?
                                                     navActive :
-                                                    `font-semibold flex items-center gap-x-3 xl:px-7 text-[14px] sm:text-[12px] lg:text-[16px] xl:text-[18px] px-3 py-3 w-full sm:w-[100px] border-b-[3px] border-transparent text-[#6B7280]
+                                                    `sm:py-2 font-semibold  flex items-center gap-x-3 xl:px-1 text-[14px] sm:text-[12px] lg:text-[16px] px-3 py-3 w-full sm:w-[100px] border-b-[3px] border-transparent text-[#6B7280]
                                                     shadow-[0px_2px_2.3px_0px_#00000024] sm:shadow-none
                                                     `
                                             }
@@ -110,18 +123,7 @@ export const PostNavbar = ({ children }) => {
                                         </NavLink>
                                     ))
                                 }
-                                <NavLink to={'/login'}
-                                    className={
-                                        isActivePath('/login') ?
-                                            navActive :
-                                            `xl:py-2 xl:px-7 font-semibold  sm:hidden flex items-center gap-x-3 hover:text-[#00B8D1] text-[14px] xl:text-[16px] px-3 py-3 w-full xl:w-[120px] border-b-[3px] border-transparent text-[#6B7280]`
-                                    }
-                                >
-                                    <MdLogin className='text-[14px] sm:text-[16px] lg:text-[18px]' />
-                                    <p>
-                                        ເຂົ້າສູ່ລະບົບ
-                                    </p>
-                                </NavLink>
+
                             </animated.ul>
                         ) : (
                             <ul className='flex items-center gap-x-0 xl:gap-x-0'>
@@ -131,7 +133,8 @@ export const PostNavbar = ({ children }) => {
                                             className={
                                                 isActivePath(item.path) ?
                                                     navActive :
-                                                    `sm:py-2 font-medium flex items-center gap-x-3 xl:px-7 text-[14px] sm:text-[12px] lg:text-[16px] xl:text-[18px] sm:px-2 md:px-5 lg:px-7 py-[22px] w-full sm:w-[100px] border-b-[3px] border-transparent sm:text-white text-[#6B7280]
+                                                    `sm:py-[22px] hover:text-[#01A7B1] hover:bg-white duration-300 font-medium flex items-center gap-x-3 xl:gap-x-5 xl:px-0 text-[14px] sm:text-[12px] lg:text-[16px] px-3  
+                                                        sm:flex sm:item-center sm:justify-center sm:px-0 py-[22px] w-full sm:w-[100px] lg:w-[120px] border-b-[3px] border-transparent sm:text-white text-[#6B7280]
                                                     `
                                             }
                                         >
@@ -148,7 +151,7 @@ export const PostNavbar = ({ children }) => {
                                     className={
                                         isActivePath('/login') ?
                                             navActive :
-                                            `xl:py-2 xl:px-7 font-semibold sm:hidden flex items-center gap-x-3 hover:text-[#00B8D1] text-[14px] xl:text-[16px] px-3 py-[22px] w-full xl:w-[120px] border-b-[3px] border-transparent text-[#6B7280]`
+                                            `xl:py-[22px] xl:px-5 font-semibold sm:hidden flex items-center gap-x-3 hover:text-[#00B8D1] text-[14px] xl:text-[16px] px-3 py-[22px] w-full xl:w-[120px] border-b-[3px] border-transparent text-[#6B7280]`
                                     }
                                 >
                                     <MdLogin className='text-[14px] sm:text-[16px] lg:text-[18px]' />
@@ -168,5 +171,5 @@ export const PostNavbar = ({ children }) => {
             {children}
             <Footer />
         </div>
-    )
+    );
 }

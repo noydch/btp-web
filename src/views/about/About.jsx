@@ -12,7 +12,7 @@ export const About = () => {
     const [previewVisible, setPreviewVisible] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
     const [previewIndex, setPreviewIndex] = useState(0);
-    const [coverImgData, setCoverImgData] = useState([]);
+    const [coverImgData, setCoverImgData] = useState();
     const [aboutData, setAboutData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [companyData, setCompanyData] = useState([])
@@ -23,7 +23,7 @@ export const About = () => {
         try {
             const response = await getCoverImageApi();
             setCoverImgData(response);
-            console.log("this data in cover image", coverImgData);
+            // console.log("this data in cover image", coverImgData);
 
         } catch (error) {
             console.error("Failed to fetch cover image data", error);
@@ -50,7 +50,8 @@ export const About = () => {
         try {
             const response = await getCompanyDataApi();
             setCompanyData(response);
-            // console.log(companyData);
+
+            // console.log("company dtaa", companyData);
         } catch (error) {
             console.error("Failed to fetch about data", error);
         } finally {
@@ -114,8 +115,10 @@ export const About = () => {
     });
 
     // Assume coverImgData contains a single image URL
-    const coverImg = coverImgData.length > 0 ? coverImgData[0].image : aboutImg;
-    // console.log("this is data in cover image", coverImgData[0].image);
+    const coverImg = coverImgData?.image ? coverImgData?.image : aboutImg;
+    // console.log("this is data in cover image", coverImg);
+    // const dataCom = companyData.map(item => item)
+    // console.log(dataCom);
     return (
         <AboutNavbar>
             <div className='h-[460px] w-full md:h-[560px] lg:h-[670px] pt-[70px]'>
@@ -124,26 +127,22 @@ export const About = () => {
                 </div>
             </div>
             <div className='w-full container max-w-[350px] mx-auto  sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px] mt-7 pb-20'>
-                {
-                    companyData.map((item, index) => (
-                        <div key={index}
-                            className='flex justify-between items-center gap-y-5 gap-x-10'>
-                            <div className='w-full lg:flex-[2]flex items-center justify-center sm:justify-end gap-x-3'>
-                                <img src={item[0].icon} alt="Logo" className=' w-[100px]  sm:w-[200px] ' />
-                            </div>
-                            <div className='w-full lg:flex-[2]'>
-                                <div className='flex flex-col mb-3'>
-                                    <h2 className='text-[18px] sm:text-[24px] font-medium'>
-                                        {item[0].title}
-                                    </h2>
-                                </div>
-                                <p className='text-start text-[10px] sm:text-[14px] sm:w-[450px]'>
-                                    {item[0].description}
-                                </p>
-                            </div>
+                <div
+                    className='flex justify-between items-center gap-y-5 sm:gap-x-10'>
+                    <div className='w-full lg:flex-[2] flex items-center justify-center sm:justify-end gap-x-3'>
+                        <img src={companyData.icon} alt="Logo" className=' w-[100px] rounded-full sm:w-[200px] ' />
+                    </div>
+                    <div className='w-full lg:flex-[2]'>
+                        <div className='flex flex-col mb-1 sm:mb-3'>
+                            <h2 className='text-[16px] sm:text-[24px] font-medium'>
+                                {companyData.title}
+                            </h2>
                         </div>
-                    ))
-                }
+                        <p className='text-start text-[10px] sm:text-[14px] sm:w-[450px]'>
+                            {companyData.description}
+                        </p>
+                    </div>
+                </div>
                 <div>
                     <div className='mt-5 py-2 flex items-center justify-center border-b border-[#C1C1C1]'>
                         <h4 className='text-[14px] sm:text-[16px] font-semibold'>

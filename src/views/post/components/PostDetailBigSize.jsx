@@ -22,7 +22,7 @@ export const PostDetailBigSize = ({ postData }) => {
 
 
     return (
-        <Navbar>
+        <div>
             <div className=' pt-[80px] w-full h-full '>
                 <div className='container h-full max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] xl:max-w-[1200px] pb-10'>
                     {
@@ -190,6 +190,6 @@ export const PostDetailBigSize = ({ postData }) => {
                 </div>
             </div>
 
-        </Navbar>
+        </div>
     )
 }
