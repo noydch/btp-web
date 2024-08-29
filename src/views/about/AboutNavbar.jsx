@@ -88,7 +88,7 @@ export const AboutNavbar = ({ children }) => {
                             </h1>
                         </div>
                         <h1 className='sm:hidden text-[18px] lg:text-[20px] md:font-normal font-medium text-white'>
-                            ລາຍລະອຽດ
+                            ກ່ຽວກັບ
                         </h1>
                         {windowWidth < 480 ? (
                             <animated.ul style={dropdownAnimation} className={` 

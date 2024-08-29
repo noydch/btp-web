@@ -16,13 +16,13 @@ import { IoMdCheckmarkCircle } from "react-icons/io";
 import bgPostOverlay from '../../../assets/images/webp/postOverlay.webp'
 import { FaFacebook, FaFacebookF } from 'react-icons/fa';
 
-export const PostDetailBigSize = ({ postData }) => {
+export const PostDetailBigSize = ({ postData, viewPdf }) => {
     const id = useParams()
     const postID = id.pID;
 
 
     return (
-        <div>
+        <Navbar>
             <div className=' pt-[80px] w-full h-full '>
                 <div className='container h-full max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] xl:max-w-[1200px] pb-10'>
                     {
@@ -179,17 +179,27 @@ export const PostDetailBigSize = ({ postData }) => {
                         </div>
 
                     </div>
-                    <div className=' flex justify-end w-full'>
-                        <div className=' flex flex-col items-center gap-y-[2px]'>
-                            <IoLogoWhatsapp className='text-[#0FC146] sm:text-[34px] md:text-[40px]' />
-                            <p className=' sm:text-[14px] md:text-[18px] font-semibold text-[#13BBB6]'>
+                    <div className='flex flex-row-reverse mt-5 gap-x-14 items-center'>
+                        <a
+                            target='_blank'
+                            href={`https://docs.google.com/gview?embedded=true&url=${viewPdf}`}
+                            className='flex items-center gap-x-2 px-2 py-2 text-[#13BBB6] font-medium rounded-md border-2 border-[#13BBB6]'
+
+                        >
+                            <FiDownload />
+                            ດາວໂຫຼດຟອມ
+                        </a>
+                        <a href='https://wa.me/message/VKTNJ4453J46P1'
+                            className='flex flex-col items-center'>
+                            <IoLogoWhatsapp className='text-[#0FC146] text-[28px]' />
+                            <span className='text-[#13BBB6] text-[14px] font-semibold'>
                                 ສົນໃຈ
-                            </p>
-                        </div>
+                            </span>
+                        </a>
                     </div>
                 </div>
             </div>
 
-        </div>
+        </Navbar>
     )
 }

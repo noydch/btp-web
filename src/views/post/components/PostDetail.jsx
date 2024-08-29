@@ -58,9 +58,9 @@ export const PostDetail = () => {
 
 
     return (
-        <PostNavbar>
+        <>
             {windowWidth <= 480 ? (
-                <div>
+                <PostNavbar>
                     <div className='pt-[65px] w-full'>
                         {postData.map((item, index) => (
                             item.id == postID && (
@@ -160,10 +160,10 @@ export const PostDetail = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </PostNavbar>
             ) : (
-                <PostDetailBigSize postData={postData} />
+                <PostDetailBigSize postData={postData} viewPdf={viewPdf} />
             )}
-        </PostNavbar>
+        </>
     );
 };

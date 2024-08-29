@@ -50,10 +50,10 @@ export const NewsDetail = () => {
         .map((item) => item?.file_url);
     console.log("view=", viewPdf[0]);
     return (
-        <NewsNavbar>
+        <>
             {
                 windowWidth <= 480 ? (
-                    <>
+                    <NewsNavbar>
                         <div className=' pt-[65px] w-full '>
                             <div className=''>
                                 {
@@ -156,11 +156,11 @@ export const NewsDetail = () => {
                                 </div>
                             </div>
                         </div>
-                    </>
+                    </NewsNavbar>
                 ) : (
-                    <NewsDetailBigSize newsData={newsData} />
+                    <NewsDetailBigSize newsData={newsData} viewPdf={viewPdf} />
                 )
             }
-        </NewsNavbar>
+        </>
     )
 }

@@ -87,7 +87,7 @@ export const Navbar = ({ children }) => {
                             </h1>
                         </div>
                         <h1 className='sm:hidden text-[18px] lg:text-[20px] md:font-normal font-medium text-white'>
-                            ລາຍລະອຽດ
+                            ບີທີພີ ທຶນຮຽນຕໍ່ຕ່າງປະເທດ
                         </h1>
                         {windowWidth < 480 ? (
                             <animated.ul style={dropdownAnimation} className={` 

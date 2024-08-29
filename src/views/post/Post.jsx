@@ -111,13 +111,13 @@ export const Post = () => {
                             defaultValue={{ value: 0, label: 'ເລືອກທຶນການສຶກສາ' }}
                             className='w-full lg:h-[40px] h-[45px] md:h-[35px]'
                             onChange={(value) => handleCategoryChange(value.value)}
-                            options={categoryData.map((item) => ({
-                                value: item.id,
-                                label: item.name,
+                            options={categoryData?.map((item) => ({
+                                value: item?.id,
+                                label: item?.name,
                             }))}
                         />
-                        <div className='flex gap-x-2 my-3 items-center md:w-full'>
-                            <div className='flex items-center relative w-[240px] sm:w-full lg:h-[40px] h-[45px] md:h-[35px]'>
+                        <div className='flex gap-x-2 my-3 items-center w-full md:w-full'>
+                            <div className='flex items-center relative w-full sm:w-full lg:h-[40px] h-[45px] md:h-[35px]'>
                                 <input
                                     type='text'
                                     placeholder='ຄົ້ນຫາ...'
@@ -130,25 +130,27 @@ export const Post = () => {
                         </div>
                     </div>
                     <div className='grid grid-cols-3 sm:grid-cols-4 xl:grid-cols-12 xl:gap-7 gap-3 sm:gap-5 lg:mt-7'>
-                        {filteredPosts.map((item, index) => (
+                        {filteredPosts?.map((item, index) => (
                             <Link
-                                to={`/post/postDetail/${item.id}`}
+                                to={`/post/postDetail/${item?.id}`}
                                 key={index}
-                                className='rounded-md h-[150px] sm:h-[210px] md:h-[180px] lg:h-[190px] xl:col-span-3 relative xl:h-[300px] shadow-[0px_2px_3px_0px_#00000024]'
+                                className='rounded-md h-[165px] sm:h-[210px] md:h-[180px] lg:h-[200px] xl:col-span-3 relative xl:h-[300px] shadow-[0px_2px_3px_0px_#00000024]'
                             >
-                                <div className='w-full h-[100px] xl:h-[200px]'>
+                                <div className='w-full h-[80px] xl:h-[200px]'>
                                     <img
-                                        src={item.image || 'defaultImage.png'} // Add a fallback image
-                                        alt={item.title}
+                                        src={item?.image || 'defaultImage.png'} // Add a fallback image
+                                        alt={item?.title}
                                         className='w-full h-full object-cover rounded-t-md'
                                     />
                                 </div>
-                                <div className='mt-2 px-1.5 sm:px-3 flex flex-col'>
-                                    <h2 className='text-[11px] sm:text-[16px] lg:text-[18px] sm:font-medium font-semibold'>{item.title}</h2>
-                                    <p className='sm:leading-4 text-[12px] text-gray-500 hidden sm:block'>
+                                <div className='mt-1 px-1.5 sm:px-3 flex flex-col'>
+                                    <h2 className='text-[11px] sm:text-[16px] lg:text-[16px] sm:font-medium font-medium break-words text-ellipsis text-wrap overflow-hidden line-clamp-2'>
+                                        {item.title}
+                                    </h2>
+                                    <p className='sm:leading-4 leading-3 text-[10px] sm:text-[12px] text-gray-500'>
                                         Lorem ipsum dolor sit amet consectetur
                                     </p>
-                                    <div className='sm:absolute sm:bottom-1 xl:bottom-2 md:left-3 flex items-center text-[#13BBB6] gap-x-1'>
+                                    <div className='absolute bottom-2 sm:bottom-1 xl:bottom-2 md:left-3 flex items-center text-[#13BBB6] gap-x-1'>
                                         <img src={starIcon} alt='' className='w-[12px] md:w-[15px]' />
                                         <span className='text-[10px] md:text-[12px] xl:text-[12px] font-medium'>ສົນໃຈ</span>
                                     </div>

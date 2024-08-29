@@ -24,7 +24,7 @@ export const RouterPaths = () => {
             element: <PostDetail />
         },
         {
-            path: '/adsDetail',
+            path: '/adsDetail/:id',
             element: <AdsDetail />
         },
         {

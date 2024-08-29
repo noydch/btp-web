@@ -40,6 +40,9 @@ export default class ApiPath {
     static delBanner = `${baseUrl}/banner/delete`
     static updateSwitchBanner = `${baseUrl}/banner/updateIsPublished`
 
+    // contact 
+    static addContact = `${baseUrl}/comment/insert`
+
     // user
     static getUser = `${baseUrl}/user/selAll`
     static updateUser = `${baseUrl}/user/update`
