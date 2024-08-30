@@ -76,10 +76,10 @@ export const NewsDetail = () => {
                                 </h1>
                             </div>
                             <ul className='mt-3 flex items-center gap-x-10'>
-                                <li className=' font-medium text-[16px] sm:text-[18px]'>
+                                <li className=' font-medium text-[16px]'>
                                     - ທຶນການສຶກສາ
                                 </li>
-                                <li className=' font-medium text-[16px] sm:text-[18px]'>
+                                <li className=' font-medium text-[16px]'>
                                     # ເງື່ອນໄຂທີ່ຄຸ້ມຄ່າທີ່ສຸດ
                                 </li>
                             </ul>
@@ -87,19 +87,19 @@ export const NewsDetail = () => {
                                 <div className=' flex flex-col gap-y-3 font-medium'>
                                     <div className=' flex items-center gap-x-2'>
                                         <GoDotFill className=' text-[7px]' />
-                                        <p className=' text-[16px]'>
+                                        <p>
                                             ຄ່າຮຽນຟຣີ
                                         </p>
                                     </div>
                                     <div className=' flex items-center gap-x-2'>
                                         <GoDotFill className=' text-[7px]' />
-                                        <p className=' text-[16px]'>
+                                        <p>
                                             ຄ່າຮຽນຟຣີ
                                         </p>
                                     </div>
                                     <div className=' flex items-center gap-x-2'>
                                         <GoDotFill className=' text-[7px]' />
-                                        <p className=' text-[16px]'>
+                                        <p>
                                             ຄ່າຮຽນຟຣີ
                                         </p>
                                     </div>
@@ -107,19 +107,19 @@ export const NewsDetail = () => {
                                 <div className=' flex flex-col gap-y-3 font-medium'>
                                     <div className=' flex items-center gap-x-2'>
                                         <GoDotFill className=' text-[7px]' />
-                                        <p className=' text-[16px]'>
+                                        <p>
                                             ມີອາຈານນຳພາໄປຮອດໂຮງຮຽນ
                                         </p>
                                     </div>
                                     <div className=' flex items-center gap-x-2'>
                                         <GoDotFill className=' text-[7px]' />
-                                        <p className=' text-[16px]'>
+                                        <p>
                                             ຄ່າ Visa
                                         </p>
                                     </div>
                                     <div className=' flex items-center gap-x-2'>
                                         <GoDotFill className=' text-[7px]' />
-                                        <p className=' text-[16px]'>
+                                        <p>
                                             ມີເບ້ຍລ້ຽງ 600-1200 ຢວນ/ເດືອນ
                                         </p>
                                     </div>
@@ -129,10 +129,10 @@ export const NewsDetail = () => {
                                 <div className=' flex gap-x-1'>
                                     <IoMdPin className='text-[18px] text-[#F7C208]' />
                                     <div>
-                                        <p className=' text-[12px] sm:text-[14px]'>
+                                        <p className=' text-[12px]'>
                                             ສຳນັກງານຫ້ອງການຕັ້ງຢູ່: ບ້ານໂນນວາຍ ເມືອງໄຊເສດຖາ ນະຄວນຫຼວງວຽງຈັນ
                                         </p>
-                                        <p className=' text-[12px] sm:text-[14px]'>
+                                        <p className=' text-[12px]'>
                                             20xxxxxxx 20xxxxxxx
                                         </p>
                                     </div>
