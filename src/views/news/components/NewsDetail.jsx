@@ -11,6 +11,7 @@ import { newsData } from '../newsData.jsx';
 import { NewsNavbar } from './NewsNavbar.jsx';
 import { NewsDetailBigSize } from './NewsDetailBigSize.jsx';
 import { getNewsApi } from '../../../api/news.js';
+import { Navbar } from '../../../components/Navbar.jsx';
 
 export const NewsDetail = () => {
     const navigate = useNavigate()

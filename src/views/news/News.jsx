@@ -5,6 +5,7 @@ import './style/Style.css'
 import { Link } from 'react-router-dom'
 import { getNewsApi } from '../../api/news'
 import { formatDate } from '../../utils'
+import { Navbar } from '../../components/Navbar'
 
 export const News = () => {
     const [loading, setLoading] = useState(false)
@@ -27,14 +28,14 @@ export const News = () => {
         console.log(newsData);
     }, [])
     return (
-        <NewsNavbar>
+        <Navbar>
             <div className=' w-full mx-auto px-4 sm:px-0 pt-[80px] pb-10 sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px]'>
                 <div className=' grid grid-cols-1 sm:grid-cols-2 sm:gap-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-y-3 xl:gap-x-3 xl:gap-y-6 lg:my-10'>
                     {
                         newsData.map((item, index) => (
                             <Link to={`/news/${item.id}`} key={index}
                                 className='hoverNews relative border border-[#E1E1E1] bg-white duration-300
-                            shadow-[0px_2px_3px_0px_#00000024] md:w-[230px] xl:w-[280px] xl:h-[350px] sm:h-[300px] lg:w-[220px] md:h-[320px]
+                            shadow-[0px_2px_3px_0px_#00000024] md:w-[230px] xl:w-[280px] xl:h-[350px] h-[360px] sm:h-[300px] lg:w-[220px] md:h-[320px]
                             '
                             >
                                 <img src={item.image} alt=""
@@ -56,6 +57,6 @@ export const News = () => {
                     }
                 </div>
             </div>
-        </NewsNavbar>
+        </Navbar>
     )
 }

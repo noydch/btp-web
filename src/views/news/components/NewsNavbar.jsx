@@ -75,23 +75,23 @@ export const NewsNavbar = ({ children }) => {
             '>
                 <div className='container h-[70px] mx-auto max-w-[350px] sm:max-w-[620px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px]'>
                     <nav className='relative z-[1000] flex items-center h-[70px] justify-between'>
-                        <div className=' flex items-center gap-x-2 lg:gap-x-4'>
-                            <div className='w-[44px] h-[44px] hidden rounded-full border-white border-2 sm:flex justify-center items-center'>
+                        <div className=' hidden sm:flex items-center gap-x-2 lg:gap-x-4'>
+                            <div className='w-[44px] h-[44px] rounded-full border-white border-2 sm:flex justify-center items-center'>
                                 <img src={logo} alt=""
                                     className='w-[40px] h-[40px] object-cover'
                                 />
-                            </div>
-                            <div onClick={() => navigate(-1)}
-                                className=' text-[20px] sm:hidden flex text-white justify-center items-center'>
-                                <IoIosArrowBack className=' text-[22px]' />
                             </div>
                             <h1 className='hidden sm:inline-block lg:text-[20px] lg:font-normal text-[14px] font-medium text-white'>
                                 ບີທີພີ ທຶນຮຽນຕໍ່ຕ່າງປະເທດ
                             </h1>
                         </div>
+                        <div onClick={() => navigate(-1)}
+                            className=' text-[20px] text-white justify-center items-center'>
+                            <IoIosArrowBack className=' text-[22px]' />
+                        </div>
 
                         <h1 className='sm:hidden text-[18px] lg:text-[20px] md:font-normal font-medium text-white'>
-                            ລາຍລະອຽດ
+                            ຂ່າວສານ
                         </h1>
                         {windowWidth < 480 ? (
                             <animated.ul style={dropdownAnimation} className={` 
