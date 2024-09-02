@@ -54,6 +54,11 @@ export const PostDetail = () => {
         .filter((item) => item?.id === pID)
         .map((item) => item?.file_url);
 
+    // Create a WhatsApp share URL with an image link
+    const imageLink = postData.find(item => item?.id === postID)?.image;
+    const whatsappMessage = `Check out this image: ${imageLink}`;
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`;
+
     return (
         <>
             {windowWidth <= 480 ? (
@@ -131,7 +136,9 @@ export const PostDetail = () => {
                                     <FiDownload />
                                     ດາວໂຫຼດຟອມ
                                 </a>
-                                <a href='https://wa.me/message/VKTNJ4453J46P1'
+                                <a href={whatsappUrl}
+                                    target='_blank'
+                                    rel='noopener noreferrer'
                                     className='flex flex-col items-center'>
                                     <IoLogoWhatsapp className='text-[#0FC146] text-[28px]' />
                                     <span className='text-[#13BBB6] text-[14px] font-semibold'>
