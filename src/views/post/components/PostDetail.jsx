@@ -56,7 +56,7 @@ export const PostDetail = () => {
 
     // Create a WhatsApp share URL with an image link
     const imageLink = postData.find(item => item?.id === postID)?.image;
-    const whatsappMessage = `Check out this image: ${imageLink}`;
+    const whatsappMessage = `ຄຼິກທີ່ນີ້ເພື່ອເບິ່ງຮູບ: ${imageLink}`;
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`;
 
     return (
@@ -77,7 +77,7 @@ export const PostDetail = () => {
                             ))
                         )}
                     </div>
-                    <div className='container max-w-[360px] mx-auto sm:max-w-[600px] md:max-w-[720px] pb-10'>
+                    <div className='container max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] pb-10'>
                         <div className='mt-3 flex items-center text-[#DEAD00]'>
                             <GoDotFill className='text-[12px]' />
                             <h1 className='text-[20px] font-medium pl-2 py-2.5 border-b border-[#DEAD00]'>

@@ -70,7 +70,7 @@ export const NewsDetail = () => {
                         )}
                     </div>
                     {!loading && (
-                        <div className='container max-w-[360px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px] pb-10'>
+                        <div className='container max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px] pb-10'>
                             <div className='mt-3 flex items-center text-[#DEAD00]'>
                                 <GoDotFill className='text-[12px]' />
                                 <h1 className='text-[20px] sm:text-[22px] font-medium pl-2 py-2.5 border-b border-[#DEAD00]'>

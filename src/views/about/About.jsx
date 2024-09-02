@@ -125,7 +125,7 @@ export const About = () => {
                         )}
                     </div>
                 </div>
-                <div className='w-full container max-w-[360px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px] mt-7 pb-20'>
+                <div className='w-full container max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px] mt-7 pb-20'>
                     {loading ? (
                         <Skeleton active />
                     ) : companyData?.length > 0 ? (

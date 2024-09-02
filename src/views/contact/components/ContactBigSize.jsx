@@ -96,7 +96,7 @@ export const ContactBigSize = () => {
                     </div>
                 </div>
                 <div className=''>
-                    <div className='w-full container max-w-[360px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] sm:mt-44 md:mt-52 pb-20'>
+                    <div className='w-full container max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] sm:mt-44 md:mt-52 pb-20'>
                         <form onSubmit={handleSubmit} className='rounded-lg bg-white shadow-[0px_-2px_24.7px_0px_#00000024]'>
                             <div className='p-4 flex gap-x-10 items-center sm:h-[400px] md:h-[480px]'>
                                 <div className='flex-[2] h-full'>

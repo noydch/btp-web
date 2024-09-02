@@ -25,7 +25,7 @@ export const Contact = () => {
                                 />
                             </div>
                         </div>
-                        <div className='w-full container max-w-[360px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] mt-7 pb-20'>
+                        <div className='w-full container max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] mt-7 pb-20'>
                             <div className=' flex flex-col items-center mt-24'>
                                 <h4 className=' text-[16px] sm:text-[18px] font-medium'>ເບີໂທຕິດຕໍ່ 020 9211 1722 </h4>
                                 <h6 className=' font-medium sm:text-[16px]'>ບີທີພີ ທຶນຮຽນຕໍ່ຕ່າງປະເທດ</h6>
