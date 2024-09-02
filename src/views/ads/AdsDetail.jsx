@@ -44,7 +44,7 @@ export const AdsDetail = () => {
     }, [])
 
     // filter data in banners by id
-    const filteredBanners = banners.filter((banner) => banner.id === id)
+    const filteredBanners = banners?.filter((banner) => banner?.id === id)
     // console.log("ss", filteredBanners);
 
     const viewPdf = banners
@@ -55,18 +55,18 @@ export const AdsDetail = () => {
         <NewsNavbar>
             {
                 windowWidth < 480 ? (
-                    filteredBanners.map((item, index) => (
+                    filteredBanners?.map((item, index) => (
                         <div key={index}
                             className=' pt-[70px] pb-5'>
                             <div className=' w-full '>
-                                <img src={item.image} alt="" />
+                                <img src={item?.image} alt="" />
                             </div>
                             <div className='w-full container max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px]'>
                                 <div className='mt-3 flex items-center text-[#DEAD00]'>
                                     <GoDotFill className=' text-[12px]' />
                                     <h1 className=' text-[20px] font-medium pl-2 py-2.5 border-b border-[#DEAD00]'>
                                         ປະກາດເປີດຮັບສະໝັກທຶນ <span className=' font-bold text-[20px]'>
-                                            {item.title}
+                                            {item?.title}
                                         </span>
                                     </h1>
                                 </div>
@@ -78,48 +78,38 @@ export const AdsDetail = () => {
                                         # ເງື່ອນໄຂທີ່ຄຸ້ມຄ່າທີ່ສຸດ
                                     </li>
                                 </ul>
-                                <div className='flex gap-x-14 mt-2 list-inside list-disc px-2'>
-                                    <div className=' flex flex-col gap-y-3 font-medium'>
-                                        <div className=' flex items-center gap-x-2'>
-                                            <GoDotFill className=' text-[7px]' />
-                                            <p>
-                                                ຄ່າຮຽນຟຣີ
-                                            </p>
-                                        </div>
-                                        <div className=' flex items-center gap-x-2'>
-                                            <GoDotFill className=' text-[7px]' />
-                                            <p>
-                                                ຄ່າຮຽນຟຣີ
-                                            </p>
-                                        </div>
-                                        <div className=' flex items-center gap-x-2'>
-                                            <GoDotFill className=' text-[7px]' />
-                                            <p>
-                                                ຄ່າຮຽນຟຣີ
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className=' flex flex-col gap-y-3 font-medium'>
-                                        <div className=' flex items-center gap-x-2'>
-                                            <GoDotFill className=' text-[7px]' />
-                                            <p>
-                                                ມີອາຈານນຳພາໄປຮອດໂຮງຮຽນ
-                                            </p>
-                                        </div>
-                                        <div className=' flex items-center gap-x-2'>
-                                            <GoDotFill className=' text-[7px]' />
-                                            <p>
-                                                ຄ່າ Visa
-                                            </p>
-                                        </div>
-                                        <div className=' flex items-center gap-x-2'>
-                                            <GoDotFill className=' text-[7px]' />
-                                            <p>
-                                                ມີເບ້ຍລ້ຽງ 600-1200 ຢວນ/ເດືອນ
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                                {
+                                    filteredBanners?.map((item, index) => (
+                                        item?.id == id && (
+                                            <div key={index} className=' grid grid-cols-12 mt-2 list-inside list-disc px-2'>
+                                                <div className='flex flex-col col-span-5 gap-y-3 font-medium'>
+                                                    {
+                                                        item?.typescholarship?.map((item) => (
+                                                            <div className='flex items-center gap-x-2'>
+                                                                <GoDotFill className='text-[7px]' />
+                                                                <p className='sm:text-[16px]'>
+                                                                    {item}
+                                                                </p>
+                                                            </div>
+                                                        ))
+                                                    }
+                                                </div>
+                                                <div className='flex flex-col col-span-7 gap-y-3 font-medium'>
+                                                    {
+                                                        item?.document?.map((item) => (
+                                                            <div className='flex items-center gap-x-2'>
+                                                                <GoDotFill className='text-[7px]' />
+                                                                <p className='sm:text-[16px]'>
+                                                                    {item}
+                                                                </p>
+                                                            </div>
+                                                        ))
+                                                    }
+                                                </div>
+                                            </div>
+                                        )
+                                    ))
+                                }
                                 <div className=' mt-5'>
                                     <div className=' flex gap-x-1'>
                                         <IoMdPin className='text-[18px] text-[#F7C208]' />
@@ -155,7 +145,7 @@ export const AdsDetail = () => {
                     ))
                 ) :
                     (
-                        filteredBanners.map((item, index) => (
+                        filteredBanners?.map((item, index) => (
                             <div key={index}
                                 className='pt-[80px] container max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px] pb-10'>
                                 <div className=' w-full '>
@@ -164,115 +154,63 @@ export const AdsDetail = () => {
                                     />
                                 </div>
                                 <div className=' grid grid-cols-12 mt-20 sm:gap-x-3 xl:gap-x-4'>
-                                    <div className=' lg:col-span-9 col-span-8 '>
-                                        <div className=' flex flex-col gap-y-5'>
-                                            <h1 className=' sm:text-[18px] md:text-[22px] font-medium'>
-                                                ລາຍລະອຽດກ່ຽວກັບທຶນ
-                                            </h1>
-                                            <p className=' sm:text-[12px] text-[14px]'>
-                                                {item.detail}
-                                            </p>
-                                        </div>
-                                        <div className=' mt-14'>
-                                            <h1 className='sm:text-[18px] md:text-[22px] font-medium mb-5'>
-                                                ຂໍ້ມູນຂອງທຶນ
-                                            </h1>
-                                            <div className=' flex items-center gap-x-10'>
-                                                <div className=' flex flex-col gap-y-5'>
-                                                    <div className=' flex items-center gap-x-4'>
-                                                        <div className=' w-[10px] h-[10px] flex items-center justify-center rounded-full bg-[#01a7b1]'>
-                                                            <IoMdCheckmark className=' text-[20px] text-white' />
-                                                        </div>
-                                                        <p className=' sm:text-[12px] md:text-[14px]'>
-                                                            Basic communication in English in
-                                                            everyday situations.
+                                    {
+                                        filteredBanners?.map((item, index) => (
+                                            item.id == id && (
+                                                <div key={index} className=' lg:col-span-9 col-span-8 '>
+                                                    <div className=' flex flex-col gap-y-5'>
+                                                        <h1 className=' sm:text-[18px] md:text-[22px] font-medium'>
+                                                            ລາຍລະອຽດກ່ຽວກັບທຶນ
+                                                        </h1>
+                                                        <p className=' sm:text-[12px] text-[14px]  lg:text-[16px]'>
+                                                            {item?.detail}
                                                         </p>
                                                     </div>
-                                                    <div className=' flex items-center gap-x-4'>
-                                                        <div className=' w-[10px] h-[10px] flex items-center justify-center rounded-full bg-[#01a7b1]'>
-                                                            <IoMdCheckmark className=' text-[20px] text-white' />
+                                                    <div className=' mt-10'>
+                                                        <h1 className='sm:text-[18px] md:text-[22px] font-medium mb-2'>
+                                                            ຂໍ້ມູນຂອງທຶນ
+                                                        </h1>
+                                                        <div className=' flex items-center gap-x-10'>
+                                                            <div className=' flex flex-col gap-y-5'>
+                                                                {
+                                                                    item?.typescholarship?.map((item) => (
+                                                                        <div className=' flex items-center gap-x-4'>
+                                                                            <div className=' w-[20px] h-[20px] flex items-center justify-center rounded-full bg-[#01a7b1]'>
+                                                                                <IoMdCheckmark className=' text-[16px] text-white' />
+                                                                            </div>
+                                                                            <p className=' sm:text-[12px] md:text-[14px] lg:text-[16px]'>
+                                                                                {item}
+                                                                            </p>
+                                                                        </div>
+                                                                    ))
+                                                                }
+                                                            </div>
                                                         </div>
-                                                        <p className=' sm:text-[12px] md:text-[14px]'>
-                                                            Basic communication in English in
-                                                            everyday situations.
-                                                        </p>
                                                     </div>
-                                                    <div className=' flex items-center gap-x-4'>
-                                                        <div className=' w-[10px] h-[10px] flex items-center justify-center rounded-full bg-[#01a7b1]'>
-                                                            <IoMdCheckmark className=' text-[20px] text-white' />
-                                                        </div>
-                                                        <p className=' sm:text-[12px] md:text-[14px]'>
-                                                            Basic communication in English in
-                                                            everyday situations.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div className=' flex flex-col gap-y-5'>
-                                                    <div className=' flex items-center gap-x-4'>
-                                                        <div className=' w-[10px] h-[10px] flex items-center justify-center rounded-full bg-[#01a7b1]'>
-                                                            <IoMdCheckmark className=' text-[20px] text-white' />
-                                                        </div>
-                                                        <p className=' sm:text-[12px] md:text-[14px]'>
-                                                            Basic communication in English in
-                                                            everyday situations.
-                                                        </p>
-                                                    </div>
-                                                    <div className=' flex items-center gap-x-4'>
-                                                        <div className=' w-[10px] h-[10px] flex items-center justify-center rounded-full bg-[#01a7b1]'>
-                                                            <IoMdCheckmark className=' text-[20px] text-white' />
-                                                        </div>
-                                                        <p className=' sm:text-[12px] md:text-[14px]'>
-                                                            Basic communication in English in
-                                                            everyday situations.
-                                                        </p>
-                                                    </div>
-                                                    <div className=' flex items-center gap-x-4'>
-                                                        <div className=' w-[10px] h-[10px] flex items-center justify-center rounded-full bg-[#01a7b1]'>
-                                                            <IoMdCheckmark className=' text-[20px] text-white' />
-                                                        </div>
-                                                        <p className=' sm:text-[12px] md:text-[14px]'>
-                                                            Basic communication in English in
-                                                            everyday situations.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                        <div className=' mt-14'>
-                                            <h1 className='sm:text-[18px] md:text-[22px] font-medium mb-5'>
-                                                ເອກະສານທີ່ຕ້ອງກຽມ
-                                            </h1>
-                                            <div className=' flex flex-col gap-y-5'>
-                                                <div className=' flex items-center gap-x-4'>
-                                                    <div className=' w-[10px] h-[10px] flex items-center justify-center rounded-full bg-[#01a7b1]'>
-                                                        <IoMdCheckmark className=' text-[20px] text-white' />
+                                                    <div className=' mt-10'>
+                                                        <h1 className='sm:text-[18px] md:text-[22px] font-medium mb-2'>
+                                                            ເອກະສານທີ່ຕ້ອງກຽມ
+                                                        </h1>
+                                                        <div className=' flex flex-col gap-y-5'>
+                                                            {
+                                                                item?.document?.map((item) => (
+                                                                    <div className=' flex items-center gap-x-4'>
+                                                                        <div className=' w-[20px] h-[20px] flex items-center justify-center rounded-full bg-[#01a7b1]'>
+                                                                            <IoMdCheckmark className=' text-[16px] text-white' />
+                                                                        </div>
+                                                                        <p className=' sm:text-[12px] md:text-[14px] '>
+                                                                            {item}
+                                                                        </p>
+                                                                    </div>
+                                                                ))
+                                                            }
+                                                        </div>
                                                     </div>
-                                                    <p className=' sm:text-[12px]'>
-                                                        No previous knowledge of English is necessary.
-                                                    </p>
                                                 </div>
-                                                <div className=' flex items-center gap-x-4'>
-                                                    <div className=' w-[10px] h-[10px] flex items-center justify-center rounded-full bg-[#01a7b1]'>
-                                                        <IoMdCheckmark className=' text-[20px] text-white' />
-                                                    </div>
-                                                    <p className=' sm:text-[12px]'>
-                                                        For best quality of reception you need good laptop, a tablet or a phone with good speakers or
-                                                        headphones for correct pronunciation.
-                                                    </p>
-                                                </div>
-                                                <div className=' flex items-center gap-x-4'>
-                                                    <div className=' w-[10px] h-[10px] flex items-center justify-center rounded-full bg-[#01a7b1]'>
-                                                        <IoMdCheckmark className=' text-[20px] text-white' />
-                                                    </div>
-                                                    <p className=' sm:text-[12px]'>
-                                                        For best quality of reception you need good laptop, a tablet or a phone with good speakers or
-                                                        headphones for correct pronunciation.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                            )
+                                        ))
+                                    }
 
                                     <div className='lg:col-span-3 col-span-4'>
                                         <div className='relative z-10 sm:h-[200px] md:h-[250px] sm:mt-5 w-full bg-[#01A7B1] rounded-lg'>
@@ -285,7 +223,7 @@ export const AdsDetail = () => {
                                                 <h2 className=' sm:text-[16px] md:text-[18px] lg:text-[20px]'>
                                                     ຖ້າທ່ານມີຄຳຖາມກະລຸນາຕິດຕໍ່
                                                 </h2>
-                                                <p className=' sm:text-[12px] md:text-[14px]'>
+                                                <p className=' sm:text-[12px] md:text-[14px] lg:text-[16px]'>
                                                     Lorem ipsum dolor sit amet, <br /> consectetur adipiscing
                                                 </p>
                                                 <div className=' flex flex-col gap-y-3'>

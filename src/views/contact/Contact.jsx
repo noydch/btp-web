@@ -17,7 +17,7 @@ export const Contact = () => {
         <ContactNavbar>
             {
                 windowWidth < 640 ? (
-                    <div className='  w-full h-full'>
+                    <div className='  w-full h-full bg-white'>
                         <div className=' pt-[70px]'>
                             <div className='relative bg-[#AFE7FF] h-[100px]'>
                                 <img src={logo} alt=""
