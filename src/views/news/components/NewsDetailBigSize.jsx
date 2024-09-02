@@ -24,7 +24,7 @@ export const NewsDetailBigSize = ({ newsData, viewPdf }) => {
     const postID = id.nID;
     return (
         <Navbar>
-            <div className='pt-[80px] container max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px] pb-10'>
+            <div className='pt-[80px] container max-w-[360px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px] pb-10'>
                 {
                     newsData.map((item, index) => (
                         item.id == postID && (

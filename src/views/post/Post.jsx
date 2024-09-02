@@ -99,7 +99,7 @@ export const Post = () => {
         <Navbar>
             <ModalAds show={showModal} onClose={handleCloseModal} />
             <div className=' bg-white'>
-                <div className='pt-[70px] w-full h-full container max-w-[350px] mx-auto sm:max-w-[620px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px]'>
+                <div className='pt-[70px] w-full h-full container max-w-[360px] mx-auto sm:max-w-[620px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px]'>
                     <div className='pt-5 pb-10'>
                         <div className='md:flex md:flex-row-reverse md:items-center md:gap-x-4 xl:px-20 xl:pb-5 xl:border-b'>
                             <Select
