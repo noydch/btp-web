@@ -12,6 +12,7 @@ import { NewsNavbar } from './NewsNavbar.jsx';
 import { NewsDetailBigSize } from './NewsDetailBigSize.jsx';
 import { getNewsApi } from '../../../api/news.js';
 import { Navbar } from '../../../components/Navbar.jsx';
+import { addDownloadTotalApi } from '../../../api/download.js';
 
 export const NewsDetail = () => {
     const navigate = useNavigate();
@@ -43,6 +44,15 @@ export const NewsDetail = () => {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+
+    const handleDownload = async () => {
+        const data = {
+            type: "news"
+        }
+        const response = await addDownloadTotalApi(data)
+        return response
+    }
+
 
     const viewPdf = newsData
         .filter((item) => item?.id === postID)
@@ -119,6 +129,7 @@ export const NewsDetail = () => {
                                 </div>
                                 <div className='flex flex-row-reverse mt-5 gap-x-14 items-center'>
                                     <a
+                                        onClick={handleDownload}
                                         target='_blank'
                                         href={`https://docs.google.com/gview?embedded=true&url=${viewPdf}`}
                                         className='flex items-center gap-x-2 px-2 py-2 text-[#13BBB6] font-medium rounded-md border-2 border-[#13BBB6]'>
@@ -140,7 +151,7 @@ export const NewsDetail = () => {
                     )}
                 </NewsNavbar>
             ) : (
-                <NewsDetailBigSize newsData={newsData} viewPdf={viewPdf} />
+                <NewsDetailBigSize newsData={newsData} viewPdf={viewPdf} handleDownload={handleDownload} />
             )}
         </>
     );

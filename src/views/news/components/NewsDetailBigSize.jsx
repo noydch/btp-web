@@ -18,7 +18,7 @@ import { newsData } from '../newsData.jsx';
 import { NewsNavbar } from './NewsNavbar.jsx';
 import { Navbar } from '../../../components/Navbar.jsx';
 
-export const NewsDetailBigSize = ({ newsData, viewPdf }) => {
+export const NewsDetailBigSize = ({ newsData, viewPdf, handleDownload }) => {
     const id = useParams()
     // console.log(id.pID);
     const postID = id.nID;
@@ -132,6 +132,7 @@ export const NewsDetailBigSize = ({ newsData, viewPdf }) => {
                 </div>
                 <div className=' flex flex-row-reverse  mt-5 gap-x-14 items-center'>
                     <a
+                        onClick={handleDownload}
                         target='_blank'
                         href={`https://docs.google.com/gview?embedded=true&url=${viewPdf}`}
                         className='flex items-center gap-x-2 px-2 py-2 text-[#13BBB6] font-medium rounded-md border-2 border-[#13BBB6]'

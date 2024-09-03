@@ -11,6 +11,7 @@ import { getService } from '../../../api/serivce';
 import Swal from 'sweetalert2';
 import { PostNavbar } from './PostNavbar.jsx';
 import { Skeleton } from 'antd'; // Import Skeleton
+import { addDownloadTotalApi } from '../../../api/download.js';
 
 export const PostDetail = () => {
     const navigate = useNavigate();
@@ -49,6 +50,14 @@ export const PostDetail = () => {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+
+    const handleDownload = async () => {
+        const data = {
+            type: "service"
+        }
+        const response = await addDownloadTotalApi(data)
+        return response
+    }
 
     const viewPdf = postData
         .filter((item) => item?.id === pID)
@@ -130,6 +139,7 @@ export const PostDetail = () => {
                             </div>
                             <div className='flex flex-row-reverse mt-5 gap-x-14 items-center'>
                                 <a
+                                    onClick={handleDownload}
                                     target='_blank'
                                     href={`https://docs.google.com/gview?embedded=true&url=${viewPdf}`}
                                     className='flex items-center gap-x-2 px-2 py-2 text-[#13BBB6] font-medium rounded-md border-2 border-[#13BBB6]'>
@@ -150,7 +160,7 @@ export const PostDetail = () => {
                     </div>
                 </PostNavbar>
             ) : (
-                <PostDetailBigSize postData={postData} viewPdf={viewPdf} />
+                <PostDetailBigSize postData={postData} viewPdf={viewPdf} handleDownload={handleDownload} />
             )}
         </>
     );

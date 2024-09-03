@@ -13,6 +13,7 @@ import { BiSolidPhoneCall } from 'react-icons/bi';
 import { useParams } from 'react-router-dom';
 import { getBannerApi } from '../../api/banner.js';
 import { Navbar } from '../../components/Navbar.jsx';
+import { addDownloadTotalApi } from '../../api/download.js';
 
 export const AdsDetail = () => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
@@ -51,6 +52,13 @@ export const AdsDetail = () => {
     const whatsappMessage = `ຄຼິກທີ່ນີ້ເພື່ອເບິ່ງຮູບ: ${imageLink}`;
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`;
 
+    const handleDownload = async () => {
+        const data = {
+            type: "banner"
+        }
+        const response = await addDownloadTotalApi(data)
+        return response
+    }
 
     const viewPdf = banners
         .filter((item) => item?.id === id)
@@ -130,6 +138,7 @@ export const AdsDetail = () => {
                                         </div>
                                         <div className='flex flex-row-reverse mt-5 gap-x-14 items-center'>
                                             <a
+                                                onClick={handleDownload}
                                                 target='_blank'
                                                 href={`https://docs.google.com/gview?embedded=true&url=${viewPdf}`}
                                                 className='flex items-center gap-x-2 px-2 py-2 text-[#13BBB6] font-medium rounded-md border-2 border-[#13BBB6]'>
@@ -250,6 +259,7 @@ export const AdsDetail = () => {
                                     </div>
                                     <div className=' flex flex-row-reverse  mt-5 gap-x-14 items-center'>
                                         <a
+                                            onClick={handleDownload}
                                             target='_blank'
                                             href={`https://docs.google.com/gview?embedded=true&url=${viewPdf}`}
                                             className='flex items-center gap-x-2 px-2 py-2 text-[#13BBB6] font-medium rounded-md border-2 border-[#13BBB6]'

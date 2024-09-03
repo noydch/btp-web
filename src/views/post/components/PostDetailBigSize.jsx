@@ -11,7 +11,7 @@ import { FaFacebookF } from 'react-icons/fa';
 // Image
 import bgPostOverlay from '../../../assets/images/webp/postOverlay.webp';
 
-export const PostDetailBigSize = ({ postData, viewPdf }) => {
+export const PostDetailBigSize = ({ postData, viewPdf, handleDownload }) => {
     const { pID } = useParams(); // Destructure pID from useParams
     const postID = pID;
     // Create a WhatsApp share URL with an image link
@@ -118,6 +118,7 @@ export const PostDetailBigSize = ({ postData, viewPdf }) => {
                     </div>
                     <div className='flex flex-row-reverse mt-5 gap-x-14 items-center'>
                         <a
+                            onClick={handleDownload}
                             target='_blank'
                             rel="noopener noreferrer"
                             href={`https://docs.google.com/gview?embedded=true&url=${viewPdf}`}
