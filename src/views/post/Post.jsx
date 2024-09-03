@@ -155,7 +155,7 @@ export const Post = () => {
                                                 {item?.title}
                                             </h2>
                                             <p className='sm:leading-4 leading-3 text-[10px] sm:text-[12px] text-gray-500'>
-                                                Lorem ipsum dolor sit amet consectetur
+                                                {item?.description}
                                             </p>
                                             <div className='absolute bottom-2 sm:bottom-1 xl:bottom-2 md:left-3 flex items-center text-[#13BBB6] gap-x-1'>
                                                 <img src={starIcon} alt='' className='w-[12px] md:w-[15px]' />
