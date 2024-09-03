@@ -52,7 +52,7 @@ export const NewsDetail = () => {
         const response = await addDownloadTotalApi(data)
         return response
     }
-
+    // dd
 
     const viewPdf = newsData
         .filter((item) => item?.id === postID)
