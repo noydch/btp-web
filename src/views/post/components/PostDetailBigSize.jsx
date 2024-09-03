@@ -46,7 +46,7 @@ export const PostDetailBigSize = ({ postData, viewPdf }) => {
                                             ຂໍ້ມູນຂອງທຶນ
                                         </h1>
                                         <div className='flex flex-col gap-y-3'>
-                                            {item?.document?.map((doc, i) => (
+                                            {item?.typescholarship?.map((doc, i) => (
                                                 <div key={i} className='flex items-center gap-x-4'>
                                                     <div className='w-[20px] h-[20px] flex items-center justify-center rounded-full bg-[#01a7b1]'>
                                                         <IoMdCheckmark className='text-[16px] text-white' />
@@ -64,7 +64,7 @@ export const PostDetailBigSize = ({ postData, viewPdf }) => {
                                             ເອກະສານທີ່ຕ້ອງກຽມ
                                         </h1>
                                         <div className='flex flex-col gap-y-3'>
-                                            {item?.typescholarship?.map((type, i) => (
+                                            {item?.document?.map((type, i) => (
                                                 <div key={i} className='flex items-center gap-x-4'>
                                                     <div className='w-[20px] h-[20px] flex items-center justify-center rounded-full bg-[#01a7b1]'>
                                                         <IoMdCheckmark className='text-[16px] text-white' />
