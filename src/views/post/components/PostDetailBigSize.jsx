@@ -12,7 +12,12 @@ import { FaFacebookF } from 'react-icons/fa';
 import bgPostOverlay from '../../../assets/images/webp/postOverlay.webp';
 
 export const PostDetailBigSize = ({ postData, viewPdf }) => {
-    const { pID } = useParams();
+    const { pID } = useParams(); // Destructure pID from useParams
+    const postID = pID;
+    // Create a WhatsApp share URL with an image link
+    const imageLink = postData.find(item => item?.id === postID)?.image;
+    const whatsappMessage = `ຄຼິກທີ່ນີ້ເພື່ອເບິ່ງຮູບ: ${imageLink}`;
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`;
 
     return (
         <Navbar>
