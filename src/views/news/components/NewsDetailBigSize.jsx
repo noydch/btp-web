@@ -22,6 +22,11 @@ export const NewsDetailBigSize = ({ newsData, viewPdf }) => {
     const id = useParams()
     // console.log(id.pID);
     const postID = id.nID;
+
+    const imageLink = newsData.find(item => item?.id === postID)?.image;
+    const whatsappMessage = `ຄຼິກທີ່ນີ້ເພື່ອເບິ່ງຮູບ: ${imageLink}`;
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`;
+
     return (
         <Navbar>
             <div className='pt-[80px] container max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px] pb-10'>
@@ -37,7 +42,7 @@ export const NewsDetailBigSize = ({ newsData, viewPdf }) => {
                         )
                     ))
                 }
-                <div className=' grid grid-cols-12 mt-20 sm:gap-x-3 xl:gap-x-4'>
+                <div className=' grid grid-cols-12 gap-x-10 mt-20 sm:gap-x-3 xl:gap-x-4'>
                     {
                         newsData?.map((item, index) => (
                             item?.id == postID && (
@@ -56,21 +61,19 @@ export const NewsDetailBigSize = ({ newsData, viewPdf }) => {
                                         <h1 className='sm:text-[18px] md:text-[22px] font-medium mb-2'>
                                             ຂໍ້ມູນຂອງທຶນ
                                         </h1>
-                                        <div className=' flex items-center gap-x-10'>
-                                            <div className=' flex flex-col gap-y-5'>
-                                                {
-                                                    item?.typescholarship?.map((item) => (
-                                                        <div className=' flex items-center gap-x-4'>
-                                                            <div className=' w-[20px] h-[20px] flex items-center justify-center rounded-full bg-[#01a7b1]'>
-                                                                <IoMdCheckmark className=' text-[16px] text-white' />
-                                                            </div>
-                                                            <p className=' sm:text-[12px] md:text-[14px] lg:text-[16px]'>
-                                                                {item}
-                                                            </p>
+                                        <div className=' grid grid-cols-12 gap-x-10 gap-y-5'>
+                                            {
+                                                item?.typescholarship?.map((item) => (
+                                                    <div className=' col-span-6 flex items-center gap-x-4'>
+                                                        <div className=' w-[20px] h-[20px] flex items-center justify-center rounded-full bg-[#01a7b1]'>
+                                                            <IoMdCheckmark className=' text-[16px] text-white' />
                                                         </div>
-                                                    ))
-                                                }
-                                            </div>
+                                                        <p className=' sm:text-[12px] md:text-[14px] lg:text-[16px]'>
+                                                            {item}
+                                                        </p>
+                                                    </div>
+                                                ))
+                                            }
                                         </div>
                                     </div>
 
@@ -78,10 +81,10 @@ export const NewsDetailBigSize = ({ newsData, viewPdf }) => {
                                         <h1 className='sm:text-[18px] md:text-[22px] font-medium mb-2'>
                                             ເອກະສານທີ່ຕ້ອງກຽມ
                                         </h1>
-                                        <div className=' flex flex-col gap-y-5'>
+                                        <div className=' grid grid-cols-12 gap-x-10 gap-y-5'>
                                             {
                                                 item?.document?.map((item) => (
-                                                    <div className=' flex items-center gap-x-4'>
+                                                    <div className=' col-span-6 flex items-center gap-x-4'>
                                                         <div className=' w-[20px] h-[20px] flex items-center justify-center rounded-full bg-[#01a7b1]'>
                                                             <IoMdCheckmark className=' text-[16px] text-white' />
                                                         </div>
@@ -137,12 +140,15 @@ export const NewsDetailBigSize = ({ newsData, viewPdf }) => {
                         <FiDownload />
                         ດາວໂຫຼດຟອມ
                     </a>
-                    <div className=' flex flex-col items-center'>
-                        <IoLogoWhatsapp className=' text-[#0FC146] text-[28px]' />
+                    <a href={whatsappUrl}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='flex flex-col items-center'>
+                        <IoLogoWhatsapp className='text-[#0FC146] text-[28px]' />
                         <span className='text-[#13BBB6] text-[14px] font-semibold'>
                             ສົນໃຈ
                         </span>
-                    </div>
+                    </a>
                 </div>
             </div>
         </Navbar>

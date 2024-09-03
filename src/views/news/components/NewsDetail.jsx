@@ -49,7 +49,7 @@ export const NewsDetail = () => {
         .map((item) => item?.file_url);
     console.log("view=", viewPdf[0]);
 
-    const imageLink = postData.find(item => item?.id === postID)?.image;
+    const imageLink = newsData.find(item => item?.id === postID)?.image;
     const whatsappMessage = `ຄຼິກທີ່ນີ້ເພື່ອເບິ່ງຮູບ: ${imageLink}`;
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`;
 
@@ -87,7 +87,7 @@ export const NewsDetail = () => {
                             </ul>
                             {newsData?.map((item, index) => (
                                 item?.id == postID && (
-                                    <div key={index} className='grid grid-cols-12 mt-2 list-inside list-disc px-2'>
+                                    <div key={index} className='grid grid-cols-12 gap-x-10 mt-2 list-inside list-disc px-2'>
                                         <div className='flex flex-col col-span-5 gap-y-3 font-medium'>
                                             {item?.typescholarship?.map((scholarshipItem, i) => (
                                                 <div key={i} className='flex items-center gap-x-2'>

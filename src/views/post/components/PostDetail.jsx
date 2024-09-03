@@ -84,7 +84,7 @@ export const PostDetail = () => {
                                 ປະກາດເປີດຮັບສະໝັກທຶນ <span className='font-bold text-[20px] sm:text-[22px]'>2024</span>
                             </h1>
                         </div>
-                        <ul className='mt-3 grid grid-cols-12'>
+                        <ul className='mt-3 grid grid-cols-12 gap-x-10'>
                             <li className='font-medium col-span-5 text-[16px] sm:text-[18px]'>
                                 - ຂໍ້ມູນທຶນ
                             </li>
@@ -97,7 +97,7 @@ export const PostDetail = () => {
                         ) : (
                             postData?.map((item, index) => (
                                 item?.id === postID && (
-                                    <div key={index} className='grid grid-cols-12 mt-2 list-inside list-disc px-2'>
+                                    <div key={index} className='grid grid-cols-12 gap-x-10 mt-2 list-inside list-disc px-2'>
                                         <div className='flex flex-col col-span-5 gap-y-3 font-medium'>
                                             {item?.typescholarship?.map((type, i) => (
                                                 <div key={i} className='flex items-center gap-x-2'>

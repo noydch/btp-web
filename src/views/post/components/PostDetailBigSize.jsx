@@ -29,7 +29,7 @@ export const PostDetailBigSize = ({ postData, viewPdf }) => {
                             </div>
                         )
                     ))}
-                    <div className='grid grid-cols-12 mt-20 sm:gap-x-3 xl:gap-x-4'>
+                    <div className='grid grid-cols-12 gap-x-10 mt-20 sm:gap-x-3 xl:gap-x-4'>
                         {postData?.map((item, index) => (
                             item?.id === pID && (
                                 <div key={index} className='lg:col-span-9 col-span-8'>
@@ -45,9 +45,9 @@ export const PostDetailBigSize = ({ postData, viewPdf }) => {
                                         <h1 className='sm:text-[18px] md:text-[22px] font-medium mb-2'>
                                             ຂໍ້ມູນຂອງທຶນ
                                         </h1>
-                                        <div className='flex flex-col gap-y-3'>
+                                        <div className=' grid grid-cols-12 gap-x-10 gap-y-5'>
                                             {item?.typescholarship?.map((doc, i) => (
-                                                <div key={i} className='flex items-center gap-x-4'>
+                                                <div key={i} className=' col-span-6 flex items-center gap-x-4'>
                                                     <div className='w-[20px] h-[20px] flex items-center justify-center rounded-full bg-[#01a7b1]'>
                                                         <IoMdCheckmark className='text-[16px] text-white' />
                                                     </div>
@@ -63,9 +63,9 @@ export const PostDetailBigSize = ({ postData, viewPdf }) => {
                                         <h1 className='sm:text-[18px] md:text-[22px] font-medium mb-2'>
                                             ເອກະສານທີ່ຕ້ອງກຽມ
                                         </h1>
-                                        <div className='flex flex-col gap-y-3'>
+                                        <div className=' grid grid-cols-12 gap-x-10  gap-y-5'>
                                             {item?.document?.map((type, i) => (
-                                                <div key={i} className='flex items-center gap-x-4'>
+                                                <div key={i} className=' col-span-6 flex items-center gap-x-4'>
                                                     <div className='w-[20px] h-[20px] flex items-center justify-center rounded-full bg-[#01a7b1]'>
                                                         <IoMdCheckmark className='text-[16px] text-white' />
                                                     </div>
@@ -121,10 +121,10 @@ export const PostDetailBigSize = ({ postData, viewPdf }) => {
                             <FiDownload />
                             ດາວໂຫຼດຟອມ
                         </a>
-                        <a
-                            href='https://wa.me/message/VKTNJ4453J46P1'
-                            className='flex flex-col items-center'
-                        >
+                        <a href={whatsappUrl}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='flex flex-col items-center'>
                             <IoLogoWhatsapp className='text-[#0FC146] text-[28px]' />
                             <span className='text-[#13BBB6] text-[14px] font-semibold'>
                                 ສົນໃຈ

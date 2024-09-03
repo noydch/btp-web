@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NewsNavbar } from './components/NewsNavbar';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getNewsApi } from '../../api/news';
 import { formatDate } from '../../utils';
 import { Navbar } from '../../components/Navbar';
@@ -10,6 +10,8 @@ import './style/Style.css';
 export const News = () => {
     const [loading, setLoading] = useState(false);
     const [newsData, setNewsData] = useState([]);
+    const { pID } = useParams(); // Destructure pID from useParams
+    const postID = pID;
 
     const fetchData = async () => {
         setLoading(true);
