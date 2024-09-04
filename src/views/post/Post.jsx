@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Select, Skeleton } from 'antd';
+import { Empty, Select, Skeleton } from 'antd';
 import { Navbar } from '../../components/Navbar';
 import { IoSearch } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
@@ -131,39 +131,44 @@ export const Post = () => {
                                 Array.from({ length: 9 }).map((_, index) => (
                                     <Skeleton.Input
                                         key={index}
-                                        className='h-[165px] sm:h-[210px] md:h-[180px] lg:h-[200px] xl:col-span-3 relative xl:h-[300px]'
+                                        className='h-[165px] sm:h-[210px] md:h-[180px] lg:h-[200px] xl:col-span-3 relative xl:h-screen'
                                         active
                                     />
                                 ))
                             ) : (
-                                // Display posts once data is loaded
-                                filteredPosts?.map((item, index) => (
-                                    <Link
-                                        to={`/post/postDetail/${item?.id}`}
-                                        key={index}
-                                        className='rounded-md h-[165px] sm:h-[210px] md:h-[180px] lg:h-[200px] xl:col-span-3 relative xl:h-[300px] shadow-[0px_2px_3px_0px_#00000024]'
-                                    >
-                                        <div className='w-full h-[80px] xl:h-[200px]'>
-                                            <img
-                                                src={item?.image || 'defaultImage.png'} // Add a fallback image
-                                                alt={item?.title}
-                                                className='w-full h-full object-cover rounded-t-md'
-                                            />
-                                        </div>
-                                        <div className='mt-1 px-1.5 sm:px-3 flex flex-col'>
-                                            <h2 className='text-[11px] sm:text-[16px] lg:text-[16px] sm:font-medium font-medium break-words text-ellipsis text-wrap overflow-hidden line-clamp-2'>
-                                                {item?.title}
-                                            </h2>
-                                            <p className='sm:leading-4 leading-3 text-[10px] sm:text-[12px] text-gray-500'>
-                                                {item?.description}
-                                            </p>
-                                            <div className='absolute bottom-2 sm:bottom-1 xl:bottom-2 md:left-3 flex items-center text-[#13BBB6] gap-x-1'>
-                                                <img src={starIcon} alt='' className='w-[12px] md:w-[15px]' />
-                                                <span className='text-[10px] md:text-[12px] xl:text-[12px] font-medium'>ສົນໃຈ</span>
+                                filteredPosts.length > 0 ? (
+                                    filteredPosts.map((item, index) => (
+                                        <Link
+                                            to={`/post/postDetail/${item?.id}`}
+                                            key={index}
+                                            className='rounded-md h-[165px] sm:h-[210px] md:h-[180px] lg:h-[200px] xl:col-span-3 relative xl:h-[300px] shadow-[0px_2px_3px_0px_#00000024]'
+                                        >
+                                            <div className='w-full h-[80px] xl:h-[200px]'>
+                                                <img
+                                                    src={item?.image || 'defaultImage.png'} // Add a fallback image
+                                                    alt={item?.title}
+                                                    className='w-full h-full object-cover rounded-t-md'
+                                                />
                                             </div>
-                                        </div>
-                                    </Link>
-                                ))
+                                            <div className='mt-1 px-1.5 sm:px-3 flex flex-col'>
+                                                <h2 className='text-[11px] sm:text-[16px] lg:text-[16px] sm:font-medium font-medium break-words text-ellipsis text-wrap overflow-hidden line-clamp-2'>
+                                                    {item?.title}
+                                                </h2>
+                                                <p className='sm:leading-4 leading-3 text-[10px] sm:text-[12px] text-gray-500'>
+                                                    {item?.description}
+                                                </p>
+                                                <div className='absolute bottom-2 sm:bottom-1 xl:bottom-2 md:left-3 flex items-center text-[#13BBB6] gap-x-1'>
+                                                    <img src={starIcon} alt='' className='w-[12px] md:w-[15px]' />
+                                                    <span className='text-[10px] md:text-[12px] xl:text-[12px] font-medium'>ສົນໃຈ</span>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    ))
+                                ) : (
+                                    <div className=' h-[400px] col-span-3 sm:col-span-4 xl:col-span-12 w-full flex items-center justify-center'>
+                                        <Empty description="ບໍ່ມີຂໍ້ມູນ" />
+                                    </div>
+                                )
                             )}
                         </div>
                     </div>
