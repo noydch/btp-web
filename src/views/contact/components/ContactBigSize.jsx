@@ -78,6 +78,12 @@ export const ContactBigSize = () => {
                         title: "ບັນທຶກສຳເລັດ!",
                         icon: "success"
                     });
+                    setFormData({
+                        name: '',
+                        email: '',
+                        phoneNumber: '',
+                        comment: ''
+                    })
                     // Assuming 'navigate' is defined elsewhere in your component or passed as a prop
                     // navigate('/contactManangement')
                 }
