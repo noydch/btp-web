@@ -22,7 +22,7 @@ export const PostDetailBigSize = ({ postData, viewPdf, handleDownload }) => {
     return (
         <Navbar>
             <div className='pt-[80px] w-full h-full'>
-                <div className='container h-full max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] xl:max-w-[1200px] pb-10'>
+                <div className='pt-[80px] container max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px] pb-10'>
                     {postData?.map((item, index) => (
                         item?.id === pID && (
                             <div key={index} className='w-full h-[550px] rounded-lg'>
