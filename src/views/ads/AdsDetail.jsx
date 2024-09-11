@@ -84,7 +84,7 @@ export const AdsDetail = () => {
                                             </span>
                                         </h1>
                                     </div>
-                                    <ul className='mt-3 flex items-center gap-x-10'>
+                                    <ul className='mt-3 flex items-center gap-x-5'>
                                         <li className=' font-medium text-[16px]'>
                                             - ທຶນການສຶກສາ
                                         </li>
@@ -95,7 +95,7 @@ export const AdsDetail = () => {
                                     {
                                         filteredBanners?.map((item, index) => (
                                             item?.id == id && (
-                                                <div key={index} className=' grid grid-cols-12 gap-x-10 mt-2 list-inside list-disc px-2'>
+                                                <div key={index} className=' grid grid-cols-12 gap-x-5 mt-2 list-inside list-disc px-2'>
                                                     <div className='flex flex-col col-span-5 gap-y-3 font-medium'>
                                                         {
                                                             item?.typescholarship?.map((item) => (
