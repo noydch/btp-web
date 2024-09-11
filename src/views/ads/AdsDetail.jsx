@@ -132,7 +132,7 @@ export const AdsDetail = () => {
                                                     ສຳນັກງານຫ້ອງການຕັ້ງຢູ່: ບ້ານໂນນວາຍ ເມືອງໄຊເສດຖາ ນະຄວນຫຼວງວຽງຈັນ
                                                 </p>
                                                 <p className=' text-[12px]'>
-                                                    20xxxxxxx 20xxxxxxx
+                                                    20xxxxxxx 20xxxxxxxx
                                                 </p>
                                             </div>
                                         </div>
