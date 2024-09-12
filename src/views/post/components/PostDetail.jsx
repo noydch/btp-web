@@ -63,9 +63,12 @@ export const PostDetail = () => {
         .filter((item) => item?.id === pID)
         .map((item) => item?.file_url);
 
-    const currentUrl = window.location.href;
-    const whatsappUrl = `https://wa.me/message/DLWPVXBKVWLYL1?text=${encodeURIComponent(currentUrl)}`;
-    // window.open(whatsappUrl, '_blank');
+    const handleWhatsAppClick = () => {
+        const currentUrl = window.location.href;
+        const messageWa = `ຄລິກບ່ອນນີ້ເພື່ອເບິ່ງລາຍລະອຽດ ${currentUrl}`
+        const whatsappUrl = `https://wa.me/message/VKTNJ4453J46P1?text=${encodeURIComponent(messageWa)}`;
+        window.location.href = whatsappUrl;
+    }
 
     return (
         <>
@@ -97,7 +100,7 @@ export const PostDetail = () => {
                                 - ປະເພດທຶນ
                             </li>
                             <li className='font-medium col-span-7 text-[16px] sm:text-[18px]'>
-                                - ເອກະສານ
+                                # ເອກະສານ
                             </li>
                         </ul>
                         {loading ? (
@@ -132,13 +135,12 @@ export const PostDetail = () => {
                                 <a
                                     onClick={handleDownload}
                                     target='_blank'
-                                    href={`https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(viewPdf)}`}
-                                    className='flex items-center gap-x-2 px-2 py-2 text-[#13BBB6] font-medium rounded-md border-2 border-[#13BBB6]'>
+                                    href={`https://docs.google.com/gview?embedded=true&url=${viewPdf}`}
+                                    className='flex items-center gap-x-2 px-2 py-2 text-[#13BBB6] font-medium rounded-md border-2 border-[#13BBB6]' >
                                     <FiDownload />
                                     ດາວໂຫຼດຟອມ
                                 </a>
-
-                                <a href={whatsappUrl}
+                                <a onClick={handleWhatsAppClick}
                                     className='flex flex-col items-center'>
                                     <IoLogoWhatsapp className='text-[#0FC146] text-[28px]' />
                                     <span className='text-[#13BBB6] text-[14px] font-semibold'>
