@@ -64,8 +64,9 @@ export const PostDetail = () => {
         .map((item) => item?.file_url);
 
     const handleWhatsAppClick = () => {
-        const currentUrl = window.location.href;
-        const whatsappUrl = `https://wa.me/message/VKTNJ4453J46P1?text=${encodeURIComponent(currentUrl)}`;
+        const imageLink = postData.find(item => item?.id === postID)?.image;
+        const whatsappMessage = `ຄຼິກທີ່ນີ້ເພື່ອເບິ່ງຮູບ: ${imageLink}`;
+        const whatsappUrl = `https://wa.me/message/VKTNJ4453J46P1?text=${encodeURIComponent(whatsappMessage)}`;
         window.location.href = whatsappUrl;
     }
 
