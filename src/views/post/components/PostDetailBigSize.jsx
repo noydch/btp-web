@@ -15,13 +15,14 @@ export const PostDetailBigSize = ({ postData, viewPdf, handleDownload }) => {
     const { pID } = useParams(); // Destructure pID from useParams
     const postID = pID;
     // Create a WhatsApp share URL with an image link
-    const imageLink = postData.find(item => item?.id === postID)?.image;
-    const whatsappMessage = `ຄຼິກທີ່ນີ້ເພື່ອເບິ່ງຮູບ: ${imageLink}`;
-    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`;
-
+    const handleWhatsAppClick = () => {
+        const currentUrl = window.location.href;
+        const whatsappUrl = `https://wa.me/message/VKTNJ4453J46P1?text=${encodeURIComponent(currentUrl)}`;
+        window.location.href = whatsappUrl;
+    }
     return (
         <Navbar>
-            <div className='pt-[80px] w-full h-full'>
+            <div className='pt-[0px] w-full h-full'>
                 <div className='pt-[80px] container max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px] pb-10'>
                     {postData?.map((item, index) => (
                         item?.id === pID && (
@@ -125,9 +126,7 @@ export const PostDetailBigSize = ({ postData, viewPdf, handleDownload }) => {
                             <FiDownload />
                             ດາວໂຫຼດຟອມ
                         </a>
-                        <a href={whatsappUrl}
-                            target='_blank'
-                            rel='noopener noreferrer'
+                        <a onClick={handleWhatsAppClick}
                             className='flex flex-col items-center'>
                             <IoLogoWhatsapp className='text-[#0FC146] text-[28px]' />
                             <span className='text-[#13BBB6] text-[14px] font-semibold'>

@@ -68,7 +68,7 @@ export const Contact = () => {
 
     const handleSaveData = async () => {
         Swal.fire({
-            title: "ທ່ານຕ້ອງການບັນທຶກລາຍການນີ້ແມ່ນບໍ່?",
+            title: "ທ່ານຕ້ອງການສົ່ງຂໍ້ຄວາມນີ້ແມ່ນບໍ່?",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -80,7 +80,7 @@ export const Contact = () => {
                 const response = await addContactApi(formData);
                 if (response) {
                     Swal.fire({
-                        title: "ບັນທຶກສຳເລັດ!",
+                        title: "ສົ່ງສຳເລັດ!",
                         icon: "success"
                     });
                     setFormData({

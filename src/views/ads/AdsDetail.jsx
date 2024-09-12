@@ -48,9 +48,12 @@ export const AdsDetail = () => {
     // filter data in banners by id
     const filteredBanners = banners?.filter((banner) => banner?.id === id)
     // console.log("ss", filteredBanners);
-    const imageLink = banners.find(item => item?.id === id)?.image;
-    const whatsappMessage = `ຄຼິກທີ່ນີ້ເພື່ອເບິ່ງຮູບ: ${imageLink}`;
-    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`;
+    // const imageLink = banners.find(item => item?.id === id)?.image;
+    const handleWhatsAppClick = () => {
+        const currentUrl = window.location.href;
+        const whatsappUrl = `https://wa.me/message/VKTNJ4453J46P1?text=${encodeURIComponent(currentUrl)}`;
+        window.location.href = whatsappUrl;
+    }
 
     const handleDownload = async () => {
         const data = {
@@ -145,9 +148,7 @@ export const AdsDetail = () => {
                                                 <FiDownload />
                                                 ດາວໂຫຼດຟອມ
                                             </a>
-                                            <a href={whatsappUrl}
-                                                target='_blank'
-                                                rel='noopener noreferrer'
+                                            <a onClick={handleWhatsAppClick}
                                                 className='flex flex-col items-center'>
                                                 <IoLogoWhatsapp className='text-[#0FC146] text-[28px]' />
                                                 <span className='text-[#13BBB6] text-[14px] font-semibold'>
@@ -261,16 +262,12 @@ export const AdsDetail = () => {
                                         <a
                                             onClick={handleDownload}
                                             target='_blank'
-                                            href={`https://docs.google.com/gview?embedded=true&url=${viewPdf}`}
-                                            className='flex items-center gap-x-2 px-2 py-2 text-[#13BBB6] font-medium rounded-md border-2 border-[#13BBB6]'
-
-                                        >
+                                            href={`https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(viewPdf)}`}
+                                            className='flex items-center gap-x-2 px-2 py-2 text-[#13BBB6] font-medium rounded-md border-2 border-[#13BBB6]'>
                                             <FiDownload />
                                             ດາວໂຫຼດຟອມ
                                         </a>
-                                        <a href={whatsappUrl}
-                                            target='_blank'
-                                            rel='noopener noreferrer'
+                                        <a onClick={handleWhatsAppClick}
                                             className='flex flex-col items-center'>
                                             <IoLogoWhatsapp className='text-[#0FC146] text-[28px]' />
                                             <span className='text-[#13BBB6] text-[14px] font-semibold'>

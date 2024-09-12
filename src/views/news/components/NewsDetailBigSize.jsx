@@ -130,7 +130,7 @@ export const NewsDetailBigSize = ({ newsData, viewPdf, handleDownload }) => {
                     </div>
 
                 </div>
-                <div className=' flex flex-row-reverse  mt-5 gap-x-14 items-center'>
+                {/* <div className=' flex flex-row-reverse  mt-5 gap-x-14 items-center'>
                     <a
                         onClick={handleDownload}
                         target='_blank'
@@ -150,7 +150,7 @@ export const NewsDetailBigSize = ({ newsData, viewPdf, handleDownload }) => {
                             ສົນໃຈ
                         </span>
                     </a>
-                </div>
+                </div> */}
             </div>
         </Navbar>
     )

@@ -127,7 +127,7 @@ export const NewsDetail = () => {
                                         <p className='text-[12px]'>20xxxxxxx 20xxxxxxx</p>
                                     </div>
                                 </div>
-                                <div className='flex flex-row-reverse mt-5 gap-x-14 items-center'>
+                                {/* <div className='flex flex-row-reverse mt-5 gap-x-14 items-center'>
                                     <a
                                         onClick={handleDownload}
                                         target='_blank'
@@ -145,7 +145,7 @@ export const NewsDetail = () => {
                                             ສົນໃຈ
                                         </span>
                                     </a>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     )}
