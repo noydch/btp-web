@@ -48,12 +48,12 @@ export const AdsDetail = () => {
     // filter data in banners by id
     const filteredBanners = banners?.filter((banner) => banner?.id === id)
     // console.log("ss", filteredBanners);
-    const imageLink = banners.find(item => item?.id === id)?.image;
-    const handleWhatsAppClick = () => {
-        const currentUrl = window.location.href;
-        const whatsappUrl = `https://wa.me/message/VKTNJ4453J46P1?text=${encodeURIComponent(currentUrl)}`;
-        window.location.href = whatsappUrl;
-    }
+
+    const thisUrl = window.location.href
+    console.log(thisUrl);
+    const whatsappMessage = `ສົນໃຈທຶນນີ້: ${thisUrl}`;
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=8562092111722&text=${encodeURIComponent(whatsappMessage)}`;
+
 
     const handleDownload = async () => {
         const data = {
