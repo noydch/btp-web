@@ -65,8 +65,8 @@ export const PostDetail = () => {
 
     // Create a WhatsApp share URL with an image link
     const imageLink = postData.find(item => item?.id === postID)?.image;
-    const whatsappMessage = `ຄຼິກທີ່ນີ້ເພື່ອເບິ່ງຮູບ: ${imageLink}`;
-    const whatsappUrl = `https://wa.me/message/DLWPVXBKVWLYL1?text=${encodeURIComponent(whatsappMessage)}`;
+    const whatsappMessage = `ຄລິກທີ່ນີ້ເພື່ອເບິ່ງຮູບ: ${imageLink}`;
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=8562092111722&text=${encodeURIComponent(whatsappMessage)}`;
 
     return (
         <>
