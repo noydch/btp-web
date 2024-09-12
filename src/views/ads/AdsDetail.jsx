@@ -51,8 +51,8 @@ export const AdsDetail = () => {
     // const imageLink = banners.find(item => item?.id === id)?.image;
     const handleWhatsAppClick = () => {
         const currentUrl = window.location.href;
-        const whatsappUrl = `https://wa.me/message/DLWPVXBKVWLYL1?text=${encodeURIComponent(currentUrl)}`;
         window.location.href = whatsappUrl;
+        const whatsappUrl = `https://wa.me/message/DLWPVXBKVWLYL1?text=${encodeURIComponent(currentUrl)}`;
     }
 
     const handleDownload = async () => {
