@@ -63,12 +63,9 @@ export const PostDetail = () => {
         .filter((item) => item?.id === pID)
         .map((item) => item?.file_url);
 
-    const handleWhatsAppClick = () => {
-        const currentUrl = window.location.href;
-        const whatsappUrl = `https://wa.me/message/DLWPVXBKVWLYL1?text=${encodeURIComponent(currentUrl)}`;
-        window.open(whatsappUrl, '_blank');
-        console.log(whatsappUrl);
-    }
+    const currentUrl = window.location.href;
+    const whatsappUrl = `https://wa.me/message/DLWPVXBKVWLYL1?text=${encodeURIComponent(currentUrl)}`;
+    // window.open(whatsappUrl, '_blank');
 
     return (
         <>
@@ -100,7 +97,7 @@ export const PostDetail = () => {
                                 - ປະເພດທຶນ
                             </li>
                             <li className='font-medium col-span-7 text-[16px] sm:text-[18px]'>
-                                # ເອກະສານ
+                                - ເອກະສານ
                             </li>
                         </ul>
                         {loading ? (
@@ -141,7 +138,7 @@ export const PostDetail = () => {
                                     ດາວໂຫຼດຟອມ
                                 </a>
 
-                                <a onClick={handleWhatsAppClick}
+                                <a href={whatsappUrl}
                                     className='flex flex-col items-center'>
                                     <IoLogoWhatsapp className='text-[#0FC146] text-[28px]' />
                                     <span className='text-[#13BBB6] text-[14px] font-semibold'>
