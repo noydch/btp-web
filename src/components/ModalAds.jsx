@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Modal, Button } from 'antd';
+import { Modal, Button, Skeleton, Empty } from 'antd'; // Import Empty component for empty state
 import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -13,33 +13,37 @@ import './styles.css';
 // import required modules
 import { Scrollbar, Autoplay } from 'swiper/modules';
 
-import adsImg from '../assets/images/ads.jpg';
 import { getBannerApi } from '../api/banner';
 
 const ModalAds = ({ show, onClose }) => {
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
     const [banners, setBanners] = useState([]);
+    const [error, setError] = useState(null); // Add error state
 
     const fetchData = async () => {
-        setLoading(true)
+        setLoading(true);
+        setError(null); // Reset error state before fetching
         try {
-            const response = await getBannerApi()
-            setBanners(response)
-        } catch (error) {
-            console.error("error response data banner");
+            const response = await getBannerApi();
+            if (response && response.length > 0) {
+                setBanners(response);
+            } else {
+                setError('No banners available'); // Set error if no banners found
+            }
+        } catch (err) {
+            setError('Error fetching banners'); // Set error on API failure
+            console.error('Error fetching banner data:', err);
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
-    }
+    };
 
     useEffect(() => {
-        fetchData()
-        console.log("banner js", banners);
-    }, [])
+        fetchData();
+    }, []);
 
     const handleModalClose = (e) => {
-        // Only close if the close button is clicked
         if (e && e.target.className.includes('ant-modal-close')) {
             onClose();
         }
@@ -47,8 +51,7 @@ const ModalAds = ({ show, onClose }) => {
 
     return (
         <div
-            className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-300 ${show ? 'opacity-100 visible' : 'opacity-0 invisible'
-                }`}
+            className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-300 ${show ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
         >
             <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
@@ -62,29 +65,37 @@ const ModalAds = ({ show, onClose }) => {
                 mask={false}
             >
                 <div className="relative bg-white rounded-lg h-full w-full">
-                    <Swiper
-                        scrollbar={{
-                            hide: true,
-                        }}
-                        modules={[Scrollbar, Autoplay]}
-                        autoplay={{
-                            delay: 3000,
-                            disableOnInteraction: false,
-                        }}
-                        className="mySwiper"
-                    >
-                        {
-                            banners.map((item, index) => (
-                                item.isPublished == true && (
-                                    <SwiperSlide key={index} className=' h-full w-full'>
-                                        <div onClick={() => navigate(`/adsDetail/${item.id}`)} className="cursor-pointer w-full h-[400px] sm:h-[500px] lg:h-[600px]">
-                                            <img src={item.image} alt="Advertisement" className="w-full h-full object-cover" />
+                    {loading ? (
+                        <Skeleton active className="h-[400px] sm:h-[500px] lg:h-[600px]" />
+                    ) : error ? ( // Show error message if there's an error
+                        <div className="text-center py-10">
+                            <p>{error}</p>
+                        </div>
+                    ) : banners?.length > 0 ? ( // Check if banners exist before rendering the Swiper
+                        <Swiper
+                            scrollbar={{
+                                hide: true,
+                            }}
+                            modules={[Scrollbar, Autoplay]}
+                            autoplay={{
+                                delay: 3000,
+                                disableOnInteraction: false,
+                            }}
+                            className="mySwiper"
+                        >
+                            {banners?.map((item, index) => (
+                                item?.isPublished && (
+                                    <SwiperSlide key={index} className='h-full w-full'>
+                                        <div onClick={() => navigate(`/adsDetail/${item?.id}`)} className="cursor-pointer w-full h-[400px] sm:h-[500px] lg:h-[600px]">
+                                            <img src={item?.image} alt="Advertisement" className="w-full h-full object-cover" />
                                         </div>
                                     </SwiperSlide>
                                 )
-                            ))
-                        }
-                    </Swiper>
+                            ))}
+                        </Swiper>
+                    ) : (
+                        <Empty description="No banners available" /> // Show empty state if no banners
+                    )}
                 </div>
                 <Button
                     onClick={onClose}

@@ -17,7 +17,7 @@ export const PostDetailBigSize = ({ postData, viewPdf, handleDownload }) => {
     // Create a WhatsApp share URL with an image link
     const handleWhatsAppClick = () => {
         const currentUrl = window.location.href;
-        const whatsappUrl = `https://wa.me/message/VKTNJ4453J46P1?text=${encodeURIComponent(currentUrl)}`;
+        const whatsappUrl = `https://wa.me/message/DLWPVXBKVWLYL1?text=${encodeURIComponent(currentUrl)}`;
         window.location.href = whatsappUrl;
     }
     return (

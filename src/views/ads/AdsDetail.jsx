@@ -51,7 +51,7 @@ export const AdsDetail = () => {
     // const imageLink = banners.find(item => item?.id === id)?.image;
     const handleWhatsAppClick = () => {
         const currentUrl = window.location.href;
-        const whatsappUrl = `https://wa.me/message/VKTNJ4453J46P1?text=${encodeURIComponent(currentUrl)}`;
+        const whatsappUrl = `https://wa.me/message/DLWPVXBKVWLYL1?text=${encodeURIComponent(currentUrl)}`;
         window.location.href = whatsappUrl;
     }
 
@@ -64,8 +64,8 @@ export const AdsDetail = () => {
     }
 
     const viewPdf = banners
-        .filter((item) => item?.id === id)
-        .map((item) => item?.url_path);
+        ?.filter((item) => item?.id === id)
+        ?.map((item) => item?.url_path);
     // console.log("view=", viewPdf[0]);
     return (
         <div>
@@ -168,14 +168,14 @@ export const AdsDetail = () => {
                                 <div key={index}
                                     className='pt-[80px] container max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px] pb-10'>
                                     <div className=' w-full '>
-                                        <img src={item.image} alt=""
+                                        <img src={item?.image} alt=""
                                             className=' w-full h-[550px] object-cover'
                                         />
                                     </div>
                                     <div className=' grid grid-cols-12 gap-x-10 mt-20 sm:gap-x-3 xl:gap-x-4'>
                                         {
                                             filteredBanners?.map((item, index) => (
-                                                item.id == id && (
+                                                item?.id == id && (
                                                     <div key={index} className=' lg:col-span-9 col-span-8 '>
                                                         <div className=' flex flex-col gap-y-3'>
                                                             <h1 className=' sm:text-[18px] md:text-[22px] font-medium'>
