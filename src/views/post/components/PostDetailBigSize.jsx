@@ -15,11 +15,11 @@ export const PostDetailBigSize = ({ postData, viewPdf, handleDownload }) => {
     const { pID } = useParams(); // Destructure pID from useParams
     const postID = pID;
     // Create a WhatsApp share URL with an image link
-    const handleWhatsAppClick = () => {
-        const currentUrl = window.location.href;
-        const whatsappUrl = `https://wa.me/message/DLWPVXBKVWLYL1?text=${encodeURIComponent(currentUrl)}`;
-        window.location.href = whatsappUrl;
-    }
+    const thisUrl = window.location.href
+    console.log(thisUrl);
+    const whatsappMessage = `ຄລິກທີ່ນີ້ເພື່ອເບິ່ງຮູບ: ${thisUrl}`;
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=8562092111722&text=${encodeURIComponent(whatsappMessage)}`;
+
     return (
         <Navbar>
             <div className='pt-[0px] w-full h-full'>
@@ -126,7 +126,7 @@ export const PostDetailBigSize = ({ postData, viewPdf, handleDownload }) => {
                             <FiDownload />
                             ດາວໂຫຼດຟອມ
                         </a>
-                        <a onClick={handleWhatsAppClick}
+                        <a href={whatsappUrl}
                             className='flex flex-col items-center'>
                             <IoLogoWhatsapp className='text-[#0FC146] text-[28px]' />
                             <span className='text-[#13BBB6] text-[14px] font-semibold'>

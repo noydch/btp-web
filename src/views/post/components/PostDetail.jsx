@@ -63,8 +63,9 @@ export const PostDetail = () => {
         .filter((item) => item?.id === pID)
         .map((item) => item?.file_url);
 
-    const imageLink = postData.find(item => item?.id === postID)?.image;
-    const whatsappMessage = `ຄລິກທີ່ນີ້ເພື່ອເບິ່ງຮູບ: ${imageLink}`;
+    const thisUrl = window.location.href
+    console.log(thisUrl);
+    const whatsappMessage = `ຄລິກທີ່ນີ້ເພື່ອເບິ່ງຮູບ: ${thisUrl}`;
     const whatsappUrl = `https://api.whatsapp.com/send?phone=8562092111722&text=${encodeURIComponent(whatsappMessage)}`;
 
     return (
