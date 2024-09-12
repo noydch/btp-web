@@ -57,7 +57,7 @@ export const NewsDetailBigSize = ({ newsData, viewPdf, handleDownload }) => {
                                             }
                                         </p>
                                     </div>
-                                    <div className=' mt-10'>
+                                    {/* <div className=' mt-10'>
                                         <h1 className='sm:text-[18px] md:text-[22px] font-medium mb-2'>
                                             ຂໍ້ມູນຂອງທຶນ
                                         </h1>
@@ -95,7 +95,7 @@ export const NewsDetailBigSize = ({ newsData, viewPdf, handleDownload }) => {
                                                 ))
                                             }
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                             )
                         ))

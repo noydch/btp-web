@@ -48,7 +48,7 @@ export const PostDetailBigSize = ({ postData, viewPdf, handleDownload }) => {
                                     </div>
                                     <div className='mt-10'>
                                         <h1 className='sm:text-[18px] md:text-[22px] font-medium mb-2'>
-                                            ຂໍ້ມູນຂອງທຶນ
+                                            ປະເພດທຶນ
                                         </h1>
                                         <div className=' grid grid-cols-12 gap-x-10 gap-y-5'>
                                             {item?.typescholarship?.map((doc, i) => (
@@ -120,10 +120,8 @@ export const PostDetailBigSize = ({ postData, viewPdf, handleDownload }) => {
                         <a
                             onClick={handleDownload}
                             target='_blank'
-                            rel="noopener noreferrer"
-                            href={`https://docs.google.com/gview?embedded=true&url=${viewPdf}`}
-                            className='flex items-center gap-x-2 px-2 py-2 text-[#13BBB6] font-medium rounded-md border-2 border-[#13BBB6]'
-                        >
+                            href={`https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(viewPdf)}`}
+                            className='flex items-center gap-x-2 px-2 py-2 text-[#13BBB6] font-medium rounded-md border-2 border-[#13BBB6]'>
                             <FiDownload />
                             ດາວໂຫຼດຟອມ
                         </a>

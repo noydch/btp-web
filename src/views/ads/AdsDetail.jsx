@@ -140,7 +140,7 @@ export const AdsDetail = () => {
                                             <a
                                                 onClick={handleDownload}
                                                 target='_blank'
-                                                href={`https://docs.google.com/gview?embedded=true&url=${viewPdf}`}
+                                                href={`https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(viewPdf)}`}
                                                 className='flex items-center gap-x-2 px-2 py-2 text-[#13BBB6] font-medium rounded-md border-2 border-[#13BBB6]'>
                                                 <FiDownload />
                                                 ດາວໂຫຼດຟອມ

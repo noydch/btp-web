@@ -65,7 +65,7 @@ export const Navbar = ({ children }) => {
     // Animation for the dropdown
     const dropdownAnimation = useSpring({
         opacity: isOpenMenu ? 1 : 0,
-        transform: isOpenMenu ? 'translateX(0%)' : 'translateX(20%)',
+        transform: isOpenMenu ? 'translateX(0%)' : 'translateX(0%)',
         config: { tension: 300, friction: 20 },
     });
 
@@ -91,7 +91,7 @@ export const Navbar = ({ children }) => {
                         </h1>
                         {windowWidth < 480 ? (
                             <animated.ul style={dropdownAnimation} className={` 
-                                ${isOpenMenu ? 'absolute px-1 py-1 shadow rounded-b-lg items-start flex flex-col bg-white w-[160px] -right-7 gap-x-0 top-[70px] sm:hidden' : 'hidden'}
+                                ${isOpenMenu ? 'absolute px-1 py-1 shadow rounded-b-lg items-start flex flex-col bg-white w-[170px] -right-7 gap-x-0 top-[70px] sm:hidden' : 'hidden'}
                             `}>
                                 {
                                     navList.map((item, index) => (

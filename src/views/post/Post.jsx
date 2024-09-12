@@ -104,14 +104,18 @@ export const Post = () => {
                         <div className='md:flex md:flex-row-reverse md:items-center md:gap-x-4 xl:px-20 xl:pb-5 xl:border-b'>
                             <Select
                                 labelInValue
-                                defaultValue={{ value: 0, label: 'ເລືອກທຶນການສຶກສາ' }}
+                                defaultValue={{ value: 0, label: 'ເລືອກປະເພດທຶນຕ່າງໆທີ່ຕ້ອງການສະໝັກ' }}
                                 className='w-full lg:h-[40px] h-[45px] md:h-[35px]'
                                 onChange={(value) => handleCategoryChange(value.value)}
-                                options={categoryData?.map((item) => ({
-                                    value: item?.id,
-                                    label: item?.name,
-                                }))}
+                                options={[
+                                    { value: 0, label: 'ເລືອກທັງໝົດ' }, // Add this option for "ທັງໝົດ"
+                                    ...categoryData?.map((item) => ({
+                                        value: item?.id,
+                                        label: item?.name,
+                                    }))
+                                ]}
                             />
+
                             <div className='flex gap-x-2 my-3 items-center w-full md:w-full'>
                                 <div className='flex items-center relative w-full sm:w-full lg:h-[40px] h-[45px] md:h-[35px]'>
                                     <input

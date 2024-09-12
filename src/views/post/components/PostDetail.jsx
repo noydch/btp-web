@@ -63,10 +63,11 @@ export const PostDetail = () => {
         .filter((item) => item?.id === pID)
         .map((item) => item?.file_url);
 
-    // Create a WhatsApp share URL with an image link
-    const imageLink = postData.find(item => item?.id === postID)?.image;
-    const whatsappMessage = `ຄຼິກທີ່ນີ້ເພື່ອເບິ່ງຮູບ: ${imageLink}`;
-    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`;
+    const handleWhatsAppClick = () => {
+        const currentUrl = window.location.href;
+        const whatsappUrl = `https://wa.me/message/VKTNJ4453J46P1?text=${encodeURIComponent(currentUrl)}`;
+        window.location.href = whatsappUrl;
+    }
 
     return (
         <>
@@ -95,7 +96,7 @@ export const PostDetail = () => {
                         </div>
                         <ul className='mt-3 grid grid-cols-12 gap-x-5'>
                             <li className='font-medium col-span-5 text-[16px] sm:text-[18px]'>
-                                - ຂໍ້ມູນທຶນ
+                                - ປະເພດທຶນ
                             </li>
                             <li className='font-medium col-span-7 text-[16px] sm:text-[18px]'>
                                 # ເອກະສານ
@@ -112,14 +113,6 @@ export const PostDetail = () => {
                                                 <div key={i} className='flex items-center gap-x-2'>
                                                     <GoDotFill className='text-[7px]' />
                                                     <p className='sm:text-[16px]'>{type}</p>
-                                                </div>
-                                            ))}
-                                        </div>
-                                        <div className='flex flex-col col-span-7 gap-y-3 font-medium'>
-                                            {item?.document?.map((doc, i) => (
-                                                <div key={i} className='flex items-center gap-x-2'>
-                                                    <GoDotFill className='text-[7px]' />
-                                                    <p className='sm:text-[16px]'>{doc}</p>
                                                 </div>
                                             ))}
                                         </div>
@@ -141,14 +134,13 @@ export const PostDetail = () => {
                                 <a
                                     onClick={handleDownload}
                                     target='_blank'
-                                    href={`https://docs.google.com/gview?embedded=true&url=${viewPdf}`}
+                                    href={`https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(viewPdf)}`}
                                     className='flex items-center gap-x-2 px-2 py-2 text-[#13BBB6] font-medium rounded-md border-2 border-[#13BBB6]'>
                                     <FiDownload />
                                     ດາວໂຫຼດຟອມ
                                 </a>
-                                <a href={whatsappUrl}
-                                    target='_blank'
-                                    rel='noopener noreferrer'
+
+                                <a onClick={handleWhatsAppClick}
                                     className='flex flex-col items-center'>
                                     <IoLogoWhatsapp className='text-[#0FC146] text-[28px]' />
                                     <span className='text-[#13BBB6] text-[14px] font-semibold'>
