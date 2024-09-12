@@ -66,7 +66,7 @@ export const PostDetail = () => {
     const handleWhatsAppClick = () => {
         const currentUrl = window.location.href;
         const whatsappUrl = `https://wa.me/message/DLWPVXBKVWLYL1?text=${encodeURIComponent(currentUrl)}`;
-        window.location.href = whatsappUrl;
+        window.open(whatsappUrl, '_blank');
     }
 
     return (
