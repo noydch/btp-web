@@ -8,10 +8,11 @@ import { addContactApi } from '../../api/contact';
 
 export const Contact = () => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [loading, setLoading] = useState(false)
     const [formData, setFormData] = useState({
         name: '',
         email: '',
-        phone: '',
+        phoneNumber: '',
         comment: ''
     });
     const [errors, setErrors] = useState({});
@@ -43,10 +44,10 @@ export const Contact = () => {
             newErrors.email = 'ກະລຸນາປ້ອນອີເມລທີ່ຖືກຕ້ອງ';
         }
 
-        if (!formData.phone.trim()) {
-            newErrors.phone = 'ກະລຸນາປ້ອນເບີໂທ';
-        } else if (!/^\d{8,}$/.test(formData.phone)) {
-            newErrors.phone = 'ກະລຸນາປ້ອນເບີໂທທີ່ຖືກຕ້ອງ (ຢ່າງໜ້ອຍ 8 ຕົວເລກ)';
+        if (!formData.phoneNumber.trim()) {
+            newErrors.phoneNumber = 'ກະລຸນາປ້ອນເບີໂທ';
+        } else if (!/^\d{8,}$/.test(formData.phoneNumber)) {
+            newErrors.phoneNumber = 'ກະລຸນາປ້ອນເບີໂທທີ່ຖືກຕ້ອງ (ຢ່າງໜ້ອຍ 8 ຕົວເລກ)';
         }
 
         if (!formData.comment.trim()) {
@@ -77,6 +78,7 @@ export const Contact = () => {
             cancelButtonText: 'ຍົກເລີກ'
         }).then(async (result) => {
             if (result.isConfirmed) {
+                setLoading(true)
                 const response = await addContactApi(formData);
                 if (response) {
                     Swal.fire({
@@ -86,9 +88,10 @@ export const Contact = () => {
                     setFormData({
                         name: '',
                         email: '',
-                        phone: '',
+                        phoneNumber: '',
                         comment: ''
                     });
+                    setLoading(false)
                 }
             }
         });
@@ -128,13 +131,13 @@ export const Contact = () => {
                                         {errors.name && <span className="text-red-500 text-sm">{errors.name}</span>}
                                         <input
                                             type="text"
-                                            name="phone"
-                                            value={formData.phone}
+                                            name="phoneNumber"
+                                            value={formData.phoneNumber}
                                             onChange={handleChange}
                                             placeholder='Phone'
                                             className='border-b-2 border-[#D8D8D8] w-full py-2 outline-none'
                                         />
-                                        {errors.phone && <span className="text-red-500 text-sm">{errors.phone}</span>}
+                                        {errors.phoneNumber && <span className="text-red-500 text-sm">{errors.phoneNumber}</span>}
                                         <input
                                             type="email"
                                             name="email"
@@ -157,8 +160,11 @@ export const Contact = () => {
                                     <button
                                         type="submit"
                                         className='mt-12 bg-[#01A7B1] w-full py-3 rounded-lg text-[18px] text-white font-medium'
+                                        disabled={loading}
                                     >
-                                        ສົ່ງ
+                                        {
+                                            loading ? <p className=' flex items-center justify-center gap-x-3'>ກຳລັງສົ່ງ <span className="loader"></span></p> : "ສົ່ງ"
+                                        }
                                     </button>
                                 </div>
                             </form>
