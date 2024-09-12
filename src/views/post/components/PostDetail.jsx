@@ -63,9 +63,10 @@ export const PostDetail = () => {
         .filter((item) => item?.id === pID)
         .map((item) => item?.file_url);
 
-    // Create a WhatsApp share URL with an image link
     const imageLink = postData.find(item => item?.id === postID)?.image;
     const whatsappMessage = `ຄຼິກທີ່ນີ້ເພື່ອເບິ່ງຮູບ: ${imageLink}`;
+
+    // Create the WhatsApp URL with the message and link to the image
     const whatsappUrl = `https://wa.me/message/DLWPVXBKVWLYL1?text=${encodeURIComponent(whatsappMessage)}`;
 
     return (
@@ -155,6 +156,7 @@ export const PostDetail = () => {
                                         ສົນໃຈ
                                     </span>
                                 </a>
+
                             </div>
                         </div>
                     </div>
