@@ -63,12 +63,10 @@ export const PostDetail = () => {
         .filter((item) => item?.id === pID)
         .map((item) => item?.file_url);
 
-    const handleWhatsAppClick = () => {
-        const imageLink = postData.find(item => item?.id === postID)?.image;
-        const whatsappMessage = `ຄຼິກທີ່ນີ້ເພື່ອເບິ່ງຮູບ: ${imageLink}`;
-        const whatsappUrl = `https://wa.me/message/VKTNJ4453J46P1?text=${encodeURIComponent(whatsappMessage)}`;
-        window.location.href = whatsappUrl;
-    }
+    // Create a WhatsApp share URL with an image link
+    const imageLink = postData.find(item => item?.id === postID)?.image;
+    const whatsappMessage = `ຄຼິກທີ່ນີ້ເພື່ອເບິ່ງຮູບ: ${imageLink}`;
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`;
 
     return (
         <>
@@ -117,6 +115,14 @@ export const PostDetail = () => {
                                                 </div>
                                             ))}
                                         </div>
+                                        {/* <div className='flex flex-col col-span-7 gap-y-3 font-medium'>
+                                            {item?.document?.map((doc, i) => (
+                                                <div key={i} className='flex items-center gap-x-2'>
+                                                    <GoDotFill className='text-[7px]' />
+                                                    <p className='sm:text-[16px]'>{doc}</p>
+                                                </div>
+                                            ))}
+                                        </div> */}
                                     </div>
                                 )
                             ))
@@ -136,11 +142,13 @@ export const PostDetail = () => {
                                     onClick={handleDownload}
                                     target='_blank'
                                     href={`https://docs.google.com/gview?embedded=true&url=${viewPdf}`}
-                                    className='flex items-center gap-x-2 px-2 py-2 text-[#13BBB6] font-medium rounded-md border-2 border-[#13BBB6]' >
+                                    className='flex items-center gap-x-2 px-2 py-2 text-[#13BBB6] font-medium rounded-md border-2 border-[#13BBB6]'>
                                     <FiDownload />
                                     ດາວໂຫຼດຟອມ
                                 </a>
-                                <a onClick={handleWhatsAppClick}
+                                <a href={whatsappUrl}
+                                    target='_blank'
+                                    rel='noopener noreferrer'
                                     className='flex flex-col items-center'>
                                     <IoLogoWhatsapp className='text-[#0FC146] text-[28px]' />
                                     <span className='text-[#13BBB6] text-[14px] font-semibold'>
