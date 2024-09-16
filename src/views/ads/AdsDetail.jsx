@@ -76,7 +76,7 @@ export const AdsDetail = () => {
                             <div key={index}
                                 className=' pt-[70px] pb-5'>
                                 <div className=' w-full '>
-                                    <img src={item?.image} alt="" />
+                                    <img src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${item?.image}`} alt="" />
                                 </div>
                                 <div className='w-full container max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px]'>
                                     <div className='mt-3 flex items-center text-[#DEAD00]'>

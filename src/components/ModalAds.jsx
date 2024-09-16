@@ -88,7 +88,7 @@ const ModalAds = ({ show, onClose }) => {
                                 item?.isPublished && (
                                     <SwiperSlide key={index} className='h-full w-full'>
                                         <div onClick={() => navigate(`/adsDetail/${item?.id}`)} className="cursor-pointer w-full h-[400px] sm:h-[500px] lg:h-[600px]">
-                                            <img src={item?.image} alt="Advertisement" className="w-full h-full object-cover" />
+                                            <img src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${item?.image}`} alt="Advertisement" className="w-full h-full object-cover" />
                                         </div>
                                     </SwiperSlide>
                                 )
