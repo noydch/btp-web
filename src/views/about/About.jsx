@@ -69,8 +69,8 @@ export const About = () => {
                     aboutData.map((item) => {
                         return new Promise((resolve, reject) => {
                             const img = new Image();
-                            img.src = item.images;
-                            img.onload = () => resolve(item.images);
+                            img.src = `https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${item.images}`;
+                            img.onload = () => resolve(`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${item.images}`);
                             img.onerror = reject;
                         });
                     })
@@ -84,7 +84,7 @@ export const About = () => {
 
     const handlePreview = (index) => {
         setPreviewVisible(true);
-        setPreviewImage(aboutData[index].images);
+        setPreviewImage(`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${aboutData[index].images}`);
         setPreviewIndex(index);
     };
 
@@ -94,13 +94,13 @@ export const About = () => {
 
     const handlePrev = () => {
         const newIndex = (previewIndex - 1 + aboutData.length) % aboutData.length;
-        setPreviewImage(aboutData[newIndex].images);
+        setPreviewImage(`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${aboutData[newIndex].images}`);
         setPreviewIndex(newIndex);
     };
 
     const handleNext = () => {
         const newIndex = (previewIndex + 1) % aboutData.length;
-        setPreviewImage(aboutData[newIndex].images);
+        setPreviewImage(`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${aboutData[newIndex].images}`);
         setPreviewIndex(newIndex);
     };
 
