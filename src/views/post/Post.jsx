@@ -149,7 +149,7 @@ export const Post = () => {
                                         >
                                             <div className='w-full h-[80px] xl:h-[200px]'>
                                                 <img
-                                                    src={item?.image || 'defaultImage.png'} // Add a fallback image
+                                                    src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${item?.image}`}
                                                     alt={item?.title}
                                                     className='w-full h-full object-cover rounded-t-md'
                                                 />
