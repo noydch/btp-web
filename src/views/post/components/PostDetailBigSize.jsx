@@ -28,7 +28,7 @@ export const PostDetailBigSize = ({ postData, viewPdf, handleDownload }) => {
                         item?.id === pID && (
                             <div key={index} className='w-full h-[550px] rounded-lg'>
                                 <img
-                                    src={item.image}
+                                    src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${item.image}`}
                                     alt=""
                                     className='w-full h-full rounded-lg object-cover'
                                 />

@@ -79,7 +79,7 @@ export const PostDetail = () => {
                             postData?.map((item, index) => (
                                 item?.id === postID && (
                                     <div key={index}>
-                                        <img src={item?.image} alt="" />
+                                        <img src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${item?.image}`} alt="" />
                                         <div></div>
                                     </div>
                                 )
