@@ -110,6 +110,7 @@ export const About = () => {
         transform: previewVisible ? 'scale(1)' : 'scale(0.8)',
         config: { tension: 120, friction: 14 },
     });
+    console.log(aboutData);
 
     const coverImg = coverImgData?.image ? coverImgData.image : aboutImg;
 
@@ -132,7 +133,7 @@ export const About = () => {
                         companyData?.map((item, index) => (
                             <div key={index} className='flex justify-between items-center gap-y-5 sm:gap-x-10'>
                                 <div className='w-full lg:flex-[2] flex items-center justify-center sm:justify-end gap-x-3'>
-                                    <img src={item?.icon} alt="Logo" className='w-[100px] h-[100px] rounded-full sm:w-[200px] sm:h-[200px]' />
+                                    <img src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${item?.icon}`} alt="Logo" className='w-[100px] h-[100px] rounded-full sm:w-[200px] sm:h-[200px]' />
                                 </div>
                                 <div className='w-full lg:flex-[2]'>
                                     <div className='flex flex-col mb-1 sm:mb-3'>
@@ -161,7 +162,7 @@ export const About = () => {
                             ) : aboutData?.length > 0 ? (
                                 aboutData?.map((item, index) => (
                                     <div key={index} className='sm:col-span-3 xl:col-span-1 col-span-4 w-[100px] h-[100px] sm:w-[140px] sm:h-[140px] md:h-[150px] md:w-[170px] lg:h-[190px] lg:w-[210px] xl:w-[220px] cursor-pointer' onClick={() => handlePreview(index)}>
-                                        <img src={item?.images} alt="" className='h-full w-full object-cover rounded-lg' />
+                                        <img src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${item?.images}`} alt="" className='h-full w-full object-cover rounded-lg' />
                                     </div>
                                 ))
                             ) : (
