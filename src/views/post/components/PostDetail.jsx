@@ -10,7 +10,7 @@ import { PostDetailBigSize } from './PostDetailBigSize';
 import { getService } from '../../../api/serivce';
 import Swal from 'sweetalert2';
 import { PostNavbar } from './PostNavbar.jsx';
-import { Skeleton } from 'antd'; // Import Skeleton
+import { Skeleton, message } from 'antd'; // Import Skeleton
 import { addDownloadTotalApi } from '../../../api/download.js';
 
 export const PostDetail = () => {
@@ -53,12 +53,23 @@ export const PostDetail = () => {
     }, []);
 
     const handleDownload = async () => {
-        const data = {
-            type: "service"
-        }
-        const response = await addDownloadTotalApi(data)
-        return response
-    }
+        // แสดงข้อความเตือนเมื่อเริ่มดาวน์โหลด
+        message.warning("ກຳລັງດາວໂຫຼດ!");
+
+        // หน่วงเวลา 1 วินาที (1000 มิลลิวินาที) ก่อนที่จะแสดงข้อความสำเร็จ
+        setTimeout(async () => {
+            // ข้อมูลที่ใช้ในการบันทึกดาวน์โหลด
+            const data = { type: "service" };
+
+            // ส่งข้อมูลไปยัง API เพื่อบันทึกจำนวนดาวน์โหลด
+            const response = await addDownloadTotalApi(data);
+
+            // แสดงข้อความสำเร็จหลังจากดาวน์โหลดเสร็จ
+            message.success("ດາວໂຫຼດສຳເລັດ!");
+
+            return response;
+        }, 700);
+    };
 
     const viewPdf = postData
         .filter((item) => item?.id === pID)

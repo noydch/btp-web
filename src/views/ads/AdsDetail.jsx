@@ -14,6 +14,7 @@ import { useParams } from 'react-router-dom';
 import { getBannerApi } from '../../api/banner.js';
 import { Navbar } from '../../components/Navbar.jsx';
 import { addDownloadTotalApi } from '../../api/download.js';
+import { message } from 'antd';
 
 export const AdsDetail = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -57,12 +58,23 @@ export const AdsDetail = () => {
 
 
     const handleDownload = async () => {
-        const data = {
-            type: "banner"
-        }
-        const response = await addDownloadTotalApi(data)
-        return response
-    }
+        // แสดงข้อความเตือนเมื่อเริ่มดาวน์โหลด
+        message.warning("ກຳລັງດາວໂຫຼດ!");
+
+        // หน่วงเวลา 1 วินาที (1000 มิลลิวินาที) ก่อนที่จะแสดงข้อความสำเร็จ
+        setTimeout(async () => {
+            // ข้อมูลที่ใช้ในการบันทึกดาวน์โหลด
+            const data = { type: "banner" };
+
+            // ส่งข้อมูลไปยัง API เพื่อบันทึกจำนวนดาวน์โหลด
+            const response = await addDownloadTotalApi(data);
+
+            // แสดงข้อความสำเร็จหลังจากดาวน์โหลดเสร็จ
+            message.success("ດາວໂຫຼດສຳເລັດ!");
+
+            return response;
+        }, 700);
+    };
 
     const viewPdf = banners
         .filter((item) => item?.id === id)
