@@ -4,7 +4,7 @@ import { LuDot } from "react-icons/lu";
 import { GoDotFill } from "react-icons/go";
 import { IoMdPin } from 'react-icons/io';
 import { IoLogoWhatsapp } from "react-icons/io";
-import { FiDownload } from "react-icons/fi";
+import { FiChevronsDown, FiDownload, FiDownloadCloud } from "react-icons/fi";
 import { cardPostData } from '../cardPostData';
 import { PostDetailBigSize } from './PostDetailBigSize';
 import { getService } from '../../../api/serivce';
@@ -14,6 +14,7 @@ import { Skeleton } from 'antd'; // Import Skeleton
 import { addDownloadTotalApi } from '../../../api/download.js';
 
 export const PostDetail = () => {
+    const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [postData, setPostData] = useState([]);
@@ -138,14 +139,41 @@ export const PostDetail = () => {
                                 </div>
                             </div>
                             <div className='flex flex-row-reverse mt-5 gap-x-14 items-center'>
-                                <a
-                                    onClick={handleDownload}
-                                    target='_blank'
-                                    href={`https://docs.google.com/gview?embedded=true&url=${viewPdf}`}
-                                    className='flex items-center gap-x-2 px-2 py-2 text-[#13BBB6] font-medium rounded-md border-2 border-[#13BBB6]'>
-                                    <FiDownload />
-                                    ດາວໂຫຼດຟອມ
-                                </a>
+                                <div className="relative inline-block text-left">
+                                    <div>
+                                        <button
+                                            type="button"
+                                            className="inline-flex justify-center w-full rounded-md border-2 border-[#13BBB6] px-4 py-2 bg-white text-sm font-medium text-[#13BBB6] hover:bg-gray-50 focus:outline-none "
+                                            id="options-menu"
+                                            aria-haspopup="true"
+                                            aria-expanded="true"
+                                            onClick={() => setIsOpen(!isOpen)}
+                                        >
+                                            ດາວໂຫຼດຟອມ
+                                            <FiChevronsDown className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+                                        </button>
+                                    </div>
+
+                                    {isOpen && (
+                                        <div className="origin-top-right z-[9999999] absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                                            <div className=" p-2" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                                {viewPdf[0].slice(0, 8).map((item, index) => (
+                                                    <a
+                                                        key={index}
+                                                        onClick={handleDownload}
+                                                        target="_blank"
+                                                        href={`https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(item)}`}
+                                                        className="block px-4 py-2.5 rounded-md duration-200 text-sm text-gray-700 hover:bg-[#13BBB6] hover:text-white"
+                                                        role="menuitem"
+                                                    >
+                                                        <FiDownloadCloud className="inline-block mr-2" />
+                                                        ດາວໂຫຼດຟອມ {index + 1}
+                                                    </a>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
                                 <a href={whatsappUrl}
                                     target='_blank'
                                     rel='noopener noreferrer'

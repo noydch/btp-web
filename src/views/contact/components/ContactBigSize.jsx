@@ -120,7 +120,7 @@ export const ContactBigSize = () => {
                                             <div className='flex flex-col gap-y-3 lg:gap-y-7 mt-5'>
                                                 <div className='flex items-center gap-x-3 text-[16px]'>
                                                     <BiSolidPhoneCall className='sm:text-[24px] md:text-[30px]' />
-                                                    <p className='sm:text-[12px] lg:text-[18px]'>20 xxxx xx00</p>
+                                                    <p className='sm:text-[12px] lg:text-[18px]'>20 9211 1722</p>
                                                 </div>
                                                 <div className='flex items-center gap-x-3 text-[16px]'>
                                                     <FaFacebookF className='sm:text-[24px] md:text-[30px]' />

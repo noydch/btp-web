@@ -5,7 +5,7 @@ import { PostNavbar } from '../post/components/PostNavbar.jsx'
 import adsImg from '../../assets/images/ads.jpg'
 import bgPostOverlay from '../../assets/images/webp/postOverlay.webp'
 import { FaFacebook, FaFacebookF } from 'react-icons/fa';
-import { FiDownload } from 'react-icons/fi'
+import { FiChevronDown, FiChevronsDown, FiDownload, FiDownloadCloud } from 'react-icons/fi'
 import { IoLogoWhatsapp, IoMdCheckmark, IoMdPin } from 'react-icons/io'
 import { GoDotFill } from 'react-icons/go'
 import { NewsNavbar } from '../news/components/NewsNavbar.jsx'
@@ -16,6 +16,7 @@ import { Navbar } from '../../components/Navbar.jsx';
 import { addDownloadTotalApi } from '../../api/download.js';
 
 export const AdsDetail = () => {
+    const [isOpen, setIsOpen] = useState(false);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const [loading, setLoading] = useState(false)
     const [banners, setBanners] = useState([]);
@@ -66,7 +67,11 @@ export const AdsDetail = () => {
     const viewPdf = banners
         .filter((item) => item?.id === id)
         .map((item) => item?.url_path);
-    // console.log("view=", viewPdf[0]);
+    const imagePoster = banners
+        .filter((item) => item?.id === id)
+        .map((item) => item?.image);
+    // viewPdf.map((item, index) => console.log(`banners[${index}] =========>>>>>>`, index));
+    console.log("views", viewPdf[0]);
     return (
         <div>
             {
@@ -76,7 +81,7 @@ export const AdsDetail = () => {
                             <div key={index}
                                 className=' pt-[70px] pb-5'>
                                 <div className=' w-full '>
-                                    <img src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${item?.image}`} alt="" />
+                                    <img src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${imagePoster[0]}`} alt="" />
                                 </div>
                                 <div className='w-full container max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px]'>
                                     <div className='mt-3 flex items-center text-[#DEAD00]'>
@@ -140,14 +145,41 @@ export const AdsDetail = () => {
                                             </div>
                                         </div>
                                         <div className='flex flex-row-reverse mt-5 gap-x-14 items-center'>
-                                            <a
-                                                onClick={handleDownload}
-                                                target='_blank'
-                                                href={`https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(viewPdf)}`}
-                                                className='flex items-center gap-x-2 px-2 py-2 text-[#13BBB6] font-medium rounded-md border-2 border-[#13BBB6]'>
-                                                <FiDownload />
-                                                ດາວໂຫຼດຟອມ
-                                            </a>
+                                            <div className="relative inline-block text-left">
+                                                <div>
+                                                    <button
+                                                        type="button"
+                                                        className="inline-flex justify-center w-full rounded-md border-2 border-[#13BBB6] px-4 py-2 bg-white text-sm font-medium text-[#13BBB6] hover:bg-gray-50 focus:outline-none "
+                                                        id="options-menu"
+                                                        aria-haspopup="true"
+                                                        aria-expanded="true"
+                                                        onClick={() => setIsOpen(!isOpen)}
+                                                    >
+                                                        ດາວໂຫຼດຟອມ
+                                                        <FiChevronsDown className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+                                                    </button>
+                                                </div>
+
+                                                {isOpen && (
+                                                    <div className="origin-top-right z-[9999999] absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                                                        <div className=" p-2" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                                            {viewPdf[0].slice(0, 8).map((item, index) => (
+                                                                <a
+                                                                    key={index}
+                                                                    onClick={handleDownload}
+                                                                    target="_blank"
+                                                                    href={`https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(item)}`}
+                                                                    className="block px-4 py-2.5 rounded-md duration-200 text-sm text-gray-700 hover:bg-[#13BBB6] hover:text-white"
+                                                                    role="menuitem"
+                                                                >
+                                                                    <FiDownloadCloud className="inline-block mr-2" />
+                                                                    ດາວໂຫຼດຟອມ {index + 1}
+                                                                </a>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </div>
                                             <a href={whatsappUrl}
                                                 target='_blank'
                                                 rel='noopener noreferrer'
@@ -170,14 +202,14 @@ export const AdsDetail = () => {
                                 <div key={index}
                                     className='pt-[80px] container max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px] pb-10'>
                                     <div className=' w-full '>
-                                        <img src={item.image} alt=""
+                                        <img src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${item?.image}`} alt=""
                                             className=' w-full h-[550px] object-cover'
                                         />
                                     </div>
                                     <div className=' grid grid-cols-12 gap-x-10 mt-20 sm:gap-x-3 xl:gap-x-4'>
                                         {
                                             filteredBanners?.map((item, index) => (
-                                                item.id == id && (
+                                                item?.id == id && (
                                                     <div key={index} className=' lg:col-span-9 col-span-8 '>
                                                         <div className=' flex flex-col gap-y-3'>
                                                             <h1 className=' sm:text-[18px] md:text-[22px] font-medium'>
@@ -261,16 +293,41 @@ export const AdsDetail = () => {
 
                                     </div>
                                     <div className=' flex flex-row-reverse  mt-5 gap-x-14 items-center'>
-                                        <a
-                                            onClick={handleDownload}
-                                            target='_blank'
-                                            href={`https://docs.google.com/gview?embedded=true&url=${viewPdf}`}
-                                            className='flex items-center gap-x-2 px-2 py-2 text-[#13BBB6] font-medium rounded-md border-2 border-[#13BBB6]'
+                                        <div className="relative inline-block text-left">
+                                            <div>
+                                                <button
+                                                    type="button"
+                                                    className="inline-flex justify-center w-full rounded-md border-2 border-[#13BBB6] px-4 py-2 bg-white text-sm font-medium text-[#13BBB6] hover:bg-gray-50 focus:outline-none "
+                                                    id="options-menu"
+                                                    aria-haspopup="true"
+                                                    aria-expanded="true"
+                                                    onClick={() => setIsOpen(!isOpen)}
+                                                >
+                                                    ດາວໂຫຼດຟອມ
+                                                    <FiChevronsDown className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+                                                </button>
+                                            </div>
 
-                                        >
-                                            <FiDownload />
-                                            ດາວໂຫຼດຟອມ
-                                        </a>
+                                            {isOpen && (
+                                                <div className="origin-top-right z-[9999999] absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                                                    <div className=" p-2" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                                        {viewPdf[0].slice(0, 8).map((item, index) => (
+                                                            <a
+                                                                key={index}
+                                                                onClick={handleDownload}
+                                                                target="_blank"
+                                                                href={`https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(item)}`}
+                                                                className="block px-4 py-2.5 rounded-md duration-200 text-sm text-gray-700 hover:bg-[#13BBB6] hover:text-white"
+                                                                role="menuitem"
+                                                            >
+                                                                <FiDownloadCloud className="inline-block mr-2" />
+                                                                ດາວໂຫຼດຟອມ {index + 1}
+                                                            </a>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
                                         <a href={whatsappUrl}
                                             target='_blank'
                                             rel='noopener noreferrer'

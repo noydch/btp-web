@@ -112,7 +112,7 @@ export const About = () => {
     });
     console.log(aboutData);
 
-    const coverImg = coverImgData?.image ? coverImgData.image : aboutImg;
+    const coverImg = coverImgData?.image ? coverImgData.image : `https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${aboutImg}`;
 
     return (
         <AboutNavbar>
@@ -122,7 +122,7 @@ export const About = () => {
                         {loading ? (
                             <Skeleton.Image className='h-full w-full' />
                         ) : (
-                            <img src={coverImg} alt="Cover" className='h-full w-full object-cover' />
+                            <img src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${coverImg}`} alt="Cover" className='h-full w-full object-cover' />
                         )}
                     </div>
                 </div>

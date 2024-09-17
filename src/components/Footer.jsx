@@ -41,7 +41,7 @@ export const Footer = () => {
                             <span className=' font-semibold mr-1.5'>
                                 Email:
                             </span>
-                            btntawa@gmail.com
+                            btptawa@gmail.com
                         </p>
                         <p className=' text-[12px] sm:text-[14px] font-light'>
                             <span className=' font-semibold mr-1.5'>
