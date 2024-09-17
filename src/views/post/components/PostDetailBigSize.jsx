@@ -17,7 +17,6 @@ export const PostDetailBigSize = ({ postData, viewPdf, handleDownload }) => {
     const postID = pID;
     // Create a WhatsApp share URL with an image link
     const thisUrl = window.location.href
-    console.log(thisUrl);
     const whatsappMessage = `ສົນໃຈທຶນນີ້: ${thisUrl}`;
     const whatsappUrl = `https://api.whatsapp.com/send?phone=8562092111722&text=${encodeURIComponent(whatsappMessage)}`;
 
