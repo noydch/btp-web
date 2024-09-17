@@ -70,7 +70,7 @@ export const AdsDetail = () => {
             const response = await addDownloadTotalApi(data);
 
             // แสดงข้อความสำเร็จหลังจากดาวน์โหลดเสร็จ
-            message.success("ດາວໂຫຼດສຳເລັດ!");
+            //message.success("ດາວໂຫຼດສຳເລັດ!");
 
             return response;
         }, 700);
