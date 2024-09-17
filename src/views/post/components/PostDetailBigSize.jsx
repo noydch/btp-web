@@ -142,7 +142,7 @@ export const PostDetailBigSize = ({ postData, viewPdf, handleDownload }) => {
                                                 key={index}
                                                 onClick={handleDownload}
                                                 target="_blank"
-                                                href={`https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(item)}`}
+                                                href={`https://docs.google.com/gview?embedded=true&url=saiyfonbroker.s3.ap-southeast-1.amazonaws.com/pdfs/${encodeURIComponent(item)}`}
                                                 className="block px-4 py-2.5 rounded-md duration-200 text-sm text-gray-700 hover:bg-[#13BBB6] hover:text-white"
                                                 role="menuitem"
                                             >
