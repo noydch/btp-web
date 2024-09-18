@@ -97,7 +97,9 @@ export const Post = () => {
 
     return (
         <Navbar>
-            <ModalAds show={showModal} onClose={handleCloseModal} />
+            <div className=' w-full'>
+                <ModalAds show={showModal} onClose={handleCloseModal} />
+            </div>
             <div className=' bg-white'>
                 <div className='pt-[70px] w-full h-full container max-w-[350px] mx-auto sm:max-w-[620px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px]'>
                     <div className='pt-5 pb-10'>
@@ -133,7 +135,7 @@ export const Post = () => {
                             {loading ? (
                                 // Display skeletons when loading
                                 Array.from({ length: 9 }).map((_, index) => (
-                                    <Skeleton.Input
+                                    <Skeleton
                                         key={index}
                                         className='h-[165px] sm:h-[210px] md:h-[180px] lg:h-[200px] xl:col-span-3 relative xl:h-screen'
                                         active
