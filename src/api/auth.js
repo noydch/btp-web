@@ -14,9 +14,9 @@ export const LoginApi = async (username, password) => {
 
     try {
         const response = await axios.post(ApiPath.login, data, config);
-        // console.log("Full response:", response);
-        // console.log("response.data.status:", response.data.status);
-        // console.log("response.data:", response.data);
+        // //console.log("Full response:", response);
+        // //console.log("response.data.status:", response.data.status);
+        // //console.log("response.data:", response.data);
 
         if (response.data.status === true) {
             // Store encrypted data in localStorage
@@ -26,7 +26,7 @@ export const LoginApi = async (username, password) => {
             localStorage.setItem("role", encryptData(response.data.data.role.role));
             return true;
         } else {
-            // console.log("Login failed: status is false");
+            // //console.log("Login failed: status is false");
             return false;
         }
     } catch (error) {
@@ -45,7 +45,7 @@ export const register = async (data) => {
         },
     };
 
-    console.log(data);
+    //console.log(data);
 
     const formData = new FormData();
     formData.append("username", data?.username || "");
@@ -59,7 +59,7 @@ export const register = async (data) => {
 
     try {
         const response = await axios.post(ApiPath.register, formData, headerConfig);
-        console.log(response);
+        //console.log(response);
         return response;
     } catch (error) {
         console.error("Error in registerApi =>", error.response?.data || error.message);

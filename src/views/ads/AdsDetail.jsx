@@ -38,7 +38,7 @@ export const AdsDetail = () => {
 
     useEffect(() => {
         fetchData()
-        console.log("banner js", banners);
+        //console.log("banner js", banners);
     }, [])
 
     useEffect(() => {
@@ -49,10 +49,10 @@ export const AdsDetail = () => {
 
     // filter data in banners by id
     const filteredBanners = banners?.filter((banner) => banner?.id === id)
-    // console.log("ss", filteredBanners);
+    // //console.log("ss", filteredBanners);
 
     const thisUrl = window.location.href
-    console.log(thisUrl);
+    //console.log(thisUrl);
     const whatsappMessage = `ສົນໃຈທຶນນີ້: ${thisUrl}`;
     const whatsappUrl = `https://api.whatsapp.com/send?phone=8562092111722&text=${encodeURIComponent(whatsappMessage)}`;
 
@@ -82,8 +82,8 @@ export const AdsDetail = () => {
     const imagePoster = banners
         .filter((item) => item?.id === id)
         .map((item) => item?.image);
-    // viewPdf.map((item, index) => console.log(`banners[${index}] =========>>>>>>`, index));
-    console.log("views", viewPdf[0]);
+    // viewPdf.map((item, index) => //console.log(`banners[${index}] =========>>>>>>`, index));
+    //console.log("views", viewPdf[0]);
     return (
         <div>
             {

@@ -110,7 +110,7 @@ export const About = () => {
         transform: previewVisible ? 'scale(1)' : 'scale(0.8)',
         config: { tension: 120, friction: 14 },
     });
-    console.log(aboutData);
+    //console.log(aboutData);
 
     const coverImg = coverImgData?.image ? coverImgData.image : `https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${aboutImg}`;
 

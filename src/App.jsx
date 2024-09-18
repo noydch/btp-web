@@ -31,7 +31,7 @@ function App() {
     }
   }
 
-  console.log(view);
+  //console.log(view);
 
   return (
     <>

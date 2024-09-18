@@ -49,7 +49,7 @@ const ModalAds = ({ show, onClose }) => {
         }
     };
 
-    console.log(banners.map(item => item.image));
+    //console.log(banners.map(item => item.image));
     return (
         <div
             className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-300 ${show ? 'opacity-100 visible' : 'opacity-0 invisible'}`}

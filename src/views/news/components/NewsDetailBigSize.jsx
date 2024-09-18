@@ -20,7 +20,7 @@ import { Navbar } from '../../../components/Navbar.jsx';
 
 export const NewsDetailBigSize = ({ newsData, viewPdf, handleDownload }) => {
     const id = useParams()
-    // console.log(id.pID);
+    // //console.log(id.pID);
     const postID = id.nID;
 
     const imageLink = newsData.find(item => item?.id === postID)?.image;

@@ -63,7 +63,7 @@ export const Contact = () => {
         if (validateForm()) {
             handleSaveData();
         } else {
-            console.log('Form has errors');
+            //console.log('Form has errors');
         }
     };
 
@@ -171,7 +171,7 @@ export const Contact = () => {
                         </div>
                     </div>
                 ) : (
-                    <ContactBigSize />
+                    <ContactBigSize loading={loading} />
                 )
             }
         </ContactNavbar>

@@ -13,7 +13,7 @@ export const getNewsApi = async () => {
         const response = await axios.get(ApiPath.getNews, config)
         return response?.data?.data
     } catch (error) {
-        console.log("Error getNews =>", error);
+        //console.log("Error getNews =>", error);
         return false
     }
 }
@@ -35,10 +35,10 @@ export const addNewsApi = async (data) => {
 
     try {
         const response = await axios.post(ApiPath.addNews, formData, headerConfig);
-        // console.log("res of AddProductApi =>> ", response);
+        // //console.log("res of AddProductApi =>> ", response);
         return response;
     } catch (error) {
-        console.log("error occurred in AddProductApi ==> ", error);
+        //console.log("error occurred in AddProductApi ==> ", error);
         return false;
     }
 };
@@ -67,10 +67,10 @@ export const updateNewsApi = async (id, data) => {
     // formData.append("image", data?.image || "");
     // formData.append("file", data?.file || "");
 
-    console.log(data);
+    //console.log(data);
     try {
         const response = await axios.put(`${ApiPath.updateNews}/${id}`, formData, headerConfig)
-        console.log(response);
+        //console.log(response);
         return response
     } catch (error) {
         console.error("Error response updateNews", error);
@@ -87,10 +87,10 @@ export const updateNewsImageApi = async (id, data) => {
     };
     const formData = new FormData();
     formData.append("image", data?.image || "");
-    console.log(data);
+    //console.log(data);
     try {
         const response = await axios.put(`${ApiPath.updateNewsImage}/${id}`, formData, headerConfig)
-        console.log(response);
+        //console.log(response);
         return response
     } catch (error) {
         console.error("Error response updateNews", error);
@@ -106,10 +106,10 @@ export const updateNewsFileApi = async (id, data) => {
     };
     const formData = new FormData();
     formData.append("file", data?.file || "");
-    console.log(data);
+    //console.log(data);
     try {
         const response = await axios.put(`${ApiPath.updateNewsFile}/${id}`, formData, headerConfig)
-        console.log(response);
+        //console.log(response);
         return response
     } catch (error) {
         console.error("Error response updateNews", error);

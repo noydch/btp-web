@@ -11,7 +11,7 @@ export const getService = async () => {
         };
         const response = await axios.get(ApiPath.getService, config);
 
-        // console.log("Get service is success => \n", response?.data?.data);
+        // //console.log("Get service is success => \n", response?.data?.data);
 
         return response?.data?.data;
     } catch (error) {
@@ -30,7 +30,7 @@ export const getService = async () => {
 export const deleteServiceApi = async (id) => {
     try {
         const response = axios.delete(`${ApiPath.deleteSetvice}/${id}`, getHeaderConfig())
-        // console.log(response);
+        // //console.log(response);
         return response
     } catch (error) {
         console.error("Error not delete \n", error);
@@ -56,16 +56,16 @@ export const addServiceApi = async (data) => {
 
     try {
         const response = await axios.post(ApiPath.addService, formData, headerConfig);
-        // console.log("res of AddProductApi =>> ", response);
+        // //console.log("res of AddProductApi =>> ", response);
         return response;
     } catch (error) {
-        console.log("error occurred in AddProductApi ==> ", error);
+        //console.log("error occurred in AddProductApi ==> ", error);
         return false;
     }
 };
 
 export const updateServiceApi = async (id, data) => {
-    // console.log(id);
+    // //console.log(id);
     const token = localStorage.getItem("token");
     const headerConfig = {
         headers: {
@@ -80,10 +80,10 @@ export const updateServiceApi = async (id, data) => {
     formData.append("category_id", data?.category_id || "");
     // formData.append("image", data?.image || "");
 
-    console.log(data);
+    //console.log(data);
     try {
         const response = await axios.put(`${ApiPath.updateService}/${id}`, formData, headerConfig)
-        // console.log(response);
+        // //console.log(response);
         return response
     } catch (error) {
         console.error("Error update service api =>", error);
@@ -103,11 +103,11 @@ export const updateServiceImage = async (id, data) => {
 
     try {
         const response = await axios.put(`${ApiPath.updateServiceImage}/${id}`, formData, headerConfig);
-        console.log("res of UpdateServiceImageApi =>> ");
-        console.log(response);
+        //console.log("res of UpdateServiceImageApi =>> ");
+        //console.log(response);
         return response;
     } catch (error) {
-        console.log("error occured in UpdateProductApi ==> ", error);
+        //console.log("error occured in UpdateProductApi ==> ", error);
         return false;
     }
 }
@@ -125,11 +125,11 @@ export const updateServiceFileApi = async (id, data) => {
 
     try {
         const response = await axios.put(`${ApiPath.updateServiceFile}/${id}`, formData, headerConfig);
-        console.log("res of UpdateServiceImageApi =>> ");
-        console.log(response);
+        //console.log("res of UpdateServiceImageApi =>> ");
+        //console.log(response);
         return response;
     } catch (error) {
-        console.log("error occured in UpdateProductApi ==> ", error);
+        //console.log("error occured in UpdateProductApi ==> ", error);
         return false;
     }
 }

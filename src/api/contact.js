@@ -15,7 +15,7 @@ export const addContactApi = async (data) => {
         formData.append("email", data?.email || "")
         formData.append("phoneNumber", data?.phoneNumber || "")
         formData.append("comment", data?.comment || "")
-        console.log("This data that send to backend", data);
+        //console.log("This data that send to backend", data);
 
         const response = await axios.post(ApiPath.addContact, formData, headerConfig)
         return response

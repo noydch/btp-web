@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
 import { addContactApi } from '../../../api/contact'
 
 export const ContactBigSize = () => {
+    const [loading, setLoading] = useState(false)
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -57,7 +58,7 @@ export const ContactBigSize = () => {
         if (validateForm()) {
             handleSaveData();
         } else {
-            console.log('Form has errors');
+            //console.log('Form has errors');
         }
     };
 
@@ -72,24 +73,37 @@ export const ContactBigSize = () => {
             cancelButtonText: 'ຍົກເລີກ'
         }).then(async (result) => {
             if (result.isConfirmed) {
-                const response = await addContactApi(formData)
-                if (response) {
+                // Set loading to true before making the API call
+                setLoading(true);
+                try {
+                    const response = await addContactApi(formData);
+                    if (response) {
+                        Swal.fire({
+                            title: "ບັນທຶກສຳເລັດ!",
+                            icon: "success"
+                        });
+                        setFormData({
+                            name: '',
+                            email: '',
+                            phoneNumber: '',
+                            comment: ''
+                        });
+                    }
+                } catch (error) {
+                    console.error("Error while saving data:", error);
                     Swal.fire({
-                        title: "ບັນທຶກສຳເລັດ!",
-                        icon: "success"
+                        title: "Error occurred!",
+                        text: "Could not save data. Please try again.",
+                        icon: "error"
                     });
-                    setFormData({
-                        name: '',
-                        email: '',
-                        phoneNumber: '',
-                        comment: ''
-                    })
-                    // Assuming 'navigate' is defined elsewhere in your component or passed as a prop
-                    // navigate('/contactManangement')
+                } finally {
+                    // Set loading to false after the API call finishes
+                    setLoading(false);
                 }
             }
         });
-    }
+    };
+
 
     return (
         <div className=' bg-white h-full w-full'>
@@ -182,8 +196,14 @@ export const ContactBigSize = () => {
                                         {errors.comment && <span className="text-red-500 text-sm">{errors.comment}</span>}
                                     </div>
                                     <div className='mt-10'>
-                                        <button type="submit" className='bg-[#01A7B1] px-6 py-2 rounded-md text-white font-normal'>
-                                            ສົ່ງຂໍ້ຄວາມ
+                                        <button
+                                            type="submit"
+                                            className='mt-12 bg-[#01A7B1] w-full py-3 rounded-lg text-[18px] text-white font-medium'
+                                            disabled={loading}
+                                        >
+                                            {
+                                                loading ? <p className=' flex items-center justify-center gap-x-3'>ກຳລັງສົ່ງ <span className="loader"></span></p> : "ສົ່ງ"
+                                            }
                                         </button>
                                     </div>
                                 </div>

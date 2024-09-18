@@ -36,7 +36,7 @@ export const NewsDetail = () => {
 
     useEffect(() => {
         fetchData();
-        console.log(newsData);
+        //console.log(newsData);
     }, []);
 
     useEffect(() => {
@@ -57,7 +57,7 @@ export const NewsDetail = () => {
     const viewPdf = newsData
         .filter((item) => item?.id === postID)
         .map((item) => item?.file_url);
-    console.log("view=", viewPdf[0]);
+    //console.log("view=", viewPdf[0]);
 
     const imageLink = newsData.find(item => item?.id === postID)?.image;
     const whatsappMessage = `ຄຼິກທີ່ນີ້ເພື່ອເບິ່ງຮູບ: ${imageLink}`;

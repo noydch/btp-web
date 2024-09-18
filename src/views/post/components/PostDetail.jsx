@@ -76,7 +76,7 @@ export const PostDetail = () => {
         .map((item) => item?.file_url);
 
     const thisUrl = window.location.href
-    console.log(thisUrl);
+    //console.log(thisUrl);
     const whatsappMessage = `ສົນໃຈທຶນນີ້: ${thisUrl}`;
     const whatsappUrl = `https://api.whatsapp.com/send?phone=8562092111722&text=${encodeURIComponent(whatsappMessage)}`;
 

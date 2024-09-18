@@ -11,7 +11,7 @@ export const getAboutApi = async () => {
             }
         }
         const response = await axios.get(ApiPath.getAbout, config)
-        // console.log("in about get", response?.data?.data);
+        // //console.log("in about get", response?.data?.data);
         return response?.data?.data
     } catch (error) {
         console.error("Error  fetching about API", error);
@@ -86,7 +86,7 @@ export const getCompanyDataApi = async () => {
             }
         }
         const response = await axios.get(ApiPath.getCompanyData, config)
-        // console.log(response?.data?.data);
+        // //console.log(response?.data?.data);
         return response?.data?.data
     } catch (error) {
         console.error("Error cover image API", error);

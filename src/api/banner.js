@@ -10,7 +10,7 @@ export const getBannerApi = async () => {
             }
         }
         const response = await axios.get(ApiPath.getBanner, config)
-        console.log(response?.data?.data);
+        //console.log(response?.data?.data);
         return response?.data?.data
     } catch (error) {
         console.error("Error get banner", error);
@@ -31,7 +31,7 @@ export const upadteSwitchBannerApi = async (id, value) => {
     const data = {
         isPublished: value
     }
-    // console.log(data);
+    // //console.log(data);
     try {
         const response = await axios.put(`${ApiPath.updateSwitchBanner}/${id}`, data, getHeaderConfig())
         return response

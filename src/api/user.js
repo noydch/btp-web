@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 export const getUserApi = async () => {
     try {
         const response = await axios.get(ApiPath.getUser, getHeaderConfig())
-        console.log(response?.data?.data);
+        //console.log(response?.data?.data);
         return response?.data?.data
     } catch (error) {
         console.error("Error req get user", error);
@@ -43,11 +43,11 @@ export const updateUserApi = async (id, data) => {
 
     try {
         const response = await axios.put(`${ApiPath.updateUser}/${id}`, formData, headerConfig);
-        // console.log("res of UpdateProductApi =>> ");
-        // console.log(response);
+        // //console.log("res of UpdateProductApi =>> ");
+        // //console.log(response);
         return response;
     } catch (error) {
-        console.log("error occured in UpdateProductApi ==> ", error);
+        //console.log("error occured in UpdateProductApi ==> ", error);
         return false;
     }
 };
