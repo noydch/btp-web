@@ -144,9 +144,9 @@ export const PostDetail = () => {
                                 <IoMdPin className='text-[18px] text-[#F7C208]' />
                                 <div>
                                     <p className='text-[12px] sm:text-[14px]'>
-                                        ສຳນັກງານຫ້ອງການຕັ້ງຢູ່: ບ້ານໂນນວາຍ ເມືອງໄຊເສດຖາ ນະຄວນຫຼວງວຽງຈັນ
+                                        ສຳນັກງານຫ້ອງການຕັ້ງຢູ່: ບ້ານໂນນຫວາຍ ເມືອງໄຊເສດຖາ ນະຄວນຫຼວງວຽງຈັນ
                                     </p>
-                                    <p className='text-[12px] sm:text-[14px]'>20xxxxxxx 20xxxxxxx</p>
+                                    <p className='text-[12px] sm:text-[14px]'>20 9211 1722</p>
                                 </div>
                             </div>
                             <div className='flex flex-row-reverse mt-5 gap-x-14 items-center'>
@@ -173,7 +173,7 @@ export const PostDetail = () => {
                                                         key={index}
                                                         onClick={handleDownload}
                                                         href={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/pdfs/${encodeURIComponent(item)}`}
-                                                        download={`${item}`} // ชื่อไฟล์ที่จะแสดงเมื่อดาวน์โหลด
+                                                        download={`${item}`}
                                                         className="block px-4 py-2.5 rounded-md duration-200 text-sm text-gray-700 hover:bg-[#13BBB6] hover:text-white"
                                                         role="menuitem"
                                                     >

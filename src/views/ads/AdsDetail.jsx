@@ -149,10 +149,10 @@ export const AdsDetail = () => {
                                             <IoMdPin className='text-[18px] text-[#F7C208]' />
                                             <div>
                                                 <p className=' text-[12px]'>
-                                                    ສຳນັກງານຫ້ອງການຕັ້ງຢູ່: ບ້ານໂນນວາຍ ເມືອງໄຊເສດຖາ ນະຄວນຫຼວງວຽງຈັນ
+                                                    ສຳນັກງານຫ້ອງການຕັ້ງຢູ່: ບ້ານໂນນຫວາຍ ເມືອງໄຊເສດຖາ ນະຄວນຫຼວງວຽງຈັນ
                                                 </p>
                                                 <p className=' text-[12px]'>
-                                                    20xxxxxxx 20xxxxxxxx
+                                                    20 9211 1722
                                                 </p>
                                             </div>
                                         </div>
@@ -292,7 +292,7 @@ export const AdsDetail = () => {
                                                     <div className=' flex flex-col gap-y-3'>
                                                         <div className=' flex items-center gap-x-3 md:text-[16px]'>
                                                             <BiSolidPhoneCall className=' text-[16px] md:text-[20px]' />
-                                                            <p className=' sm:text-[13px] md:text-[14px]'>20 xxxx xx00</p>
+                                                            <p className=' sm:text-[13px] md:text-[14px]'>20  9211 1722</p>
                                                         </div>
                                                         <div className=' flex items-center gap-x-3 md:text-[16px]'>
                                                             <FaFacebookF className=' text-[16px] md:text-[20px]' />

@@ -103,7 +103,7 @@ export const PostDetailBigSize = ({ postData, viewPdf, handleDownload }) => {
                                     <div className='flex flex-col gap-y-3'>
                                         <div className='flex items-center gap-x-3 md:text-[16px]'>
                                             <BiSolidPhoneCall className='text-[16px] md:text-[20px]' />
-                                            <p className='sm:text-[13px] md:text-[14px]'>20 xxxx xx00</p>
+                                            <p className='sm:text-[13px] md:text-[14px]'>20 9211 1722</p>
                                         </div>
                                         <div className='flex items-center gap-x-3 md:text-[16px]'>
                                             <FaFacebookF className='text-[16px] md:text-[20px]' />

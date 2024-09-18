@@ -122,9 +122,9 @@ export const NewsDetail = () => {
                                     <IoMdPin className='text-[18px] text-[#F7C208]' />
                                     <div>
                                         <p className='text-[12px]'>
-                                            ສຳນັກງານຫ້ອງການຕັ້ງຢູ່: ບ້ານໂນນວາຍ ເມືອງໄຊເສດຖາ ນະຄວນຫຼວງວຽງຈັນ
+                                            ສຳນັກງານຫ້ອງການຕັ້ງຢູ່: ບ້ານໂນນຫວາຍ ເມືອງໄຊເສດຖາ ນະຄວນຫຼວງວຽງຈັນ
                                         </p>
-                                        <p className='text-[12px]'>20xxxxxxx 20xxxxxxx</p>
+                                        <p className='text-[12px]'>20 9211 1722</p>
                                     </div>
                                 </div>
                                 {/* <div className='flex flex-row-reverse mt-5 gap-x-14 items-center'>

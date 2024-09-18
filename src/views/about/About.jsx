@@ -117,8 +117,8 @@ export const About = () => {
     return (
         <AboutNavbar>
             <div className='bg-white'>
-                <div className='h-[360px] w-full md:h-[560px] lg:h-[670px] pt-[70px]'>
-                    <div className='h-[300px] md:h-[500px] lg:h-[600px]'>
+                <div className='h-[360px] w-full md:h-[460px] lg:h-[470px] pt-[70px]'>
+                    <div className='h-[300px] md:h-[400px] lg:h-[400px]'>
                         {loading ? (
                             <Skeleton.Image className='h-full w-full' />
                         ) : (
