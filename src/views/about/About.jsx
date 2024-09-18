@@ -133,7 +133,7 @@ export const About = () => {
                         companyData?.map((item, index) => (
                             <div key={index} className='flex justify-between items-center gap-y-5 sm:gap-x-10'>
                                 <div className='w-full lg:flex-[2] flex items-center justify-center sm:justify-end gap-x-3'>
-                                    <img src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${item?.icon}`} alt="Logo" className='w-[100px] h-[100px] rounded-full sm:w-[200px] sm:h-[200px]' />
+                                    <img src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${item?.icon}`} alt="Logo" className='w-[100px] h-[100px] rounded-full sm:w-[200px] sm:h-[200px] object-cover' />
                                 </div>
                                 <div className='w-full lg:flex-[2]'>
                                     <div className='flex flex-col mb-1 sm:mb-3'>
