@@ -112,15 +112,15 @@ export const About = () => {
     });
     //console.log(aboutData);
 
-    const coverImg = coverImgData?.image ? coverImgData.image : `https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${aboutImg}`;
+    const coverImg = coverImgData?.image ? coverImgData.image : aboutImg;
 
     return (
         <AboutNavbar>
             <div className='bg-white'>
                 <div className='h-[360px] w-full md:h-[460px] lg:h-[470px] pt-[70px]'>
-                    <div className='h-[300px] md:h-[400px] lg:h-[400px]'>
+                    <div className='h-[300px] md:h-[400px] lg:h-[400px] w-full flex justify-center items-center'>
                         {loading ? (
-                            <Skeleton.Image className='h-full w-full' />
+                            <Skeleton.Image className='' />
                         ) : (
                             <img src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${coverImg}`} alt="Cover" className='h-full w-full object-cover' />
                         )}
@@ -131,11 +131,11 @@ export const About = () => {
                         <Skeleton active />
                     ) : companyData?.length > 0 ? (
                         companyData?.map((item, index) => (
-                            <div key={index} className='flex justify-between items-center gap-y-5 sm:gap-x-10'>
-                                <div className='w-full lg:flex-[2] flex items-center justify-center sm:justify-end gap-x-3'>
+                            <div key={index} className='flex sm:justify-between items-center gap-y-5 sm:gap-x-10'>
+                                <div className='w-ful flex-1 sm:flex-[2] lg:flex-1 xl:flex-[2] flex sm:items-center justify-center sm:justify-end gap-x-3'>
                                     <img src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${item?.icon}`} alt="Logo" className='w-[100px] h-[100px] rounded-full sm:w-[200px] sm:h-[200px] object-cover' />
                                 </div>
-                                <div className='w-full lg:flex-[2]'>
+                                <div className='w-full flex-[2] sm:flex-[2] lg:flex-[2] xl:flex-[2]'>
                                     <div className='flex flex-col mb-1 sm:mb-3'>
                                         <h2 className='text-[16px] sm:text-[24px] font-medium'>
                                             {item?.title}

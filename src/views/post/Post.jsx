@@ -157,7 +157,7 @@ export const Post = () => {
                                                 />
                                             </div>
                                             <div className='mt-1 px-1.5 sm:px-3 flex flex-col'>
-                                                <h2 className='text-[11px] sm:text-[16px] lg:text-[16px] sm:font-medium font-medium break-words text-ellipsis text-wrap overflow-hidden line-clamp-2'>
+                                                <h2 className='text-[11px] leading-4 mb-1 sm:text-[16px] lg:text-[16px] sm:font-medium font-medium break-words text-ellipsis text-wrap overflow-hidden line-clamp-2'>
                                                     {item?.title}
                                                 </h2>
                                                 <p className='sm:leading-4 leading-3 text-[10px] sm:text-[12px] text-gray-500 text-ellipsis line-clamp-2 overflow-hidden'>

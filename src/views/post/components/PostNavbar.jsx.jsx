@@ -87,7 +87,8 @@ export const PostNavbar = ({ children }) => {
                                     ບີທີພີ ທຶນຮຽນຕໍ່ຕ່າງປະເທດ
                                 </h1>
                             </div>
-                            <div className='w-[44px] h-[44px] hidden rounded-full border-white border-2 sm:flex justify-center items-center'>
+                            <div onClick={() => navigate('/')}
+                                className='w-[44px] h-[44px] hidden rounded-full border-white border-2 sm:flex justify-center items-center'>
                                 <img src={logo} alt=""
                                     className='w-[40px] h-[40px] object-cover'
                                 />

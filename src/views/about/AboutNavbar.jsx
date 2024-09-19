@@ -17,14 +17,13 @@ import { Footer } from '../../components/Footer';
 export const AboutNavbar = ({ children }) => {
     const [isOpenMenu, setIsOpenMenu] = useState(false);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const navigate = useNavigate()
 
     useEffect(() => {
         const handleResize = () => setWindowWidth(window.innerWidth);
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
-
-    const navigate = useNavigate();
     const navActive = ' px-3 text-[#01A7B1] sm:text-white p-2 font-semibold sm:font-medium shadow-[0px_2px_2.3px_0px_#00000024] flex items-center gap-x-3 xl:gap-x-5 sm:border-b-[3px] sm:border-white sm:py-[22px] sm:flex sm:item-center sm:justify-center sm:px-0 w-full sm:w-[100px] text-[14px] lg:w-[120px] md:text-[16px] sm:shadow-none';
     const navList = [
         {
@@ -78,7 +77,8 @@ export const AboutNavbar = ({ children }) => {
                 <div className='container h-[70px] mx-auto max-w-[350px] sm:max-w-[620px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px]'>
                     <nav className='relative z-[1000] flex items-center h-[70px] justify-between'>
                         <div className=' flex items-center gap-x-2 lg:gap-x-4'>
-                            <div className='w-[44px] h-[44px] rounded-full border-white border-2 flex justify-center items-center'>
+                            <div onClick={() => navigate('/')}
+                                className='w-[44px] h-[44px] rounded-full border-white border-2 flex justify-center items-center'>
                                 <img src={logo} alt=""
                                     className='w-[40px] h-[40px] object-cover'
                                 />

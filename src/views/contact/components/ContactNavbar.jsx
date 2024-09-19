@@ -71,7 +71,8 @@ export const ContactNavbar = ({ children }) => {
                 <div className='container h-[70px] mx-auto max-w-[350px] sm:max-w-[620px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px]'>
                     <nav className='relative z-[1000] flex items-center h-[70px] justify-between'>
                         <div className=' flex items-center gap-x-2 lg:gap-x-4'>
-                            <div className='w-[44px] h-[44px] rounded-full border-white border-2 flex justify-center items-center'>
+                            <div onClick={() => navigate('/')}
+                                className='w-[44px] h-[44px] rounded-full border-white border-2 flex justify-center items-center'>
                                 <img src={logo} alt=""
                                     className='w-[40px] h-[40px] object-cover'
                                 />
