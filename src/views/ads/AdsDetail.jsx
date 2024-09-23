@@ -280,14 +280,14 @@ export const AdsDetail = () => {
                                                 <img
                                                     src={bgPostOverlay}
                                                     alt="Background Overlay"
-                                                    className='absolute z-0 w-full h-full object-cover opacity-30'
+                                                    className='absolute z-0 w-full h-full object-cover opacity-25'
                                                 />
                                                 <div className='relative z-20 h-full flex flex-col sm:gap-y-3 md:gap-y-5 justify-center text-white px-5'>
                                                     <h2 className=' sm:text-[16px] md:text-[18px] lg:text-[20px]'>
                                                         ຖ້າທ່ານມີຄຳຖາມກະລຸນາຕິດຕໍ່
                                                     </h2>
                                                     <p className=' sm:text-[12px] md:text-[14px] lg:text-[16px]'>
-                                                        Lorem ipsum dolor sit amet, <br /> consectetur adipiscing
+                                                        ບໍລິສັດ ບີທີພີ ຈຳກັດ ຜູ້ດຽວ, ຫຼື ບີທີພີ (BTP) <br /> ໄດ້ທີ່ຊ່ອງທາງຕິດຕໍ່ດ້ານລຸ່ມນີ້:
                                                     </p>
                                                     <div className=' flex flex-col gap-y-3'>
                                                         <div className=' flex items-center gap-x-3 md:text-[16px]'>

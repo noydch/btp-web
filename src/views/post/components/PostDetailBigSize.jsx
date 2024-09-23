@@ -35,20 +35,30 @@ export const PostDetailBigSize = ({ postData, viewPdf, handleDownload }) => {
                             </div>
                         )
                     ))}
-                    <div className='grid grid-cols-12 gap-x-10 mt-20 sm:gap-x-3 xl:gap-x-4'>
+                    <div className='grid grid-cols-12 gap-x-10 mt-10 sm:gap-x-3 xl:gap-x-4'>
                         {postData?.map((item, index) => (
                             item?.id === pID && (
                                 <div key={index} className='lg:col-span-9 col-span-8'>
-                                    <div className='flex flex-col gap-y-5'>
-                                        <h1 className='sm:text-[18px] md:text-[22px] font-medium'>
-                                            ລາຍລະອຽດກ່ຽວກັບທຶນ
+                                    <div className=' flex flex-col gap-y-1 mb-5'>
+                                        <h1 className=' sm:text-[18px] md:text-[22px] font-medium'>
+                                            ຫົວຂໍ້:
+                                        </h1>
+                                        <p className=' sm:text-[12px] text-[14px]  lg:text-[18px] font-semibold'>
+                                            {
+                                                item?.title
+                                            }
+                                        </p>
+                                    </div>
+                                    <div className='flex flex-col gap-y-1'>
+                                        <h1 className='sm:text-[18px] md:text-[20px] font-medium'>
+                                            ລາຍລະອຽດກ່ຽວກັບທຶນ:
                                         </h1>
                                         <p className='sm:text-[12px] text-[14px]'>
                                             {item.description}
                                         </p>
                                     </div>
                                     <div className='mt-10'>
-                                        <h1 className='sm:text-[18px] md:text-[22px] font-medium mb-2'>
+                                        <h1 className='sm:text-[18px] md:text-[20px] font-medium mb-2'>
                                             ປະເພດທຶນ
                                         </h1>
                                         <div className=' grid grid-cols-12 gap-x-10 gap-y-5'>
@@ -66,7 +76,7 @@ export const PostDetailBigSize = ({ postData, viewPdf, handleDownload }) => {
                                     </div>
 
                                     <div className='mt-10'>
-                                        <h1 className='sm:text-[18px] md:text-[22px] font-medium mb-2'>
+                                        <h1 className='sm:text-[18px] md:text-[20px] font-medium mb-2'>
                                             ເອກະສານທີ່ຕ້ອງກຽມ
                                         </h1>
                                         <div className=' grid grid-cols-12 gap-x-10  gap-y-5'>
@@ -91,14 +101,14 @@ export const PostDetailBigSize = ({ postData, viewPdf, handleDownload }) => {
                                 <img
                                     src={bgPostOverlay}
                                     alt="Background Overlay"
-                                    className='absolute z-0 w-full h-full object-cover opacity-30'
+                                    className='absolute z-0 w-full h-full object-cover opacity-25'
                                 />
                                 <div className='relative z-20 h-full flex flex-col sm:gap-y-3 md:gap-y-5 justify-center text-white px-5'>
                                     <h2 className='sm:text-[16px] md:text-[18px] lg:text-[20px]'>
                                         ຖ້າທ່ານມີຄຳຖາມກະລຸນາຕິດຕໍ່
                                     </h2>
-                                    <p className='sm:text-[12px] md:text-[14px]'>
-                                        Lorem ipsum dolor sit amet, <br /> consectetur adipiscing
+                                    <p className=' sm:text-[12px] md:text-[14px] lg:text-[14px]'>
+                                        ບໍລິສັດ ບີທີພີ ຈຳກັດ ຜູ້ດຽວ, ຫຼື ບີທີພີ (BTP) <br /> ໄດ້ທີ່ຊ່ອງທາງຕິດຕໍ່ດ້ານລຸ່ມນີ້:
                                     </p>
                                     <div className='flex flex-col gap-y-3'>
                                         <div className='flex items-center gap-x-3 md:text-[16px]'>

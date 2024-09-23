@@ -128,8 +128,8 @@ export const ContactBigSize = () => {
                                             <h2 className='sm:text-[16px] lg:text-[24px] mt-10 lg:mt-20'>
                                                 ຖ້າທ່ານມີຄຳຖາມກະລຸນາຕິດຕໍ່
                                             </h2>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br /> sed do eiusmod tempor
+                                            <p className=' leading-7'>
+                                                ບໍລິສັດ ບີທີພີ ຈຳກັດ ຜູ້ດຽວ, ຫຼື ບີທີພີ (BTP) <br /> ໄດ້ທີ່ຊ່ອງທາງຕິດຕໍ່ດ້ານລຸ່ມນີ້:
                                             </p>
                                             <div className='flex flex-col gap-y-3 lg:gap-y-7 mt-5'>
                                                 <div className='flex items-center gap-x-3 text-[16px]'>

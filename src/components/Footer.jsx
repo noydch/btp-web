@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaTwitter, FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
+import { FaTwitter, FaFacebook, FaLinkedin, FaInstagram, FaYoutube } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
 export const Footer = () => {
@@ -15,18 +15,24 @@ export const Footer = () => {
                             ບໍລິການແລ່ນເອກະສານ, ໃຫ້ຄຳປຶກສາ, ແລ່ນທຶນຮຽນຕໍ່ຕ່າງປະເທດ ແລະ ບໍລິການຮັບແປເອກະສານທົ່ວໄປຖືກຕ້ອງຕາມກົດໝາຍ
                         </p>
                         <div className='flex items-center gap-x-3 mt-2'>
-                            <Link>
+                            {/* <Link>
                                 <FaTwitter className=' sm:text-[16px]' />
-                            </Link>
-                            <Link>
-                                <FaFacebook className=' sm:text-[16px]' />
-                            </Link>
-                            <Link>
-                                <FaLinkedin className=' sm:text-[16px]' />
-                            </Link>
-                            <Link>
-                                <FaInstagram className=' sm:text-[16px]' />
-                            </Link>
+                            </Link> */}
+                            <a
+                                target='_blank'
+                                href={"https://www.facebook.com/profile.php?id=100063789452169&mibextid=JRoKGi"}
+                            >
+                                <FaFacebook className=' sm:text-[16px] lg:text-[20px]' />
+                            </a>
+                            <a
+                                target='_blank'
+                                href={"https://youtube.com/@btptawa?si=CqSAs4hQtCLwJlFm"}
+                            >
+                                <FaYoutube className=' sm:text-[16px] lg:text-[20px]' />
+                            </a>
+                            {/* <Link>
+                                <FaInstagram className=' sm:text-[16px] lg:text-[20px]' />
+                            </Link> */}
                         </div>
                     </div>
                     <div className='text-white sm:flex-[2] flex flex-col gap-y-3 mt-5 md:mt-0'>

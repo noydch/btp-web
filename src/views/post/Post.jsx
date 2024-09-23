@@ -147,9 +147,9 @@ export const Post = () => {
                                         <Link
                                             to={`/post/postDetail/${item?.id}`}
                                             key={index}
-                                            className='rounded-md h-[165px] sm:h-[210px] md:h-[180px] lg:h-[200px] xl:col-span-3 relative xl:h-[300px] shadow-[0px_2px_3px_0px_#00000024]'
+                                            className='rounded-md h-[165px] sm:h-[220px] md:h-[230px] lg:h-[260px] xl:col-span-3 relative xl:h-[310px] shadow-[0px_2px_3px_0px_#00000024]'
                                         >
-                                            <div className='w-full h-[80px] xl:h-[200px]'>
+                                            <div className='w-full h-[80px] sm:h-[120px] md:h-[120px] lg:h-[150px] xl:h-[200px]'>
                                                 <img
                                                     src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${item?.image}`}
                                                     alt={item?.title}
@@ -157,10 +157,10 @@ export const Post = () => {
                                                 />
                                             </div>
                                             <div className='mt-1 px-1.5 sm:px-3 flex flex-col'>
-                                                <h2 className='text-[11px] leading-4 mb-1 sm:text-[16px] lg:text-[16px] sm:font-medium font-medium break-words text-ellipsis text-wrap overflow-hidden line-clamp-2'>
+                                                <h2 className='text-[11px] leading-4 sm:leading-5 mb-1 sm:text-[16px] lg:text-[16px] sm:font-medium font-medium break-words text-ellipsis text-wrap overflow-hidden line-clamp-2'>
                                                     {item?.title}
                                                 </h2>
-                                                <p className='sm:leading-4 leading-3 text-[10px] sm:text-[12px] text-gray-500 text-ellipsis line-clamp-2 overflow-hidden'>
+                                                <p className='sm:leading-4 leading-4 md:leading-5 text-[10px] sm:text-[12px] text-gray-500 text-ellipsis line-clamp-2 overflow-hidden'>
                                                     {item?.description}
                                                 </p>
                                                 <div className='absolute bottom-2 sm:bottom-1 xl:bottom-2 md:left-3 flex items-center text-[#13BBB6] gap-x-1'>

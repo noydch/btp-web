@@ -131,17 +131,18 @@ export const About = () => {
                         <Skeleton active />
                     ) : companyData?.length > 0 ? (
                         companyData?.map((item, index) => (
-                            <div key={index} className='flex sm:justify-between items-center gap-y-5 sm:gap-x-10'>
+                            <div key={index} className='flex sm:justify-between items-center gap-y-5 sm:gap-x-5'>
                                 <div className='w-ful flex-1 sm:flex-[2] lg:flex-1 xl:flex-[2] flex sm:items-center justify-center sm:justify-end gap-x-3'>
-                                    <img src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${item?.icon}`} alt="Logo" className='w-[100px] h-[100px] rounded-full sm:w-[200px] sm:h-[200px] object-cover' />
+                                    <img src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${item?.icon}`} alt="Logo"
+                                        className='w-[100px] h-[100px] rounded-full sm:w-[150px] sm:h-[150px] lg:h-[200px] lg:w-[200px] object-cover' />
                                 </div>
                                 <div className='w-full flex-[2] sm:flex-[2] lg:flex-[2] xl:flex-[2]'>
-                                    <div className='flex flex-col mb-1 sm:mb-3'>
-                                        <h2 className='text-[16px] sm:text-[24px] font-medium'>
+                                    <div className='flex flex-col mb-1 sm:mb-2'>
+                                        <h2 className='text-[16px] sm:text-[20px] lg:text-[22px] font-medium'>
                                             {item?.title}
                                         </h2>
                                     </div>
-                                    <p className='text-start text-[10px] sm:text-[14px] sm:w-[450px]'>
+                                    <p className='text-start text-[10px] sm:text-[12px] lg:text-[14px] sm:w-[400px]'>
                                         {item?.description}
                                     </p>
                                 </div>
