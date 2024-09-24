@@ -38,7 +38,7 @@ export const Footer = () => {
                             </div>
 
                             <img src={qrWechat} alt=""
-                                className=' w-[80px]'
+                                className=' w-[120px]'
                             />
                         </div>
                     </div>
