@@ -160,7 +160,9 @@ export const Navbar = ({ children }) => {
                 </div>
             </div>
             {children}
-            <Footer />
+            <div className=' '>
+                <Footer />
+            </div>
         </div>
     );
 }
