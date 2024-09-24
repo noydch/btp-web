@@ -98,18 +98,16 @@ export const AdsDetail = () => {
                                 <div className='w-full container max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px]'>
                                     <div className='mt-3 flex items-center text-[#DEAD00]'>
                                         <GoDotFill className=' text-[12px]' />
-                                        <h1 className=' text-[20px] font-medium pl-2 py-2.5 border-b border-[#DEAD00]'>
-                                            ປະກາດເປີດຮັບສະໝັກທຶນ <span className=' font-bold text-[20px]'>
-                                                {item?.title}
-                                            </span>
+                                        <h1 className='text-[20px] font-medium pl-2 py-2.5 border-b border-[#DEAD00]'>
+                                            {item?.title}
                                         </h1>
                                     </div>
                                     <ul className='mt-3 flex items-center gap-x-5'>
                                         <li className=' font-medium text-[16px]'>
-                                            - ທຶນການສຶກສາ
+                                            - ປະເພດທຶນ
                                         </li>
                                         <li className=' font-medium text-[16px]'>
-                                            # ເງື່ອນໄຂທີ່ຄຸ້ມຄ່າທີ່ສຸດ
+                                            # ເອກະສານ
                                         </li>
                                     </ul>
                                     {

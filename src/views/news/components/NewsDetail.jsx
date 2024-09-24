@@ -154,31 +154,24 @@ export const NewsDetail = () => {
                             <div className='mt-3 flex items-center text-[#DEAD00]'>
                                 <GoDotFill className='text-[12px]' />
                                 <h1 className='text-[20px] sm:text-[22px] font-medium pl-2 py-2.5 border-b border-[#DEAD00]'>
-                                    ປະກາດເປີດຮັບສະໝັກທຶນ <span className='font-bold text-[20px]'>2024</span>
+                                    {newsData?.map((item, index) => (
+                                        item?.id == postID && (
+                                            <span>{item?.title}</span>
+                                        ))
+                                    )}
                                 </h1>
                             </div>
                             <ul className='mt-3 flex items-center gap-x-5'>
-                                <li className='font-medium text-[16px]'>- ທຶນການສຶກສາ</li>
-                                <li className='font-medium text-[16px]'># ເງື່ອນໄຂທີ່ຄຸ້ມຄ່າທີ່ສຸດ</li>
+                                <li className='font-medium text-[16px]'>- ລາຍລະອຽດ</li>
                             </ul>
                             {newsData?.map((item, index) => (
                                 item?.id == postID && (
                                     <div key={index} className='grid grid-cols-12 gap-x-5 mt-2 list-inside list-disc px-2'>
                                         <div className='flex flex-col col-span-5 gap-y-3 font-medium'>
-                                            {item?.typescholarship?.map((scholarshipItem, i) => (
-                                                <div key={i} className='flex items-center gap-x-2'>
-                                                    <GoDotFill className='text-[7px]' />
-                                                    <p className='sm:text-[16px]'>{scholarshipItem}</p>
-                                                </div>
-                                            ))}
-                                        </div>
-                                        <div className='flex flex-col col-span-7 gap-y-3 font-medium'>
-                                            {item?.document?.map((documentItem, i) => (
-                                                <div key={i} className='flex items-center gap-x-2'>
-                                                    <GoDotFill className='text-[7px]' />
-                                                    <p className='sm:text-[16px]'>{documentItem}</p>
-                                                </div>
-                                            ))}
+                                            <div key={index} className='flex items-center gap-x-2'>
+                                                <GoDotFill className='text-[7px]' />
+                                                <p className='sm:text-[16px]'>{item?.detail}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 )

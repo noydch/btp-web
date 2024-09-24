@@ -102,7 +102,15 @@ export const PostDetail = () => {
                         <div className='mt-3 flex items-center text-[#DEAD00]'>
                             <GoDotFill className='text-[12px]' />
                             <h1 className='text-[20px] font-medium pl-2 py-2.5 border-b border-[#DEAD00]'>
-                                ປະກາດເປີດຮັບສະໝັກທຶນ <span className='font-bold text-[20px] sm:text-[22px]'>2024</span>
+                                {
+                                    postData?.map((item, index) => (
+                                        item?.id === postID && (
+                                            <span key={index} className='font-bold text-[20px] sm:text-[22px]'>
+                                                {item?.title}
+                                            </span>
+                                        )
+                                    ))
+                                }
                             </h1>
                         </div>
                         <ul className='mt-3 grid grid-cols-12 gap-x-5'>
