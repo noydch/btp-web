@@ -22,12 +22,12 @@ export const Footer = () => {
                             {/* <Link>
                                 <FaTwitter className=' sm:text-[16px]' />
                             </Link> */}
-                            <div className=' flex items-center gap-x-5'>
+                            <div className=' flex items-center gap-x-3 md:gap-x-5'>
                                 <a
                                     target='_blank'
                                     href={"https://www.facebook.com/profile.php?id=100063789452169&mibextid=JRoKGi"}
                                 >
-                                    <FaFacebook className='text-[20px] sm:text-[28px] lg:text-[20px]' />
+                                    <FaFacebook className='text-[18px] sm:text-[24px] lg:text-[28px]' />
                                 </a>
                                 <a
                                     target='_blank'
