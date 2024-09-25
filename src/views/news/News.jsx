@@ -52,10 +52,10 @@ export const News = () => {
                                         />
                                         <div className='p-3 flex flex-col xl:gap-y-1'>
                                             <h2 className='leading-6 sm:text-[16px] md:text-[16px] font-medium break-words text-ellipsis overflow-hidden line-clamp-2'>
-                                                {item?.title} Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis, id?
+                                                {item?.title}
                                             </h2>
                                             <span className='text-[#8E8C8C] text-[12px] break-words text-ellipsis overflow-hidden line-clamp-2'>
-                                                {item?.detail} Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis, id?
+                                                {item?.detail}
                                             </span>
                                         </div>
                                         <p className='absolute bottom-1 left-1/2 -translate-x-1/2 font-semibold text-[12px] sm:text-center xl:text-[14px]'>

@@ -95,6 +95,12 @@ export const Post = () => {
         setShowModal(false);
     };
 
+    const handleShareToWhatsApp = (postUrl) => {
+        const whatsappMessage = `ສົນໃຈທຶນນີ້: ${postUrl}`;
+        const whatsappUrl = `https://api.whatsapp.com/send?phone=8562092111722&text=${encodeURIComponent(whatsappMessage)}`;
+        window.open(whatsappUrl, '_blank');
+    };
+
     return (
         <Navbar>
             <div className=' w-full'>
@@ -163,10 +169,14 @@ export const Post = () => {
                                                 <p className='sm:leading-4 leading-4 md:leading-5 text-[10px] sm:text-[12px] text-gray-500 text-ellipsis line-clamp-2 overflow-hidden'>
                                                     {item?.description}
                                                 </p>
-                                                <div className='absolute bottom-2 sm:bottom-1 xl:bottom-2 md:left-3 flex items-center text-[#13BBB6] gap-x-1'>
+                                                <div
+                                                    className='absolute bottom-2 sm:bottom-1 xl:bottom-2 md:left-3 flex items-center text-[#13BBB6] gap-x-1 cursor-pointer'
+                                                    onClick={() => handleShareToWhatsApp(window.location.origin + `/post/postDetail/${item?.id}`)}
+                                                >
                                                     <img src={starIcon} alt='' className='w-[12px] md:w-[15px]' />
                                                     <span className='text-[10px] md:text-[12px] xl:text-[12px] font-medium'>ສົນໃຈ</span>
                                                 </div>
+
                                             </div>
                                         </Link>
                                     ))
