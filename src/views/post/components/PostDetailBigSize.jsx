@@ -79,11 +79,13 @@ export const PostDetailBigSize = ({ postData, viewPdf, handleDownload }) => {
                                         <h1 className='sm:text-[18px] md:text-[20px] font-medium mb-2'>
                                             ເອກະສານທີ່ຕ້ອງກຽມ
                                         </h1>
-                                        <div className=' grid grid-cols-12 gap-x-10  gap-y-5'>
+                                        <div className=' grid grid-cols-12 gap-x-5  gap-y-5'>
                                             {item?.document?.map((type, i) => (
                                                 <div key={i} className=' col-span-6 flex items-center gap-x-4'>
-                                                    <div className='w-[20px] h-[20px] flex items-center justify-center rounded-full bg-[#01a7b1]'>
-                                                        <IoMdCheckmark className='text-[16px] text-white' />
+                                                    <div className='w-[20px] h-[20px] flex items-center justify-center rounded-full '>
+                                                        <div className='w-[20px] h-[20px] rounded-full bg-[#01a7b1] flex items-center justify-center'>
+                                                            <IoMdCheckmark className='text-[12px] text-white' />
+                                                        </div>
                                                     </div>
                                                     <p className='sm:text-[12px] md:text-[14px]'>
                                                         {type}

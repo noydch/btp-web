@@ -30,6 +30,13 @@ export const NewsDetailBigSize = ({ newsData, viewPdf, handleDownload }) => {
     const [previewVisible, setPreviewVisible] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
     const [previewIndex, setPreviewIndex] = useState(0);
+    const [showAllImages, setShowAllImages] = useState(false);
+    const imagesPerRow = 6; // Assuming 6 images per row based on the grid layout
+    const initialRowsToShow = 2;
+
+    const toggleShowAllImages = () => {
+        setShowAllImages(!showAllImages);
+    };
 
     const handlePreview = (index, image) => {
         setPreviewVisible(true);
@@ -77,24 +84,35 @@ export const NewsDetailBigSize = ({ newsData, viewPdf, handleDownload }) => {
                     ))
                 }
                 {/* list image */}
-                <div className=' w-full mt-5 mb-10'>
-                    <div className=' grid grid-cols-12 place-items-center sm:gap-3 md:gap-3 lg:gap-3 xl:gap-5 w-full'>
-                        {
-                            filteredNewsData.map((item) => (
-                                item.image.slice(0).map((image, index) => (
-                                    <div
-                                        className=' sm:col-span-4 md:col-span-3 lg:col-span-3 xl:col-span-2 sm:w-[190px] sm:h-[150px] md:w-[170px] md:h-[130px] lg:w-[210px] xl:w-[190px] lg:h-[160px] rounded-lg'
-                                        key={index}
-                                        onClick={() => handlePreview(index + 1, image)} // Add onClick to open the preview
-                                    >
-                                        <img src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${image}`}
-                                            className=' w-full h-full  object-cover rounded-lg'
-                                            alt="" />
-                                    </div>
-                                ))
-                            ))
-                        }
+                <div className='w-full mt-5 mb-10'>
+                    <div className='grid grid-cols-12 place-items-center sm:gap-3 md:gap-3 lg:gap-3 xl:gap-5 w-full'>
+                        {filteredNewsData.map((item) => {
+                            const imagesToShow = showAllImages ? item.image : item.image.slice(0, imagesPerRow * initialRowsToShow);
+                            return imagesToShow.map((image, index) => (
+                                <div
+                                    className='sm:col-span-4 md:col-span-3 lg:col-span-3 xl:col-span-2 sm:w-[190px] sm:h-[150px] md:w-[170px] md:h-[130px] lg:w-[210px] xl:w-[190px] lg:h-[160px] rounded-lg'
+                                    key={index}
+                                    onClick={() => handlePreview(index + 1, image)}
+                                >
+                                    <img
+                                        src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${image}`}
+                                        className='w-full h-full object-cover rounded-lg'
+                                        alt=""
+                                    />
+                                </div>
+                            ));
+                        })}
                     </div>
+                    {filteredNewsData[0]?.image.length > imagesPerRow * initialRowsToShow && (
+                        <div className="flex justify-center mt-4">
+                            <button
+                                onClick={toggleShowAllImages}
+                                className="bg-[#01A7B1] text-white px-4 py-2 rounded-lg hover:bg-[#018a92] transition-colors"
+                            >
+                                {showAllImages ? 'ສະແດງໜ້ອຍລົງ' : 'ສະແດງເພີ່ມເຕີມ'}
+                            </button>
+                        </div>
+                    )}
                 </div>
                 <div className=' grid grid-cols-12 gap-x-10 mt-10 sm:gap-x-3 xl:gap-x-4'>
                     {

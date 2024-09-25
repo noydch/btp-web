@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { AboutNavbar } from './AboutNavbar';
 import { useSpring, animated } from 'react-spring';
-import { Skeleton, Empty } from 'antd'; // Import Skeleton and Empty from Ant Design
+import { Skeleton, Empty } from 'antd';
 
 // images
 import aboutImg from '../../assets/images/about.webp';
@@ -17,6 +17,7 @@ export const About = () => {
     const [aboutData, setAboutData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [companyData, setCompanyData] = useState([]);
+    const [isCoverPreview, setIsCoverPreview] = useState(false);
 
     // Fetch cover image data
     const fetchDataCoverImg = async () => {
@@ -86,22 +87,48 @@ export const About = () => {
         setPreviewVisible(true);
         setPreviewImage(`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${aboutData[index].images}`);
         setPreviewIndex(index);
+        setIsCoverPreview(false);
+    };
+
+    const handleCoverPreview = () => {
+        setPreviewVisible(true);
+        setPreviewImage(`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${coverImg}`);
+        setIsCoverPreview(true);
     };
 
     const handleClose = () => {
         setPreviewVisible(false);
+        setIsCoverPreview(false);
     };
 
     const handlePrev = () => {
-        const newIndex = (previewIndex - 1 + aboutData.length) % aboutData.length;
-        setPreviewImage(`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${aboutData[newIndex].images}`);
-        setPreviewIndex(newIndex);
+        if (isCoverPreview) {
+            const lastIndex = aboutData.length - 1;
+            setPreviewImage(`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${aboutData[lastIndex].images}`);
+            setPreviewIndex(lastIndex);
+            setIsCoverPreview(false);
+        } else {
+            const newIndex = (previewIndex - 1 + aboutData.length) % aboutData.length;
+            setPreviewImage(`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${aboutData[newIndex].images}`);
+            setPreviewIndex(newIndex);
+        }
     };
 
     const handleNext = () => {
-        const newIndex = (previewIndex + 1) % aboutData.length;
-        setPreviewImage(`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${aboutData[newIndex].images}`);
-        setPreviewIndex(newIndex);
+        if (isCoverPreview) {
+            setPreviewImage(`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${aboutData[0].images}`);
+            setPreviewIndex(0);
+            setIsCoverPreview(false);
+        } else {
+            const newIndex = (previewIndex + 1) % aboutData.length;
+            if (newIndex === 0) {
+                setPreviewImage(`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${coverImg}`);
+                setIsCoverPreview(true);
+            } else {
+                setPreviewImage(`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${aboutData[newIndex].images}`);
+                setPreviewIndex(newIndex);
+            }
+        }
     };
 
     // Animation for the preview modal
@@ -110,7 +137,6 @@ export const About = () => {
         transform: previewVisible ? 'scale(1)' : 'scale(0.8)',
         config: { tension: 120, friction: 14 },
     });
-    //console.log(aboutData);
 
     const coverImg = coverImgData?.image ? coverImgData.image : aboutImg;
 
@@ -122,7 +148,12 @@ export const About = () => {
                         {loading ? (
                             <Skeleton.Image className='' />
                         ) : (
-                            <img src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${coverImg}`} alt="Cover" className='h-full w-full object-cover' />
+                            <img
+                                src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${coverImg}`}
+                                alt="Cover"
+                                className='h-full w-full object-cover cursor-pointer'
+                                onClick={handleCoverPreview}
+                            />
                         )}
                     </div>
                 </div>
