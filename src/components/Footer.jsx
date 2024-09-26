@@ -3,6 +3,7 @@ import { FaTwitter, FaFacebook, FaLinkedin, FaInstagram, FaYoutube } from "react
 import { Link } from 'react-router-dom';
 import qrWechat from '../assets/images/qrWechat.webp'
 import { IoLogoYoutube } from 'react-icons/io5';
+import VersionCheck from './VersionCheck';
 
 export const Footer = () => {
     return (
@@ -63,6 +64,9 @@ export const Footer = () => {
                             +856 20 9211 1722
                         </p>
                     </div>
+                </div>
+                <div className=' text-white py-2'>
+                    <VersionCheck />
                 </div>
             </div>
         </footer>
