@@ -123,7 +123,7 @@ export const NewsDetailBigSize = ({ newsData, viewPdf, handleDownload }) => {
                                         <h1 className=' sm:text-[18px] md:text-[22px] font-medium'>
                                             ຫົວຂໍ້:
                                         </h1>
-                                        <p className=' sm:text-[12px] text-[14px]  lg:text-[18px] font-semibold'>
+                                        <p className=' sm:text-[12px] text-[14px]  lg:text-[18px] font-normal'>
                                             {
                                                 item?.title
                                             }
@@ -133,7 +133,7 @@ export const NewsDetailBigSize = ({ newsData, viewPdf, handleDownload }) => {
                                         <h1 className=' sm:text-[18px] md:text-[20px] font-medium'>
                                             ລາຍລະອຽດ:
                                         </h1>
-                                        <p className=' sm:text-[12px] text-[14px]  lg:text-[16px]'>
+                                        <p className=' sm:text-[12px] text-[14px]  font-normal lg:text-[16px]'>
                                             {
                                                 item?.detail
                                             }
