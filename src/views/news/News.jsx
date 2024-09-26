@@ -11,6 +11,7 @@ export const News = () => {
     const [loading, setLoading] = useState(false);
     const [newsData, setNewsData] = useState([]);
     const { pID } = useParams();
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const postID = pID;
 
     const fetchData = async () => {
@@ -24,6 +25,14 @@ export const News = () => {
             setLoading(false);
         }
     };
+
+
+    useEffect(() => {
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
 
     useEffect(() => {
         fetchData();
@@ -45,16 +54,53 @@ export const News = () => {
                                 newsData.map((item, index) => (
                                     <Link to={`/news/${item?.id}`} key={index}
                                         className='hoverNews relative border border-[#E1E1E1] bg-white duration-300
-                                    shadow-[0px_2px_3px_0px_#00000024] md:w-[230px] xl:w-[280px] xl:h-[330px] h-[360px] sm:h-[280px] md:h-[320px] lg:w-[220px] lg:h-[320px]'
+                                    shadow-[0px_2px_3px_0px_#00000024] md:w-[230px] xl:w-[280px] xl:h-[330px] h-[340px] sm:h-[280px] md:h-[320px] lg:w-[220px] lg:h-[320px]'
                                     >
-                                        <img src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${item?.cover_image}`} alt=""
-                                            className='w-full h-[240px] sm:h-[160px] md:h-[200px] object-cover'
-                                        />
+                                        {
+                                            windowWidth < 480 ? (
+
+                                                <div className="relative w-full h-[240px] sm:h-[160px] md:h-[200px]">
+                                                    {item?.image && item.image.length > 0 ? (
+                                                        <div className="grid grid-cols-2 gap-[1px] h-full">
+                                                            {item.image.slice(0, 4).map((image, index) => (
+                                                                <div key={index} className={`relative ${index === 3 && item.image.length > 4 ? 'overflow-hidden' : ''}`}>
+                                                                    <img
+                                                                        src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${image}`}
+                                                                        alt=""
+                                                                        className="w-full h-[120px] object-cover"
+                                                                    />
+                                                                    {index === 3 && item.image.length > 4 && (
+                                                                        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                                                                            <span className="text-white text-lg font-bold">+{item.image.length - 4}</span>
+                                                                        </div>
+                                                                    )}
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    ) : (
+                                                        <img
+                                                            src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${item?.image}`}
+                                                            alt=""
+                                                            className="w-full h-full object-cover"
+                                                        />
+                                                    )}
+                                                </div>
+
+                                            ) : (
+                                                <div>
+                                                    <img src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${item?.cover_image}`} alt=""
+                                                        className='w-full h-[240px] sm:h-[160px] md:h-[200px] object-cover'
+                                                    />
+                                                </div>
+                                            )
+                                        }
+
+
                                         <div className='p-3 flex flex-col xl:gap-y-1'>
                                             <h2 className='leading-6 sm:text-[16px] md:text-[16px] font-medium break-words text-ellipsis overflow-hidden line-clamp-2'>
                                                 {item?.title}
                                             </h2>
-                                            <span className='text-[#8E8C8C] text-[12px] break-words text-ellipsis overflow-hidden line-clamp-2'>
+                                            <span className='text-[#8E8C8C] text-[12px] break-words text-ellipsis overflow-hidden line-clamp-1 sm:line-clamp-2'>
                                                 {item?.detail}
                                             </span>
                                         </div>
