@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { RouterPaths } from './router/Router';
 import { addViewApi } from './api/view';
+import VersionCheck from './components/VersionCheck';
 
 function App() {
   const [view, setView] = useState([]);
@@ -35,6 +36,9 @@ function App() {
 
   return (
     <>
+      <div className=' hidden'>
+        <VersionCheck />
+      </div>
       <RouterPaths />
     </>
   );
