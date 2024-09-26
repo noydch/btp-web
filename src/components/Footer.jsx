@@ -48,7 +48,7 @@ export const Footer = () => {
                             <span className=' font-semibold mr-1.5'>
                                 ສະຖານທີ່ຕັ້ງ:
                             </span>
-                            ຖະໜົນທ່າເດື່ອຕິດກັບບຶງທາດຫຼວງ ບ້ານໂນນຫວາຍ ເມືອງໄຊເສດຖາ ນະຄອນຫຼວງວຽງຈັນ
+                            ຖະໜົນທ່າເດື່ອຕິດກັບບຶງທາດຫຼວງ ບ້ານໂນນວາຍ ເມືອງໄຊເສດຖາ ນະຄອນຫຼວງວຽງຈັນ
                         </p>
                         <p className=' text-[12px] sm:text-[14px] font-light'>
                             <span className=' font-semibold mr-1.5'>
