@@ -3,7 +3,6 @@ import { FaTwitter, FaFacebook, FaLinkedin, FaInstagram, FaYoutube } from "react
 import { Link } from 'react-router-dom';
 import qrWechat from '../assets/images/qrWechat.webp'
 import { IoLogoYoutube } from 'react-icons/io5';
-import VersionCheck from './VersionCheck';
 
 export const Footer = () => {
     return (
@@ -49,7 +48,7 @@ export const Footer = () => {
                             <span className=' font-semibold mr-1.5'>
                                 ສະຖານທີ່ຕັ້ງ:
                             </span>
-                            ຖະໜົນທ່າເດື່ອຕິດກັບບຶງທາດຫຼວງ ບ້ານໂນນວາຍ ເມືອງໄຊເສດຖາ ນະຄອນຫຼວງວຽງຈັນ
+                            ຖະໜົນທ່າເດື່ອຕິດກັບບຶງທາດຫຼວງ ບ້ານໂນນຫວາຍ ເມືອງໄຊເສດຖາ ນະຄອນຫຼວງວຽງຈັນ
                         </p>
                         <p className=' text-[12px] sm:text-[14px] font-light'>
                             <span className=' font-semibold mr-1.5'>
@@ -64,9 +63,6 @@ export const Footer = () => {
                             +856 20 9211 1722
                         </p>
                     </div>
-                </div>
-                <div className=' text-white py-2'>
-                    <VersionCheck />
                 </div>
             </div>
         </footer>

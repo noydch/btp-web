@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 const VersionCheck = () => {
-    const currentVersion = '1.0.2'; // เวอร์ชันที่แอปกำลังใช้งานu
+    const currentVersion = '1.0.4'; // เวอร์ชันที่แอปกำลังใช้งานu
 
     useEffect(() => {
         // ตรวจสอบเวอร์ชันที่เก็บใน localStorage
