@@ -12,39 +12,22 @@ import Swal from 'sweetalert2';
 import { PostNavbar } from './PostNavbar.jsx';
 import { Skeleton, message } from 'antd'; // Import Skeleton
 import { addDownloadTotalApi } from '../../../api/download.js';
+import { useQuery } from '@tanstack/react-query';
 
 export const PostDetail = () => {
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(false);
-    const [postData, setPostData] = useState([]);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const { pID } = useParams(); // Destructure pID from useParams
     const postID = pID;
 
-    useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            try {
-                const response = await getService();
-                if (!response) {
-                    throw new Error('No response from API');
-                }
-                setPostData(response);
-            } catch (error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: "ເກີດຂໍ້ຜິດພາດ",
-                    text: "ບໍ່ສາມາດດຶງຂໍ້ມູນໄດ້",
-                });
-                console.error('Error fetching data:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
+    const { data: postData = [], isLoading: loading } = useQuery({
+        queryKey: ["news"],
+        queryFn: getService,
+        staleTime: 5 * 60 * 1000,
+        refetchOnWindowFocus: false
+    });
 
-        fetchData();
-    }, []);
 
     useEffect(() => {
         const handleResize = () => setWindowWidth(window.innerWidth);
