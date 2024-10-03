@@ -26,9 +26,7 @@ export const addDownloadTotalApi = async (data) => {
         };
 
         const response = await axios.post(`${ApiPath.addTotalDownload}`, data, config);
-        if (response) {
-            //console.log("Succes");
-        }
+        return response
     } catch (error) {
         console.error(error);
         return false;

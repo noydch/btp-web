@@ -325,6 +325,7 @@ export const AdsDetail = () => {
                                                             <a
                                                                 key={index}
                                                                 onClick={handleDownload}
+                                                                target='_blank'
                                                                 href={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/pdfs/${encodeURIComponent(item)}`}
                                                                 download={`${item}`} // ชื่อไฟล์ที่จะแสดงเมื่อดาวน์โหลด
                                                                 className="block px-4 py-2.5 rounded-md duration-200 text-sm text-gray-700 hover:bg-[#13BBB6] hover:text-white"
