@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AboutNavbar } from './AboutNavbar';
 import { useSpring, animated } from 'react-spring';
 import { Skeleton, Empty } from 'antd';
+import { useQuery } from '@tanstack/react-query';
 
 // images
 import aboutImg from '../../assets/images/about.webp';
-import logo from '../../assets/images/logo.webp';
 import { getAboutApi, getCompanyDataApi, getCoverImageApi } from '../../api/about';
 
 export const About = () => {
@@ -13,55 +13,28 @@ export const About = () => {
     const [previewVisible, setPreviewVisible] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
     const [previewIndex, setPreviewIndex] = useState(0);
-    const [coverImgData, setCoverImgData] = useState();
-    const [aboutData, setAboutData] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [companyData, setCompanyData] = useState([]);
     const [isCoverPreview, setIsCoverPreview] = useState(false);
 
-    // Fetch cover image data
-    const fetchDataCoverImg = async () => {
-        setLoading(true);
-        try {
-            const response = await getCoverImageApi();
-            setCoverImgData(response);
-        } catch (error) {
-            console.error("Failed to fetch cover image data", error);
-        } finally {
-            setLoading(false);
-        }
-    };
+    const { data: coverImgData, isLoading: isCoverLoading } = useQuery({
+        queryKey: ['coverImage'],
+        queryFn: getCoverImageApi,
+        staleTime: 5 * 60 * 1000,
+        refetchOnWindowFocus: false,
+    });
 
-    // Fetch about data
-    const fetchData = async () => {
-        setLoading(true);
-        try {
-            const response = await getAboutApi();
-            setAboutData(response);
-        } catch (error) {
-            console.error("Failed to fetch about data", error);
-        } finally {
-            setLoading(false);
-        }
-    };
+    const { data: aboutData = [], isLoading: isAboutLoading } = useQuery({
+        queryKey: ['aboutData'],
+        queryFn: getAboutApi,
+        staleTime: 5 * 60 * 1000,
+        refetchOnWindowFocus: false,
+    });
 
-    const fetchDataCompany = async () => {
-        setLoading(true);
-        try {
-            const response = await getCompanyDataApi();
-            setCompanyData(response);
-        } catch (error) {
-            console.error("Failed to fetch company data", error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        fetchDataCoverImg();
-        fetchData();
-        fetchDataCompany();
-    }, []);
+    const { data: companyData = [], isLoading: isCompanyLoading } = useQuery({
+        queryKey: ['companyData'],
+        queryFn: getCompanyDataApi,
+        staleTime: 5 * 60 * 1000,
+        refetchOnWindowFocus: false,
+    });
 
     useEffect(() => {
         if (aboutData.length > 0) {
@@ -139,13 +112,14 @@ export const About = () => {
     });
 
     const coverImg = coverImgData?.image ? coverImgData.image : aboutImg;
+    const isLoading = isCoverLoading || isAboutLoading || isCompanyLoading;
 
     return (
         <AboutNavbar>
             <div className='bg-white'>
                 <div className='h-[360px] w-full md:h-[460px] lg:h-[470px] pt-[70px]'>
                     <div className='h-[300px] md:h-[400px] lg:h-[400px] w-full flex justify-center items-center'>
-                        {loading ? (
+                        {isLoading ? (
                             <Skeleton.Image className='' />
                         ) : (
                             <img
@@ -158,7 +132,7 @@ export const About = () => {
                     </div>
                 </div>
                 <div className='w-full container max-w-[350px] mx-auto sm:max-w-[600px] md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1200px] mt-7 pb-20'>
-                    {loading ? (
+                    {isLoading ? (
                         <Skeleton active />
                     ) : companyData?.length > 0 ? (
                         companyData?.map((item, index) => (
@@ -189,7 +163,7 @@ export const About = () => {
                             </h4>
                         </div>
                         <div className='grid grid-cols-12 sm:grid-cols-12 xl:grid-cols-5 gap-x-4 gap-y-5 md:gap-y-4 xl:gap-y-6 mt-5 place-items-center'>
-                            {loading ? (
+                            {isLoading ? (
                                 <Skeleton.Image className='w-[100px] h-[100px] sm:w-[140px] sm:h-[140px] md:h-[150px] md:w-[170px] lg:h-[190px] lg:w-[210px] xl:w-[220px]' />
                             ) : aboutData?.length > 0 ? (
                                 aboutData?.map((item, index) => (

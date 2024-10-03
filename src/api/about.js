@@ -14,8 +14,9 @@ export const getAboutApi = async () => {
         // //console.log("in about get", response?.data?.data);
         return response?.data?.data
     } catch (error) {
-        console.error("Error  fetching about API", error);
-        return false
+        throw error
+        // console.error("Error  fetching about API", error);
+        // return false
     }
 }
 
@@ -34,8 +35,9 @@ export const getCoverImageApi = async () => {
         const response = await axios.get(ApiPath.getCoverImage, getHeaderConfig())
         return response?.data?.data[0]
     } catch (error) {
-        console.error("Error cover image API", error);
-        return false
+        throw error
+        // console.error("Error cover image API", error);
+        // return false
     }
 }
 
@@ -89,7 +91,8 @@ export const getCompanyDataApi = async () => {
         // //console.log(response?.data?.data);
         return response?.data?.data
     } catch (error) {
-        console.error("Error cover image API", error);
-        return false
+        throw error
+        // console.error("Error cover image API", error);
+        // return false
     }
 }

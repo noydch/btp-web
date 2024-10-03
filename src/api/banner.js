@@ -10,11 +10,12 @@ export const getBannerApi = async () => {
             }
         }
         const response = await axios.get(ApiPath.getBanner, config)
-        //console.log(response?.data?.data);
+        // console.log(response?.data?.data);
         return response?.data?.data
     } catch (error) {
-        console.error("Error get banner", error);
-        return false
+        throw error
+        // console.error("Error get banner", error);
+        // return false
     }
 }
 

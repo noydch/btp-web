@@ -6,25 +6,32 @@ import { formatDate } from '../../utils';
 import { Navbar } from '../../components/Navbar';
 import { Skeleton, Empty } from 'antd';  // Import Empty from antd
 import './style/Style.css';
+import { useQuery } from '@tanstack/react-query';
 
 export const News = () => {
-    const [loading, setLoading] = useState(false);
-    const [newsData, setNewsData] = useState([]);
+    // const [loading, setLoading] = useState(false);
+    // const [newsData, setNewsData] = useState([]);
     const { pID } = useParams();
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const postID = pID;
+    const { data: newsData = [], isLoading: loading } = useQuery({
+        queryKey: ["newsList"],
+        queryFn: getNewsApi,
+        staleTime: 5 * 60 * 1000,
+        refetchOnWindowFocus: false
+    });
 
-    const fetchData = async () => {
-        setLoading(true);
-        try {
-            const response = await getNewsApi();
-            setNewsData(response);
-        } catch (error) {
-            console.error("Error cannot fetch News data from API", error);
-        } finally {
-            setLoading(false);
-        }
-    };
+    // const fetchData = async () => {
+    //     setLoading(true);
+    //     try {
+    //         const response = await getNewsApi();
+    //         setNewsData(response);
+    //     } catch (error) {
+    //         console.error("Error cannot fetch News data from API", error);
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // };
 
 
     useEffect(() => {
@@ -34,9 +41,9 @@ export const News = () => {
     }, []);
 
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+    // useEffect(() => {
+    //     fetchData();
+    // }, []);
 
     return (
         <Navbar>

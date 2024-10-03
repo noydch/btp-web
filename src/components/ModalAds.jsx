@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Modal, Button, Skeleton, Empty } from 'antd'; // Import Empty component for empty state
+import React from 'react';
+import { Modal, Button, Skeleton, Empty } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { useQuery } from '@tanstack/react-query';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -17,31 +18,13 @@ import { getBannerApi } from '../api/banner';
 
 const ModalAds = ({ show, onClose }) => {
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(false);
-    const [banners, setBanners] = useState([]);
-    const [error, setError] = useState(null); // Add error state
 
-    const fetchData = async () => {
-        setLoading(true);
-        setError(null); // Reset error state before fetching
-        try {
-            const response = await getBannerApi();
-            if (response && response.length > 0) {
-                setBanners(response);
-            } else {
-                setError('No banners available'); // Set error if no banners found
-            }
-        } catch (err) {
-            setError('Error fetching banners'); // Set error on API failure
-            console.error('Error fetching banner data:', err);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        fetchData();
-    }, []);
+    const { data: banners = [], isLoading, error } = useQuery({
+        queryKey: ["bannerList"],
+        queryFn: getBannerApi,
+        staleTime: 5 * 60 * 1000,
+        refetchOnWindowFocus: false,
+    });
 
     const handleModalClose = (e) => {
         if (e && e.target.className.includes('ant-modal-close')) {
@@ -49,7 +32,6 @@ const ModalAds = ({ show, onClose }) => {
         }
     };
 
-    //console.log(banners.map(item => item.image));
     return (
         <div
             className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-300 ${show ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
@@ -66,13 +48,13 @@ const ModalAds = ({ show, onClose }) => {
                 mask={false}
             >
                 <div className="relative bg-white rounded-lg h-full w-full">
-                    {loading ? (
+                    {isLoading ? (
                         <Skeleton active className="h-[400px] sm:h-[500px] lg:h-[600px]" />
-                    ) : error ? ( // Show error message if there's an error
+                    ) : error ? (
                         <div className="text-center py-10">
-                            <p>{error}</p>
+                            <p>{error.message || 'Error fetching banners'}</p>
                         </div>
-                    ) : banners?.length > 0 ? ( // Check if banners exist before rendering the Swiper
+                    ) : banners.length > 0 ? (
                         <Swiper
                             scrollbar={{
                                 hide: true,
@@ -84,7 +66,7 @@ const ModalAds = ({ show, onClose }) => {
                             }}
                             className="mySwiper"
                         >
-                            {banners?.map((item, index) => (
+                            {banners.map((item, index) => (
                                 item?.isPublished && (
                                     <SwiperSlide key={index} className='h-full w-full'>
                                         <div onClick={() => navigate(`/adsDetail/${item?.id}`)} className="cursor-pointer w-full h-[400px] sm:h-[500px] lg:h-[600px]">
@@ -95,7 +77,7 @@ const ModalAds = ({ show, onClose }) => {
                             ))}
                         </Swiper>
                     ) : (
-                        <Empty description="No banners available" /> // Show empty state if no banners
+                        <Empty description="No banners available" />
                     )}
                 </div>
                 <Button

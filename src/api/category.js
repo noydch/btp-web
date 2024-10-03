@@ -60,8 +60,9 @@ export const getCategoryApi = async () => {
         const response = await axios.get(ApiPath.getCategory, config)
         return response?.data?.data
     } catch (error) {
-        console.error("Error req => \n", error);
-        return false
+        throw error
+        // console.error("Error req => \n", error);
+        // return false
     }
 }
 

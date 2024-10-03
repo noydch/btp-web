@@ -8,56 +8,46 @@ import Swal from 'sweetalert2';
 import { getService } from '../../api/serivce';
 import starIcon from '../../assets/icons/starPlus.png';
 import { getCategoryApi } from '../../api/category';
+import { useQuery } from '@tanstack/react-query';
 
 export const Post = () => {
     const [selectedFilter, setSelectedFilter] = useState(0);
     const [showModal, setShowModal] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredPosts, setFilteredPosts] = useState([]);
-    const [loading, setLoading] = useState(true); // Set initial loading to true
-    const [postData, setPostData] = useState([]);
-    const [categoryData, setCategoryData] = useState([]);
 
-    const fetchData = async () => {
-        try {
-            const response = await getService();
-            if (!response) {
-                throw new Error('No response from API');
-            }
-            setPostData(response);
-        } catch (error) {
-            Swal.fire({
-                icon: 'error',
-                title: "ເກີດຂໍ້ຜິດພາດ",
-                text: "ບໍ່ສາມາດດຶງຂໍ້ມູນໄດ້",
-            });
-            console.error('Error fetching data:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
+    const { data: postData = [], isLoading: postLoading, error: postError } = useQuery({
+        queryKey: ["postList"],
+        queryFn: getService,
+        staleTime: 5 * 60 * 1000,
+        refetchOnWindowFocus: false,
+    });
 
-    const fetchDataCategory = async () => {
-        try {
-            const response = await getCategoryApi();
-            if (!response) {
-                throw new Error('No response from API');
-            }
-            setCategoryData(response);
-        } catch (error) {
-            Swal.fire({
-                icon: 'error',
-                title: "ເກີດຂໍ້ຜິດພາດ",
-                text: "ບໍ່ສາມາດດຶງຂໍ້ມູນໄດ້",
-            });
-            console.error('Error fetching data:', error);
-        }
-    };
+    const { data: categoryData = [], isLoading: categoryLoading, error: categoryError } = useQuery({
+        queryKey: ["categoryList"],
+        queryFn: getCategoryApi,
+        staleTime: 5 * 60 * 1000,
+        refetchOnWindowFocus: false,
+    });
 
     useEffect(() => {
-        fetchData();
-        fetchDataCategory();
-    }, []);
+        if (postError) {
+            Swal.fire({
+                icon: 'error',
+                title: "ເກີດຂໍ້ຜິດພາດ",
+                text: "ບໍ່ສາມາດດຶງຂໍ້ມູນໄດ້",
+            });
+            console.error('Error fetching post data:', postError);
+        }
+        if (categoryError) {
+            Swal.fire({
+                icon: 'error',
+                title: "ເກີດຂໍ້ຜິດພາດ",
+                text: "ບໍ່ສາມາດດຶງຂໍ້ມູນໄດ້",
+            });
+            console.error('Error fetching category data:', categoryError);
+        }
+    }, [postError, categoryError]);
 
     useEffect(() => {
         const hasModalBeenShown = sessionStorage.getItem('modalShown');
@@ -116,7 +106,7 @@ export const Post = () => {
                                 className='w-full lg:h-[40px] h-[45px] md:h-[35px]'
                                 onChange={(value) => handleCategoryChange(value.value)}
                                 options={[
-                                    { value: 0, label: 'ເລືອກທັງໝົດ' }, // Add this option for "ທັງໝົດ"
+                                    { value: 0, label: 'ເລືອກທັງໝົດ' },
                                     ...categoryData?.map((item) => ({
                                         value: item?.id,
                                         label: item?.name,
@@ -138,8 +128,7 @@ export const Post = () => {
                             </div>
                         </div>
                         <div className='grid grid-cols-3 sm:grid-cols-4 xl:grid-cols-12 xl:gap-7 gap-3 sm:gap-5 lg:mt-7'>
-                            {loading ? (
-                                // Display skeletons when loading
+                            {postLoading || categoryLoading ? (
                                 Array.from({ length: 9 }).map((_, index) => (
                                     <Skeleton
                                         key={index}
@@ -147,44 +136,41 @@ export const Post = () => {
                                         active
                                     />
                                 ))
+                            ) : filteredPosts.length > 0 ? (
+                                filteredPosts.map((item, index) => (
+                                    <Link
+                                        to={`/post/postDetail/${item?.id}`}
+                                        key={index}
+                                        className='rounded-md h-[165px] sm:h-[220px] md:h-[230px] lg:h-[260px] xl:col-span-3 relative xl:h-[310px] shadow-[0px_2px_3px_0px_#00000024]'
+                                    >
+                                        <div className='w-full h-[80px] sm:h-[120px] md:h-[120px] lg:h-[150px] xl:h-[200px]'>
+                                            <img
+                                                src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${item?.image}`}
+                                                alt={item?.title}
+                                                className='w-full h-full object-cover rounded-t-md'
+                                            />
+                                        </div>
+                                        <div className='mt-1 px-1.5 sm:px-3 flex flex-col'>
+                                            <h2 className='text-[11px] leading-4 sm:leading-5 mb-1 sm:text-[16px] lg:text-[16px] sm:font-medium font-medium break-words text-ellipsis text-wrap overflow-hidden line-clamp-2'>
+                                                {item?.title}
+                                            </h2>
+                                            <p className='sm:leading-4 leading-4 md:leading-5 text-[10px] sm:text-[12px] text-gray-500 text-ellipsis line-clamp-2 overflow-hidden'>
+                                                {item?.description}
+                                            </p>
+                                            <div
+                                                className='absolute bottom-2 sm:bottom-1 xl:bottom-2 md:left-3 flex items-center text-[#13BBB6] gap-x-1 cursor-pointer'
+                                                onClick={() => handleShareToWhatsApp(window.location.origin + `/post/postDetail/${item?.id}`)}
+                                            >
+                                                <img src={starIcon} alt='' className='w-[12px] md:w-[15px]' />
+                                                <span className='text-[10px] md:text-[12px] xl:text-[12px] font-medium'>ສົນໃຈ</span>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                ))
                             ) : (
-                                filteredPosts.length > 0 ? (
-                                    filteredPosts.map((item, index) => (
-                                        <Link
-                                            to={`/post/postDetail/${item?.id}`}
-                                            key={index}
-                                            className='rounded-md h-[165px] sm:h-[220px] md:h-[230px] lg:h-[260px] xl:col-span-3 relative xl:h-[310px] shadow-[0px_2px_3px_0px_#00000024]'
-                                        >
-                                            <div className='w-full h-[80px] sm:h-[120px] md:h-[120px] lg:h-[150px] xl:h-[200px]'>
-                                                <img
-                                                    src={`https://saiyfonbroker.s3.ap-southeast-1.amazonaws.com/images/${item?.image}`}
-                                                    alt={item?.title}
-                                                    className='w-full h-full object-cover rounded-t-md'
-                                                />
-                                            </div>
-                                            <div className='mt-1 px-1.5 sm:px-3 flex flex-col'>
-                                                <h2 className='text-[11px] leading-4 sm:leading-5 mb-1 sm:text-[16px] lg:text-[16px] sm:font-medium font-medium break-words text-ellipsis text-wrap overflow-hidden line-clamp-2'>
-                                                    {item?.title}
-                                                </h2>
-                                                <p className='sm:leading-4 leading-4 md:leading-5 text-[10px] sm:text-[12px] text-gray-500 text-ellipsis line-clamp-2 overflow-hidden'>
-                                                    {item?.description}
-                                                </p>
-                                                <div
-                                                    className='absolute bottom-2 sm:bottom-1 xl:bottom-2 md:left-3 flex items-center text-[#13BBB6] gap-x-1 cursor-pointer'
-                                                    onClick={() => handleShareToWhatsApp(window.location.origin + `/post/postDetail/${item?.id}`)}
-                                                >
-                                                    <img src={starIcon} alt='' className='w-[12px] md:w-[15px]' />
-                                                    <span className='text-[10px] md:text-[12px] xl:text-[12px] font-medium'>ສົນໃຈ</span>
-                                                </div>
-
-                                            </div>
-                                        </Link>
-                                    ))
-                                ) : (
-                                    <div className=' h-[400px] col-span-3 sm:col-span-4 xl:col-span-12 w-full flex items-center justify-center'>
-                                        <Empty description="ບໍ່ມີຂໍ້ມູນ" />
-                                    </div>
-                                )
+                                <div className=' h-[400px] col-span-3 sm:col-span-4 xl:col-span-12 w-full flex items-center justify-center'>
+                                    <Empty description="ບໍ່ມີຂໍ້ມູນ" />
+                                </div>
                             )}
                         </div>
                     </div>

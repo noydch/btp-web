@@ -13,11 +13,12 @@ import { getNewsApi } from '../../../api/news.js';
 import { Navbar } from '../../../components/Navbar.jsx';
 import { addDownloadTotalApi } from '../../../api/download.js';
 import { useSpring, animated } from 'react-spring';
+import { useQuery } from '@tanstack/react-query';
 
 export const NewsDetail = () => {
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(false);
-    const [newsData, setNewsData] = useState([]);
+    // const [loading, setLoading] = useState(false);
+    // const [newsData, setNewsData] = useState([]);
     const id = useParams();
     const postID = id.nID;
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -25,22 +26,28 @@ export const NewsDetail = () => {
     const [previewVisible, setPreviewVisible] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
     const [previewIndex, setPreviewIndex] = useState(0);
+    const { data: newsData = [], isLoading: loading } = useQuery({
+        queryKey: ["news"],
+        queryFn: getNewsApi,
+        staleTime: 5 * 60 * 1000,
+        refetchOnWindowFocus: false
+    });
 
-    const fetchData = async () => {
-        setLoading(true);
-        try {
-            const response = await getNewsApi();
-            setNewsData(response);
-            setLoading(false);
-        } catch (error) {
-            console.error("Error: cannot fetch news data from API", error);
-            setLoading(false);
-        }
-    };
+    // const fetchData = async () => {
+    //     setLoading(true);
+    //     try {
+    //         const response = await getNewsApi();
+    //         setNewsData(response);
+    //         setLoading(false);
+    //     } catch (error) {
+    //         console.error("Error: cannot fetch news data from API", error);
+    //         setLoading(false);
+    //     }
+    // };
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+    // useEffect(() => {
+    //     fetchData();
+    // }, []);
 
     useEffect(() => {
         const handleResize = () => setWindowWidth(window.innerWidth);

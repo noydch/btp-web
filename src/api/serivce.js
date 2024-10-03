@@ -15,14 +15,15 @@ export const getService = async () => {
 
         return response?.data?.data;
     } catch (error) {
-        if (error.response) {
-            console.error("API Error:", error.response.data);
-        } else if (error.request) {
-            console.error("Network Error: No response received", error.request);
-        } else {
-            console.error("Error in setup:", error.message);
-        }
-        return [];
+        throw error
+        // if (error.response) {
+        //     console.error("API Error:", error.response.data);
+        // } else if (error.request) {
+        //     console.error("Network Error: No response received", error.request);
+        // } else {
+        //     console.error("Error in setup:", error.message);
+        // }
+        // return [];
     }
 };
 
