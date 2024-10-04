@@ -172,7 +172,7 @@ export const PostDetail = () => {
                                                         ດາວໂຫຼດຟອມ {index + 1}
                                                     </a>
                                                 ))}
-
+                                                {/*  */}
                                             </div>
                                         </div>
                                     )}
