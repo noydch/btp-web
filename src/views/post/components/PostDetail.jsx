@@ -159,7 +159,7 @@ export const PostDetail = () => {
                                     {isOpen && (
                                         <div className="origin-top-right z-[9999999] absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                                             <div className=" p-2" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                                                {viewPdf[0].slice(0, 8).map((item, index) => (
+                                                {viewPdf[0]?.slice(0, 8)?.map((item, index) => (
                                                     <a
                                                         key={index}
                                                         onClick={handleDownload}
